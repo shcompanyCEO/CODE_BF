@@ -11,7 +11,6 @@ const RootLayout = ({ children }: PropsWithChildren) => {
       <Nav />
       <Banner />
       <CotentBox>
-        {/* <Academy /> */}
         <Content>{children}</Content>
       </CotentBox>
       <Footer />
@@ -22,12 +21,11 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 export default RootLayout;
 
 const Container = styled.div`
-  max-width: 60rem;
+  max-width: 640px;
+  min-width: 320px;
   min-height: 100vh;
   margin: 0 auto;
-  height: auto;
   border: 1px solid red;
-  padding: 0 2rem;
 `;
 
 const CotentBox = styled.div`

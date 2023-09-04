@@ -28,7 +28,7 @@ const Footer = () => {
         </MenuBar>
         <MenuBar
           onClick={() => {
-            routerPage('styleMenu');
+            routerPage('styles');
           }}
         >
           <Image src={'/images/book.svg'} alt={'styleBook'} width={15} height={15} />
@@ -59,19 +59,19 @@ export default Footer;
 
 const FooterLayout = styled.div`
   position: fixed;
-  left: 50%;
   bottom: 0;
   padding-bottom: env(safe-area-inset-bottom);
-  width: 100%;
-  max-width: 600px;
-  height: calc(env(safe-area-inset-bottom) + 62px);
-  transform: translate(-50%);
-  transition: bottom 0.1s ease;
   background-color: #fff;
+  left: 50%;
+  transform: translate(-50%);
+  max-width: 600px;
+  width: 100%;
+  z-index: 5000;
+  /* transition: bottom 0.1s ease; */
 `;
 const MenuContainer = styled.ul`
   padding: 0 3rem;
-  flex: 1 1;
+  /* flex: 1 1; */
   width: 100%;
   height: 100%;
   display: flex;

@@ -17,8 +17,12 @@ const Nav = () => {
 export default Nav;
 
 const NavLayout = styled.div`
-  width: 100%;
   position: sticky;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  z-index: 1000;
 `;
 const Container = styled.div`
   display: flex;
