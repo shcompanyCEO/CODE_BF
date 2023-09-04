@@ -3,14 +3,15 @@ import Nav from '@components/nav';
 import styled from 'styled-components';
 import Banner from '@components/event/Banner';
 import Footer from '@components/footer/Footer';
+import Academy from '@components/list/Academy';
 
 const RootLayout = ({ children }: PropsWithChildren) => {
-  console.log('sean children', children);
   return (
     <Container>
       <Nav />
+      <Banner />
       <CotentBox>
-        <Banner />
+        {/* <Academy /> */}
         <Content>{children}</Content>
       </CotentBox>
       <Footer />
@@ -21,9 +22,9 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 export default RootLayout;
 
 const Container = styled.div`
-  margin: 0 auto;
   max-width: 60rem;
   min-height: 100vh;
+  margin: 0 auto;
   height: auto;
   border: 1px solid red;
   padding: 0 2rem;

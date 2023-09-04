@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
     font-size: 10px;
   }
   body {
-    
     overflow-y: scroll;
   }
   a {

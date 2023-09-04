@@ -1,4 +1,3 @@
-import RootLayout from '@components/layout/RootLayout';
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import styled from 'styled-components';
@@ -16,7 +15,7 @@ export default class PauseOnHover extends Component {
     };
     return (
       <EventLayout>
-        <div>강의 내용</div>
+        <div>가장 트렌디한</div>
         <Slider {...settings}>
           <ImgBanner>
             <h3>1</h3>

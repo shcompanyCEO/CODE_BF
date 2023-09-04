@@ -10,15 +10,23 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.1",
+    "@mui/styled-engine-sc": "^5.12.0",
+    "@stripe/react-stripe-js": "^2.1.1",
+    "@stripe/stripe-js": "^1.54.1",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "@types/react-slick": "^0.23.10",
+    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "8.27.0",
-    "eslint-config-next": "13.0.3",
-    "next": "13.0.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "eslint-config-next": "^13.3.0",
+    "next": "^13.4.10",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-native": "^0.72.3",
     "react-slick": "^0.29.0",
     "typescript": "4.8.4"
   },
@@ -30,6 +38,6 @@
     "cypress": "^11.0.1",
     "next-redux-wrapper": "^8.0.0",
     "react-redux": "^8.0.5",
-    "styled-components": "^5.3.6"
+    "styled-components": "^6.0.5"
   }
 }
