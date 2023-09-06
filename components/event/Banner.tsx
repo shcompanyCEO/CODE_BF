@@ -50,5 +50,5 @@ const EventLayout = styled.div`
   }
 `;
 const ImgBanner = styled.div`
-  height: 22rem;
+  height: 14rem;
 `;

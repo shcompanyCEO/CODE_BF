@@ -1,18 +1,24 @@
 import { PropsWithChildren } from 'react';
-import Nav from '@components/nav';
-import styled from 'styled-components';
+import Nav from '@components/root/nav';
 import Banner from '@components/event/Banner';
-import Footer from '@components/footer/Footer';
-import Academy from '@components/list/Academy';
+import Footer from '@components/root/footer/Footer';
+import MenuBar from '@components/root/menubar';
+import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
 const RootLayout = ({ children }: PropsWithChildren) => {
+  const router = useRouter();
+  const { pathname } = router;
+
   return (
     <Container>
       <Nav />
-      <Banner />
-      <CotentBox>
+      {/* <Banner /> */}
+      <MenuBar />
+      {pathname === '/' && <Banner />}
+      <ContentBox>
         <Content>{children}</Content>
-      </CotentBox>
+      </ContentBox>
       <Footer />
     </Container>
   );
@@ -28,7 +34,7 @@ const Container = styled.div`
   border: 1px solid red;
 `;
 
-const CotentBox = styled.div`
+const ContentBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;

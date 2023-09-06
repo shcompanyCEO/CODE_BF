@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Logo = () => {
   return (
     <LogoLayout>
-      <LogoText>LUFILE</LogoText>
+      <LogoText>HairShop</LogoText>
     </LogoLayout>
   );
 };

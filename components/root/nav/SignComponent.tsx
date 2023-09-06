@@ -61,7 +61,7 @@ const SignComponent = () => {
                 width={15}
                 height={15}
               />
-              korea
+              Korea
             </Button>
           </LangugeSelectBox>
         </LangugeSelectLayout>
@@ -85,6 +85,7 @@ const Content = styled.div`
 
 const Button = styled.button`
   display: flex;
+  width: 100%;
   background-color: transparent;
   outline: none;
   border: none;
@@ -114,9 +115,10 @@ const LangugeSelectBox = styled.div<{ isopen: string }>`
           top: 25px;
           right: 0;
           display: block;
-          width: 13rem;
+          /* width: 100%; */
           border: 1px solid gray;
           border-radius: 0.5rem;
+          background-color: #ffff;
         `
       : css`
           display: none;

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import RootLayout from '@components/layout/RootLayout';
 
 const Footer = () => {
   const router = useRouter();
@@ -67,10 +66,9 @@ const FooterLayout = styled.div`
   max-width: 600px;
   width: 100%;
   z-index: 5000;
-  /* transition: bottom 0.1s ease; */
 `;
 const MenuContainer = styled.ul`
-  padding: 0 3rem;
+  padding: 0 1rem;
   /* flex: 1 1; */
   width: 100%;
   height: 100%;
