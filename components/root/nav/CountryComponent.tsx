@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
 
-const SignComponent = () => {
+const CountryComponent = () => {
   const [langugeSelect, setLangugeSelect] = useState<string>('language');
   const [isOpen, setIsLanguageCheck] = useState<boolean>(false);
 
@@ -70,7 +70,7 @@ const SignComponent = () => {
   );
 };
 
-export default SignComponent;
+export default CountryComponent;
 
 const SignComponentLayout = styled.div`
   width: 50%;

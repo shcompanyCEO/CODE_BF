@@ -1,14 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import Logo from './Logo';
-import SignComponent from './SignComponent';
+import CountryComponent from './CountryComponent';
+import MemberShipMenu from './MemberShipMenu';
+import styled from 'styled-components';
 
 const Nav = () => {
   return (
     <NavLayout>
       <Container>
         <Logo />
-        <SignComponent />
+        <CountryComponent />
+        <MemberShipMenu />
       </Container>
     </NavLayout>
   );
@@ -27,5 +29,6 @@ const NavLayout = styled.div`
 const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 8rem;
 `;

@@ -13,7 +13,6 @@ const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <Container>
       <Nav />
-      {/* <Banner /> */}
       <MenuBar />
       {pathname === '/' && <Banner />}
       <ContentBox>
