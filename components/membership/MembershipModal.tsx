@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+Modal.setAppElement('#__next');
 
 const customModalStyles = {
   content: {
@@ -29,9 +31,9 @@ const SignupModal = ({ isOpen, onClose }: ISignupModalProps) => {
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [errors, setErrors] = useState<IValidationErrorsProps>({
-    email: 'not Email',
-    password: 'password',
-    confirmPassword: 'confirmPassword',
+    email: '이메일을 입력해주세요',
+    password: '비밀번호를 입력해주세를',
+    confirmPassword: '',
   });
 
   const handleSignup = (e: { preventDefault: () => void }) => {
@@ -44,7 +46,7 @@ const SignupModal = ({ isOpen, onClose }: ISignupModalProps) => {
       confirmPassword: '',
     };
     if (!email) {
-      validationErrors.email = '이메일을 입력해주세요.';
+      validationErrors.email = '올바른 이메일을 입력해주세요.';
     }
     if (!password) {
       validationErrors.password = '비밀번호를 입력해주세요.';
@@ -66,9 +68,15 @@ const SignupModal = ({ isOpen, onClose }: ISignupModalProps) => {
     // Close the modal
     onClose();
   };
+  const UserList = () => {
+    axios.get('/api/SignUp').then((res) => {
+      console.log(res);
+    });
+  };
 
   return (
     <Modal
+      role={'dialog'}
       isOpen={isOpen}
       onRequestClose={onClose}
       style={customModalStyles}
@@ -101,13 +109,15 @@ const SignupModal = ({ isOpen, onClose }: ISignupModalProps) => {
           />
           {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
         </div>
-        <button type="submit">가입하기</button>
+        <button onClick={UserList} type="submit">
+          가입하기
+        </button>
       </form>
     </Modal>
   );
 };
 
-const App = () => {
+const ModalApp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -126,4 +136,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ModalApp;
