@@ -18,13 +18,13 @@
     "paths": {
       "@components/*": ["./components/*"],
       "@utils/*": ["./utils/*"],
-      "@pages/*": ["./pages/*"],
+      "@pages/*": ["app/*"],
       "@type/*": ["./types/*"],
       "@redux/*": ["./redux/*"],
       "@constant/*": ["./constant/*"]
     }
   },
 
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/membership/MembershipModal.tsx"],
   "exclude": ["node_modules"]
 }

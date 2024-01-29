@@ -1,5 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
+ * {
+    box-sizing: border-box;
+    font-family: "Inter";
+    font-size: 10px;
+  }
   html,
   body {
     padding: 0;
@@ -15,10 +20,10 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
-
-  * {
-    box-sizing: border-box;
-    font-family: "Inter";
+  ul {
+    padding: 0;
   }
+
+ 
 `;
 export default GlobalStyle;
