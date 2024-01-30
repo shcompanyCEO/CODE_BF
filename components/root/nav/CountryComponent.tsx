@@ -32,7 +32,7 @@ const CountryComponent = () => {
             width={30}
             height={20}
           />
-          <LangugeSelectBox isopen={`${isOpen}`}>
+          <LangugeSelectBox open={isOpen}>
             <Button className={'select'} onClick={() => handleChange('USA')}>
               <Image
                 className={'languageImg'}
@@ -107,9 +107,9 @@ const LangugeSelectLayout = styled.div`
   }
 `;
 
-const LangugeSelectBox = styled.div<{ isopen: string }>`
-  ${({ isopen }) => {
-    return isopen === 'true'
+const LangugeSelectBox = styled.div<{ open: boolean }>`
+  ${({ open }) => {
+    return open === true
       ? css`
           position: absolute;
           top: 25px;
