@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 const CountryComponent = () => {
   const [langugeSelect, setLangugeSelect] = useState<string>('language');
   const [isOpen, setIsLanguageCheck] = useState<boolean>(false);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     //위치에 따라 국가가 설정된다.
   }, [langugeSelect]);
 
   const handleChange = (menu: string) => {
-    setLangugeSelect(menu);
+    if (menu === 'en') {
+      i18n.changeLanguage(menu);
+      setLangugeSelect('USA');
+    } else if (menu === 'th') {
+      i18n.changeLanguage(menu);
+      setLangugeSelect('Thailand');
+    } else {
+      i18n.changeLanguage(menu);
+      setLangugeSelect('korean');
+    }
   };
 
   const handleLanguageChange = () => {
@@ -33,7 +44,7 @@ const CountryComponent = () => {
             height={20}
           />
           <LangugeSelectBox open={isOpen}>
-            <Button className={'select'} onClick={() => handleChange('USA')}>
+            <Button className={'select'} onClick={() => handleChange('en')}>
               <Image
                 className={'languageImg'}
                 src={'/images/USA.png'}
@@ -43,7 +54,7 @@ const CountryComponent = () => {
               />
               USA
             </Button>
-            <Button className={'select'} onClick={() => handleChange('thailand')}>
+            <Button className={'select'} onClick={() => handleChange('th')}>
               <Image
                 className={'languageImg'}
                 src={'/images/thailand.png'}
@@ -53,7 +64,7 @@ const CountryComponent = () => {
               />
               Thailand
             </Button>
-            <Button className={'select'} onClick={() => handleChange('korean')}>
+            <Button className={'select'} onClick={() => handleChange('ko')}>
               <Image
                 className={'languageImg'}
                 src={'/images/korean.png'}

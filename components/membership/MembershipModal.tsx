@@ -61,8 +61,6 @@ const SignupModal = ({ isOpen, onClose }: ISignupModalProps) => {
     }
 
     // Perform signup logic
-    console.log('Email:', email);
-    console.log('Password:', password);
     // ...
 
     // Close the modal
