@@ -36,7 +36,7 @@ const Footer = () => {
           <span className="text-base mt-1">Style book</span>
         </ul>
         <ul className="flex flex-col items-center cursor-pointer">
-          <Image src={'/images/market.svg'} alt={'search'} width={15} height={15} />
+          <Image src={'/images/market.svg'} alt={'market'} width={15} height={15} />
           <span className="text-base mt-1">마켓</span>
         </ul>
         <ul
@@ -46,14 +46,14 @@ const Footer = () => {
           }}
         >
           <Image src={'/images/saveImg.png'} alt={'myPick'} width={15} height={15} />
-          <span className="text-base mt-1">디자인 Pick</span>
+          <span className="text-base mt-1">My Pick</span>
         </ul>
         <ul
           className="flex flex-col items-center cursor-pointer"
           onClick={() => routerPage('myPage')}
         >
           <Image src={'/images/user.svg'} alt={'book'} width={15} height={15} />
-          <span className="text-base mt-1">마이 페이지</span>
+          <span className="text-base mt-1">My Page</span>
         </ul>
       </div>
     </div>
