@@ -3,20 +3,10 @@ import styled from 'styled-components';
 
 const Logo = () => {
   return (
-    <LogoLayout>
-      <LogoText>HairShop</LogoText>
-    </LogoLayout>
+    <div className="flex w-4/5 justify-end items-center">
+      <div className="text-3xl">HairShop</div>
+    </div>
   );
 };
 
 export default Logo;
-
-const LogoLayout = styled.div`
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  width: 80%;
-`;
-const LogoText = styled.div`
-  font-size: 3rem;
-`;

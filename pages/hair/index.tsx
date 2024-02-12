@@ -1,6 +1,6 @@
 import React from 'react';
-import Category from '@components/atom/Category';
-import RootLayout from '@components/layout/RootLayout';
+import Category from 'components/atom/Category';
+import RootLayout from 'components/layout/RootLayout';
 import { Button } from '@mui/material';
 import styled from 'styled-components';
 

@@ -29,110 +29,69 @@ const CountryComponent = () => {
     setIsLanguageCheck(!isOpen);
   };
   return (
-    <SignComponentLayout>
-      <Content>
-        <LangugeSelectLayout onClick={() => handleLanguageChange()}>
-          <Image
-            className={'languageImg'}
-            src={`${
-              langugeSelect === 'language'
-                ? '/images/language.jpeg'
-                : `${'/images/' + `${langugeSelect}` + '.png'}`
-            }`}
-            alt={'USA'}
-            width={30}
-            height={20}
-          />
-          <LangugeSelectBox open={isOpen}>
-            <Button className={'select'} onClick={() => handleChange('en')}>
-              <Image
-                className={'languageImg'}
-                src={'/images/USA.png'}
-                alt={'USA'}
-                width={15}
-                height={15}
-              />
-              USA
-            </Button>
-            <Button className={'select'} onClick={() => handleChange('th')}>
-              <Image
-                className={'languageImg'}
-                src={'/images/thailand.png'}
-                alt={'thailand'}
-                width={15}
-                height={15}
-              />
-              Thailand
-            </Button>
-            <Button className={'select'} onClick={() => handleChange('ko')}>
-              <Image
-                className={'languageImg'}
-                src={'/images/korean.png'}
-                alt={'korean'}
-                width={15}
-                height={15}
-              />
-              Korea
-            </Button>
-          </LangugeSelectBox>
-        </LangugeSelectLayout>
-      </Content>
-    </SignComponentLayout>
+    <div className="flex items-center w-2/4">
+      <div className="flex justify-end w-full">
+        <div className="relative right-3 flex hover:focus">
+          <div
+            className="relative right-2.5 flex hover:cursor-pointer"
+            onClick={() => handleLanguageChange()}
+          >
+            <Image
+              src={`${
+                langugeSelect === 'language'
+                  ? '/images/language.jpeg'
+                  : `${'/images/' + `${langugeSelect}` + '.png'}`
+              }`}
+              alt={'world'}
+              width={30}
+              height={20}
+            />
+            <div
+              className={
+                isOpen === true
+                  ? 'absolute top-11 right-0 w-40 p-3 block border-solid border-2 border-gray bg-white rounded-lg'
+                  : 'hidden'
+              }
+            >
+              <button
+                className="w-full h-auto flex items-center "
+                onClick={() => handleChange('en')}
+              >
+                <Image
+                  className="mr-5 py-2"
+                  src={'/images/USA.png'}
+                  alt={'USA'}
+                  width={25}
+                  height={25}
+                />
+                USA
+              </button>
+              <button className="w-full flex items-center" onClick={() => handleChange('th')}>
+                <Image
+                  className="mr-5 py-2"
+                  src={'/images/thailand.png'}
+                  alt={'thailand'}
+                  width={25}
+                  height={25}
+                />
+                Thailand
+              </button>
+              <button className="w-full flex items-center" onClick={() => handleChange('ko')}>
+                <Image
+                  className="mr-5 py-2"
+                  src={'/images/korean.png'}
+                  alt={'korean'}
+                  width={25}
+                  height={25}
+                />
+                Korea
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default CountryComponent;
-
-const SignComponentLayout = styled.div`
-  width: 50%;
-  display: flex;
-  align-items: center;
-`;
-const Content = styled.div`
-  display: flex;
-  justify-content: right;
-  width: 100%;
-`;
-
-const Button = styled.button`
-  display: flex;
-  width: 100%;
-  background-color: transparent;
-  outline: none;
-  border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  padding: 1rem;
-  margin: 0;
-  .languageImg {
-    margin-right: 1rem;
-  }
-`;
-
-const LangugeSelectLayout = styled.div`
-  position: relative;
-  display: flex;
-  right: 10px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const LangugeSelectBox = styled.div<{ open: boolean }>`
-  ${({ open }) => {
-    return open === true
-      ? css`
-          position: absolute;
-          top: 25px;
-          right: 0;
-          display: block;
-          /* width: 100%; */
-          border: 1px solid gray;
-          border-radius: 0.5rem;
-          background-color: #ffff;
-        `
-      : css`
-          display: none;
-        `;
-  }};
-`;

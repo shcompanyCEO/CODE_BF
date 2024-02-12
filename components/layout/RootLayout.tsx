@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
-import Nav from '@components/root/nav';
-import Banner from '@components/event/Banner';
-import Footer from '@components/root/footer/Footer';
-import MenuBar from '@components/root/menubar';
+import Nav from 'components/root/nav';
+import Banner from 'components/event/Banner';
+import Footer from 'components/root/footer/Footer';
+import MenuBar from 'components/root/menubar';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 

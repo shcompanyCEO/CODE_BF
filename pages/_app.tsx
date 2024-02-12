@@ -1,12 +1,13 @@
 import type { AppProps } from 'next/app';
 import React from 'react';
-import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import wrapper from '../redux/store';
-import GlobalStyle from '../styles/GlobalStyle';
+// import GlobalStyle from '../styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
-import { theme } from '../styles/theme';
+// import { theme } from '../styles/theme';
 import { Provider } from 'react-redux';
 import '../i18n';
+import '../styles/globals.css';
 
 function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
@@ -14,14 +15,14 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Provider store={store}>
-            <Component {...pageProps} />
-          </Provider>
-        </ThemeProvider>
-      </Hydrate>
+      <Provider store={store}>
+        {/* <ThemeProvider theme={theme}> */}
+        {/* <GlobalStyle /> */}
+        <Provider store={store}>
+          <Component {...pageProps} />
+        </Provider>
+        {/* </ThemeProvider> */}
+      </Provider>
     </QueryClientProvider>
   );
 }

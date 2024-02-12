@@ -1,9 +1,7 @@
-import Banner from '@components/event/Banner';
-import RootLayout from '@components/layout/RootLayout';
-import { useTranslation } from 'react-i18next';
+import Banner from 'components/event/Banner';
+import RootLayout from 'components/layout/RootLayout';
 
 const Home = () => {
-  const { t } = useTranslation();
   return <RootLayout />;
 };
 

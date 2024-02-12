@@ -1,4 +1,4 @@
-import RootLayout from '@components/layout/RootLayout';
+import RootLayout from 'components/layout/RootLayout';
 import React from 'react';
 
 const MakeUpPage = () => {

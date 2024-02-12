@@ -2,33 +2,18 @@ import React from 'react';
 import Logo from './Logo';
 import CountryComponent from './CountryComponent';
 import MemberShipMenu from './MemberShipMenu';
-import styled from 'styled-components';
 
 const Nav = () => {
   return (
-    <NavLayout>
-      <Container>
+    // <NavLayout>
+    <div className="sticky w-full left-0 top-0 bg-white z-1000">
+      <div className="flex justify-between items-center h-32">
         <Logo />
         <CountryComponent />
         <MemberShipMenu />
-      </Container>
-    </NavLayout>
+      </div>
+    </div>
   );
 };
 
 export default Nav;
-
-const NavLayout = styled.div`
-  position: sticky;
-  width: 100%;
-  left: 0;
-  top: 0;
-  background-color: #fff;
-  z-index: 1000;
-`;
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 8rem;
-`;

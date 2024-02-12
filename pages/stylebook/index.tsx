@@ -1,5 +1,5 @@
 import React from 'react';
-import StyleBook from '@components/stylebook/StyleBook';
+import StyleBook from 'components/stylebook/StyleBook';
 
 const index = () => {
   return <StyleBook />;

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import Modal from 'react-modal';
+import LoginModal from '../login/LoginModal';
 Modal.setAppElement('#__next');
 
 const customModalStyles = {
@@ -129,7 +130,8 @@ const ModalApp = () => {
   return (
     <div>
       <button onClick={openModal}>회원가입</button>
-      <SignupModal isOpen={isModalOpen} onClose={closeModal} />
+      <LoginModal isVisible={isModalOpen} onClose={closeModal}></LoginModal>
+      {/* <SignupModal isOpen={isModalOpen} onClose={closeModal} /> */}
     </div>
   );
 };
