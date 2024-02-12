@@ -15,74 +15,49 @@ const Footer = () => {
   };
 
   return (
-    <FooterLayout>
-      <MenuContainer>
-        <MenuBar
+    <div className="fixed bottom-0 w-full p-0 max-w-screen-sm transform-translate-x-1/2">
+      <div className="w-full h-full flex justify-between">
+        <ul
+          className="flex flex-col items-center cursor-pointer"
           onClick={() => {
             routerPage('home');
           }}
         >
           <Image src={'/images/home.svg'} alt={'home'} width={15} height={15} />
-          <MenuBarText>홈</MenuBarText>
-        </MenuBar>
-        <MenuBar
+          <span className="text-base mt-1">홈</span>
+        </ul>
+        <ul
+          className="flex flex-col items-center cursor-pointer"
           onClick={() => {
             routerPage('styles');
           }}
         >
           <Image src={'/images/book.svg'} alt={'styleBook'} width={15} height={15} />
-          <MenuBarText>style book</MenuBarText>
-        </MenuBar>
-        <MenuBar>
+          <span className="text-base mt-1">Style book</span>
+        </ul>
+        <ul className="flex flex-col items-center cursor-pointer">
           <Image src={'/images/market.svg'} alt={'search'} width={15} height={15} />
-          <MenuBarText>마켓</MenuBarText>
-        </MenuBar>
-        <MenuBar
+          <span className="text-base mt-1">마켓</span>
+        </ul>
+        <ul
+          className="flex flex-col items-center cursor-pointer"
           onClick={() => {
             routerPage('design');
           }}
         >
           <Image src={'/images/saveImg.png'} alt={'myPick'} width={15} height={15} />
-          <MenuBarText>디자인 Pick</MenuBarText>
-        </MenuBar>
-        <MenuBar onClick={() => routerPage('myPage')}>
+          <span className="text-base mt-1">디자인 Pick</span>
+        </ul>
+        <ul
+          className="flex flex-col items-center cursor-pointer"
+          onClick={() => routerPage('myPage')}
+        >
           <Image src={'/images/user.svg'} alt={'book'} width={15} height={15} />
-          <MenuBarText>마이페이지</MenuBarText>
-        </MenuBar>
-      </MenuContainer>
-    </FooterLayout>
+          <span className="text-base mt-1">마이 페이지</span>
+        </ul>
+      </div>
+    </div>
   );
 };
 
 export default Footer;
-
-const FooterLayout = styled.div`
-  position: fixed;
-  bottom: 0;
-  padding-bottom: env(safe-area-inset-bottom);
-  background-color: #fff;
-  left: 50%;
-  transform: translate(-50%);
-  max-width: 600px;
-  width: 100%;
-  z-index: 5000;
-`;
-const MenuContainer = styled.ul`
-  padding: 0 1rem;
-  /* flex: 1 1; */
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const MenuBar = styled.a`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-`;
-const MenuBarText = styled.span`
-  margin-top: 0.5rem;
-  font-size: 1.3rem;
-`;

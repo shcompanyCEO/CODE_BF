@@ -130,8 +130,8 @@ const ModalApp = () => {
   return (
     <div>
       <button onClick={openModal}>회원가입</button>
-      <LoginModal isVisible={isModalOpen} onClose={closeModal}></LoginModal>
-      {/* <SignupModal isOpen={isModalOpen} onClose={closeModal} /> */}
+      {/* <LoginModal isVisible={isModalOpen} onClose={closeModal}></LoginModal> */}
+      <SignupModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };

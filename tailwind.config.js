@@ -6,6 +6,9 @@ module.exports = {
       zIndex: {
         1000: '1000',
       },
+      maxWidth: {
+        'layout-maxWidth': '600px',
+      },
     },
   },
   variants: {
