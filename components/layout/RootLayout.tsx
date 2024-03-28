@@ -10,13 +10,11 @@ const RootLayout = ({ children }: PropsWithChildren) => {
   const { pathname } = router;
 
   return (
-    <div className="max-w-screen-sm min-h-screen m-auto border-solid border-2 border-gray">
+    <div className="max-w-screen-sm min-h-screen m-auto border-solid border-2 border-gray pr-2 pl-2">
       <Nav />
       <MenuBar />
       {pathname === '/' && <Banner />}
-      <div className="flex flex-col w-full">
-        <div className="w-full h-full">{children}</div>
-      </div>
+      <div className="w-full h-full">{children}</div>
       <Footer />
     </div>
   );

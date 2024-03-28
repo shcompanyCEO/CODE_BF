@@ -28,6 +28,6 @@
     }
   },
 
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/membership/MembershipModal.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/membership/SignUpModal.tsx"],
   "exclude": ["node_modules"]
 }

@@ -15,8 +15,8 @@ const Footer = () => {
   };
 
   return (
-    <div className="fixed bottom-0 w-full p-0 max-w-screen-sm transform-translate-x-1/2">
-      <div className="w-full h-full flex justify-between">
+    <div className="fixed bottom-0 w-full max-w-screen-sm transform-translate-x-1/2">
+      <div className="w-full flex justify-between">
         <ul
           className="flex flex-col items-center cursor-pointer"
           onClick={() => {
