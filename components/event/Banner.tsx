@@ -15,7 +15,7 @@ export default class PauseOnHover extends Component {
     };
     return (
       <EventLayout>
-        <div>가장 트렌디한</div>
+        <div>Promotion</div>
         <Slider {...settings}>
           <ImgBanner>
             <h3>1</h3>
