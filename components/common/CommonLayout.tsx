@@ -1,8 +1,8 @@
 import { PropsWithChildren } from 'react';
-import Nav from 'components/root/nav';
+import Nav from '@components/common/nav';
 import Banner from 'components/event/Banner';
-import Footer from 'components/root/footer/Footer';
-import MenuBar from 'components/root/menubar';
+import Footer from '@components/common/footer/Footer';
+import MenuBar from '@components/common/menubar';
 import { useRouter } from 'next/router';
 
 const RootLayout = ({ children }: PropsWithChildren) => {

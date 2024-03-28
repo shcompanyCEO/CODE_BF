@@ -29,20 +29,25 @@ const Footer = () => {
         <ul
           className="flex flex-col items-center cursor-pointer"
           onClick={() => {
-            routerPage('styles');
+            routerPage('stylebook');
           }}
         >
           <Image src={'/images/book.svg'} alt={'styleBook'} width={15} height={15} />
           <span className="text-base mt-1">Style book</span>
         </ul>
-        <ul className="flex flex-col items-center cursor-pointer">
+        <ul
+          className="flex flex-col items-center cursor-pointer"
+          onClick={() => {
+            routerPage('market');
+          }}
+        >
           <Image src={'/images/market.svg'} alt={'market'} width={15} height={15} />
           <span className="text-base mt-1">마켓</span>
         </ul>
         <ul
           className="flex flex-col items-center cursor-pointer"
           onClick={() => {
-            routerPage('design');
+            routerPage('mypick');
           }}
         >
           <Image src={'/images/saveImg.png'} alt={'myPick'} width={15} height={15} />
@@ -50,7 +55,7 @@ const Footer = () => {
         </ul>
         <ul
           className="flex flex-col items-center cursor-pointer"
-          onClick={() => routerPage('myPage')}
+          onClick={() => routerPage('mypage')}
         >
           <Image src={'/images/user.svg'} alt={'book'} width={15} height={15} />
           <span className="text-base mt-1">My Page</span>

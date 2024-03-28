@@ -43,18 +43,18 @@ const MenuBar = () => {
           <Image src={'/images/market.svg'} alt={'makeupMenu'} width={15} height={15} />
           <span className="text-base mt-1">메이크업</span>
         </ul>
-        <u
+        <ul
           className="flex flex-col items-center cursor-pointer"
           onClick={() => {
-            routerPage('makeup');
+            routerPage('mans');
           }}
         >
           <Image src={'/images/saveImg.png'} alt={'mansMenu'} width={15} height={15} />
           <span className="text-base mt-1">Mans</span>
-        </u>
+        </ul>
         <ul
           className="flex flex-col items-center cursor-pointer"
-          onClick={() => routerPage('barberShop')}
+          onClick={() => routerPage('stylereview')}
         >
           <Image src={'/images/user.svg'} alt={'styleReview'} width={15} height={15} />
           <span className="text-base mt-1">스타일후기</span>

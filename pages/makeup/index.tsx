@@ -1,8 +1,8 @@
-import RootLayout from 'components/layout/RootLayout';
 import React from 'react';
+import CommonLayout from '@components/common/CommonLayout';
 
 const MakeUpPage = () => {
-  return <RootLayout>MakeUp</RootLayout>;
+  return <CommonLayout>MakeUp</CommonLayout>;
 };
 
 export default MakeUpPage;

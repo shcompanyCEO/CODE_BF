@@ -1,8 +1,8 @@
 import Banner from 'components/event/Banner';
-import RootLayout from 'components/layout/RootLayout';
+import CommonLayout from '@components/common/CommonLayout';
 
 const Home = () => {
-  return <RootLayout />;
+  return <CommonLayout />;
 };
 
 export default Home;

@@ -1,4 +1,4 @@
-import RootLayout from 'components/layout/RootLayout';
+import RootLayout from '@components/common/CommonLayout';
 import React from 'react';
 
 const StyleBook = () => {
