@@ -24,7 +24,8 @@
       "@pages/*": ["app/*"],
       "@type/*": ["./types/*"],
       "@redux/*": ["./redux/*"],
-      "@constant/*": ["./constant/*"]
+      "@constant/*": ["./constant/*"],
+      "utils": ["@/lib/utils"]
     }
   },
 
