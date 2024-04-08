@@ -87,9 +87,12 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
   ];
 
   return (
-    <div className="max-w-screen-sm min-h-screen m-auto border-solid border-2 border-gray pr-2 pl-2">
-      <Nav />
-      <MenuBar />
+    // <div className="max-w-screen-sm min-h-screen m-auto border-solid border-2 border-gray pr-2 pl-2 bg-white top-0">
+    <div className="max-w-screen-sm min-h-screen m-auto ">
+      <div className="sticky max-w-screen-sm m-auto p-0 bg-white top-0 z-10">
+        <Nav />
+        <MenuBar />
+      </div>
       {pathname === '/' && <Banner />}
       {pathname === '/' && <SalonCard data={cardData} />}
       <div className="w-full h-full">{children}</div>

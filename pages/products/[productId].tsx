@@ -79,7 +79,7 @@ const ProductDetailPage = () => {
         <h1>Product Detail Page for ID: {productId}</h1>
         {/* Add more detail content here */}
       </div>
-      <div className="max-w-6xl mx-auto p-4 lg:px-6 sm:py-8 md:py-10">
+      <div className="max-w-6xl mx-auto p-2 lg:px-4 sm:py-8 md:py-10">
         <section className="hidden sm:flex flex-col gap-4 sm:flex-row sm:items-center pb-4 sm:pb-8">
           <h1 className="text-xl lg:text-3xl font-semibold tracking-tight">haumBangkok</h1>
           <nav className="flex items-center justify-center gap-1 sm:ml-auto">
@@ -175,7 +175,8 @@ const ProductDetailPage = () => {
             Show all photos
           </Button>
         </section>
-        <section className="py-8 grid md:grid-cols-2 lg:grid-cols-[1fr_400px] gap-8 sm:gap-12 md:gap-16 items-start">
+        {/* <section className="py-8 grid md:grid-cols-2 lg:grid-cols-[1fr_400px] gap-8 sm:gap-12 md:gap-16 items-start"> */}
+        <section className="py-8 grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-start">
           <div className="grid gap-8 row-start-2 md:row-start-auto">
             <div className="hidden md:flex flex-col gap-1">
               <h2 className="text-2xl font-semibold">disignerProfile</h2>
