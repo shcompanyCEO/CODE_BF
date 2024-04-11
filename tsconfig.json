@@ -20,15 +20,20 @@
       "@ViewModels/*": ["ViewsModels/*"],
       "@Models/*": ["Models/*"],
       "@components/*": ["components/*"],
-      "@utils/*": ["./utils/*"],
       "@pages/*": ["app/*"],
       "@type/*": ["./types/*"],
       "@redux/*": ["./redux/*"],
       "@constant/*": ["./constant/*"],
-      "utils": ["@/lib/utils"]
+      "@utils": ["utils/*"]
     }
   },
 
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/membership/SignUpModal.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/membership/SignUpModal.tsx",
+    "utils/firebase.ㅓㄴ"
+  ],
   "exclude": ["node_modules"]
 }
