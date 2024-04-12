@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
 import React, { useState, useEffect, useRef } from 'react';
 import 'react-day-picker/dist/style.css';
-import { Separator } from '@components/ui/separator';
+import { Separator } from '@/components/ui/separator';
 
 interface Reservation {
   time: string;
@@ -23,7 +23,6 @@ const ReservationModal: React.FC = () => {
     footer = <p>You picked {format(selected, 'PP')}.</p>;
   }
 
-  console.log('sean111', selected);
   //time checking
   const handleTiemChekcing = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -104,6 +103,7 @@ const ReservationModal: React.FC = () => {
                 <select
                   name="time"
                   value={reservation.time}
+                  // @ts-ignore
                   onChange={handleTiemChekcing}
                   className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                   required
@@ -119,6 +119,7 @@ const ReservationModal: React.FC = () => {
                 <select
                   name="style"
                   value={reservation.style}
+                  // @ts-ignore
                   onChange={handleStyleChecking}
                   className="block appearance-none w-full border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline text-black"
                   required

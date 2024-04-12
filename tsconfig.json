@@ -16,24 +16,20 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@Views/*": ["Views/*"],
-      "@ViewModels/*": ["ViewsModels/*"],
-      "@Models/*": ["Models/*"],
-      "@components/*": ["components/*"],
+      "@/Views/*": ["Views/*"],
+      "@/ViewModels/*": ["ViewsModels/*"],
+      "@/Models/*": ["Models/*"],
+      "@/components/*": ["components/*"],
       "@pages/*": ["app/*"],
-      "@type/*": ["./types/*"],
-      "@redux/*": ["./redux/*"],
-      "@constant/*": ["./constant/*"],
-      "@utils": ["utils/*"]
+      "@/type/*": ["./types/*"],
+      "@/redux/*": ["./redux/*"],
+      "@/constant/*": ["./constant/*"],
+      "@/utils/*": ["utils/*"],
+      "@/ui/*": ["components/ui/*"],
+      "@/api/*": ["pages/api/*"]
     }
   },
 
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "components/membership/SignUpModal.tsx",
-    "utils/firebase.ㅓㄴ"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

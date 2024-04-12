@@ -1,30 +1,20 @@
 import Link from 'next/link';
-import { Button } from '@components/ui/button';
-import { Separator } from '@components/ui/separator';
-import { CardContent, Card, CardTitle, CardHeader } from '@components/ui/card';
-import { AvatarImage, AvatarFallback, Avatar } from '@components/ui/avatar';
-import { CollapsibleTrigger, CollapsibleContent, Collapsible } from '@components/ui/collapsible';
-import { Calendar } from '@components/ui/calendar';
-import { PopoverTrigger, PopoverContent, Popover } from '@components/ui/popover';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { CardContent, Card, CardTitle, CardHeader } from '@/components/ui/card';
+import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar';
+import { CollapsibleTrigger, CollapsibleContent, Collapsible } from '@/components/ui/collapsible';
 import {
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-  SelectContent,
-  Select,
-} from '@components/ui/select';
-import {
-  DialogTrigger,
   DialogTitle,
   DialogDescription,
   DialogHeader,
   DialogFooter,
   DialogContent,
   Dialog,
-} from '@components/ui/dialog';
-import { RadioGroupItem, RadioGroup } from '@components/ui/radio-group';
-import { Label } from '@components/ui/label';
-import CommonLayout from '@components/common/CommonLayout';
+} from '@/components/ui/dialog';
+import { RadioGroupItem, RadioGroup } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import CommonLayout from '@/components/common/CommonLayout';
 import { useRouter } from 'next/router';
 import {
   AwardIcon,
@@ -43,9 +33,9 @@ import {
   StarIcon,
   WavesIcon,
   WindIcon,
-} from '@components/ui/icon';
+} from '@/components/ui/icon';
 import { AccessibilityIcon, WifiIcon } from 'lucide-react';
-import ReservationModal from '@components/modal/ResereModal';
+import ReservationModal from '@/components/modal/ResereModal';
 
 const ProductDetailPage = () => {
   const router = useRouter();

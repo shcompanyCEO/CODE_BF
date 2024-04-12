@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from './Logo';
 import CountryComponent from './CountryComponent';
-import LoginMenu from './LoginMenu';
+import Profile from './Profile';
 
 const Nav = () => {
   return (
@@ -9,7 +9,7 @@ const Nav = () => {
       <div className="flex justify-between items-center h-32">
         <Logo />
         <CountryComponent />
-        <LoginMenu />
+        <Profile />
       </div>
     </div>
   );

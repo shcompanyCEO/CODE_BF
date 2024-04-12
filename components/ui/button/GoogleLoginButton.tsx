@@ -1,30 +1,42 @@
-import { Button } from '@components/ui/button';
-import { ChromeIcon } from '@components/ui/icon';
+import { Button } from '@/components/ui/button';
+import { ChromeIcon } from '@/components/ui/icon';
 import { signInWithPopup, GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { useRouter } from 'next/router';
-import { app } from 'utils/firebase';
+import { getDatabase, ref, set, push } from 'firebase/database';
+import { firebaseApp } from '@/api/firebase/firebase';
 
 const GoogleLoginButton = () => {
-  const auth = getAuth(app);
+  const auth = getAuth(firebaseApp);
   const provider = new GoogleAuthProvider();
-  const router = useRouter();
 
   const signIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      console.log('sean result', result);
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential?.accessToken;
       // The signed-in user info.
       const user = result.user;
       // IdP data available using getAdditionalUserInfo(result)
       // ...
-      router.push('/');
-      console.log('sean token', token);
-      console.log('sean user', user);
+      if (result) {
+        const db = getDatabase(firebaseApp);
+        const newDocRef = push(ref(db, 'users/info'));
+        set(newDocRef, {
+          fullName: result.user.displayName!,
+          email: result.user.email,
+          phoneNumber: result.user.phoneNumber ? result.user.phoneNumber : '',
+          userToken: token,
+        })
+          .then(() => {
+            alert('성공!');
+          })
+          .catch((error) => {
+            console.log('error', error);
+          });
+      }
     } catch (error: any) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      const errorCode = error?.code;
+      const errorMessage = error?.message;
       // The email of the user's account used.
       const email = error.customData.email;
       // The AuthCredential type that was used.

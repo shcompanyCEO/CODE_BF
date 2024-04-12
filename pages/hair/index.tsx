@@ -1,4 +1,4 @@
-import CommonLayout from '@components/common/CommonLayout';
+import CommonLayout from '@/components/common/CommonLayout';
 import React from 'react';
 
 const index = () => {

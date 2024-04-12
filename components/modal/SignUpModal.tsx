@@ -3,15 +3,15 @@
  * @see https://v0.dev/t/hl5cRuR6OWE
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import { Input } from '@components/ui/input';
+import { Input } from '@/components/ui/input';
 import {
   SelectValue,
   SelectTrigger,
   SelectItem,
   SelectContent,
   Select,
-} from '@components/ui/select';
-import { Button } from '@components/ui/button';
+} from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 
 const SignUpModal = () => {
   return (

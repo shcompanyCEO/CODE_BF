@@ -1,10 +1,11 @@
 import { PropsWithChildren } from 'react';
-import Nav from '@components/common/nav';
-import Banner from 'components/event/Banner';
-import Footer from '@components/common/footer/Footer';
-import MenuBar from '@components/common/menubar';
+import Nav from '@/components/common/nav';
+import Banner from '@/components/event/Banner';
+import Footer from '@/components/common/footer/Footer';
+import MenuBar from '@/components/common/menubar';
 import { useRouter } from 'next/router';
-import SalonCard from '@components/salonComponent/SalonCard';
+import SalonCard from '@/components/salonComponent/SalonCard';
+import { HOME_ROUTE } from 'constants/routes';
 
 const CommonLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -12,60 +13,6 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
 
   //data 단방향 ->
   const cardData = [
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
     {
       imageUrl: 'https://via.placeholder.com/300',
       title: 'haum Bangkok',
@@ -93,8 +40,8 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
         <Nav />
         <MenuBar />
       </div>
-      {pathname === '/' && <Banner />}
-      {pathname === '/' && <SalonCard data={cardData} />}
+      {pathname === HOME_ROUTE && <Banner />}
+      {pathname === HOME_ROUTE && <SalonCard data={cardData} />}
       <div className="w-full h-full">{children}</div>
       <Footer />
     </div>
