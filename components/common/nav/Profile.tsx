@@ -1,10 +1,23 @@
 import LoginModal from '@/components/modal/LoginModal';
 import { MenuIcon, UserIcon } from '@/components/ui/icon';
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
+import { getUsers } from 'store/queries/firebaseDataFetch';
 
 const Profile = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
+
+  const {
+    data: users,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ['users'],
+    queryFn: getUsers,
+  });
+
+  console.log('sean data', users);
 
   const modalOpen = () => {
     setIsLoginModalOpen(true);

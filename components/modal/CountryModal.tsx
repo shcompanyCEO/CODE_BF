@@ -65,10 +65,12 @@ const CountryModal: React.FC<{ isCountryMdoalOpen: boolean; onClose: () => void 
           <div className="border-t border-gray-200 py-4">
             <h2 className="text-sm font-semibold mb-4">언어와 지역을 선택하세요</h2>
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-sm">
-                <p>한국어</p>
-                <p className="text-gray-500">대한민국</p>
-              </div>
+              <Button className="text-sm flex flex-row ">
+                <div>
+                  <p>한국어</p>
+                  <p className="text-gray-500">대한민국</p>
+                </div>
+              </Button>
               <div className="text-sm">
                 <p>Azərbaycan dili</p>
                 <p className="text-gray-500">Azərbaycan</p>

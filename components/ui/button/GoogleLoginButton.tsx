@@ -1,46 +1,42 @@
 import { Button } from '@/components/ui/button';
 import { ChromeIcon } from '@/components/ui/icon';
 import { signInWithPopup, GoogleAuthProvider, getAuth } from 'firebase/auth';
-import { useRouter } from 'next/router';
-import { getDatabase, ref, set, push } from 'firebase/database';
 import { firebaseApp } from '@/api/firebase/firebase';
 
-const GoogleLoginButton = () => {
-  const auth = getAuth(firebaseApp);
-  const provider = new GoogleAuthProvider();
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '@/api/firebase/firebase';
 
+interface GooggleLoginButtonProps {
+  onClose: () => void;
+}
+const GoogleLoginButton = ({ onClose }: GooggleLoginButtonProps) => {
   const signIn = async () => {
+    const auth = getAuth(firebaseApp);
+    const provider = new GoogleAuthProvider();
+
     try {
-      const result = await signInWithPopup(auth, provider);
-      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const userInfo = await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(userInfo);
+      const user = userInfo.user;
       const token = credential?.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
-      if (result) {
-        const db = getDatabase(firebaseApp);
-        const newDocRef = push(ref(db, 'users/info'));
-        set(newDocRef, {
-          fullName: result.user.displayName!,
-          email: result.user.email,
-          phoneNumber: result.user.phoneNumber ? result.user.phoneNumber : '',
+      if (userInfo) {
+        const userData = {
+          userUid: user.uid,
+          fullName: user.displayName!,
+          email: user.email,
+          phoneNumber: user.phoneNumber ? user.phoneNumber : '',
           userToken: token,
-        })
-          .then(() => {
-            alert('성공!');
-          })
-          .catch((error) => {
-            console.log('error', error);
-          });
+        };
+        onClose();
+        await setDoc(doc(db, 'users', `${user.email}`), { userData });
       }
     } catch (error: any) {
       const errorCode = error?.code;
       const errorMessage = error?.message;
       // The email of the user's account used.
-      const email = error.customData.email;
       // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
+      console.log('googleLoginButton Error', error);
     }
   };
 
