@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import Nav from '@/components/common/nav';
 import Banner from '@/components/event/Banner';
 import Footer from '@/components/common/footer/Footer';
@@ -33,6 +33,7 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
     },
   ];
 
+  console.log('2 commonLayout');
   return (
     // <div className="max-w-screen-sm min-h-screen m-auto border-solid border-2 border-gray pr-2 pl-2 bg-white top-0">
     <div className="max-w-screen-sm min-h-screen m-auto ">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import GoogleLoginButton from '../ui/button/GoogleLoginButton';
 import { Button } from '../ui/button';
 import { AppleIcon, FacebookIcon, MailIcon } from '../ui/icon';
+import { GoogleLoginButton } from '../ui/button/GoogleLoginButton';
 
 const LoginModal: React.FC<{ isLoginModalOpen: boolean; onClose: () => void }> = ({
   isLoginModalOpen,

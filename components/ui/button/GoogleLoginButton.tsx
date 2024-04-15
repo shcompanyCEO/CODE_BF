@@ -1,15 +1,22 @@
 import { Button } from '@/components/ui/button';
 import { ChromeIcon } from '@/components/ui/icon';
-import { signInWithPopup, GoogleAuthProvider, getAuth } from 'firebase/auth';
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithRedirect,
+  setPersistence,
+  browserSessionPersistence,
+} from 'firebase/auth';
 import { firebaseApp } from '@/api/firebase/firebase';
-
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { db } from '@/api/firebase/firebase';
 
-interface GooggleLoginButtonProps {
+export interface GooggleLoginButtonProps {
   onClose: () => void;
 }
-const GoogleLoginButton = ({ onClose }: GooggleLoginButtonProps) => {
+
+export const GoogleLoginButton = ({ onClose }: GooggleLoginButtonProps) => {
   const signIn = async () => {
     const auth = getAuth(firebaseApp);
     const provider = new GoogleAuthProvider();
@@ -19,6 +26,7 @@ const GoogleLoginButton = ({ onClose }: GooggleLoginButtonProps) => {
       const credential = GoogleAuthProvider.credentialFromResult(userInfo);
       const user = userInfo.user;
       const token = credential?.accessToken;
+
       if (userInfo) {
         const userData = {
           userUid: user.uid,
@@ -29,6 +37,8 @@ const GoogleLoginButton = ({ onClose }: GooggleLoginButtonProps) => {
         };
         onClose();
         await setDoc(doc(db, 'users', `${user.email}`), { userData });
+        alert('User Loign successfully');
+        setPersistence(auth, browserSessionPersistence);
       }
     } catch (error: any) {
       const errorCode = error?.code;
@@ -51,5 +61,3 @@ const GoogleLoginButton = ({ onClose }: GooggleLoginButtonProps) => {
     </Button>
   );
 };
-
-export default GoogleLoginButton;

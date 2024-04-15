@@ -2,6 +2,12 @@ import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '@/api/firebase/firebase';
 
 //서비스에 가입한 모든 유저 정보 가져오기
+export const getAllusers = async () => {
+  const querySnapshot = await getDocs(collection(db, 'users'));
+  const users = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  return users;
+};
+//서비스에 가입한  유저 정보 가져오기
 export const getUsers = async () => {
   const querySnapshot = await getDocs(collection(db, 'users'));
   const users = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));

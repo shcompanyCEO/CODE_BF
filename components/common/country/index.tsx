@@ -1,54 +1,41 @@
-import { useState } from 'react';
-import { useQuery } from 'react-query';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
+import CountryModal from '@/components/modal/CountryModal';
+import { modalStateStore } from 'store/stores/modalStateStore';
 
-const fetchTranslations = async (language) => {
-  const response = await fetch(`https://api.example.com/translations?language=${language}`);
-  const data = await response.json();
-  return data;
-};
+const Country = () => {
+  const [langugeSelect, setLangugeSelect] = useState<string>('language');
+  const { t, i18n } = useTranslation();
 
-const LanguageSelector = ({ setLanguage }) => {
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
-  };
+  const { countryModalOpen, countryModalState } = modalStateStore();
 
-  return (
-    <select onChange={handleLanguageChange}>
-      <option value="en">English</option>
-      <option value="fr">French</option>
-      <option value="es">Spanish</option>
-    </select>
-  );
-};
-
-const TranslatedText = ({ language }) => {
-  const {
-    data: translations,
-    isLoading,
-    isError,
-  } = useQuery(['translations', language], () => fetchTranslations(language));
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error occurred while fetching translations.</div>;
-  }
-
-  return <div>{translations.text}</div>;
-};
-
-const App = () => {
-  const [language, setLanguage] = useState('en');
+  useEffect(() => {
+    //위치에 따라 국가가 설정된다.
+  }, [langugeSelect]);
 
   return (
-    <div>
-      <h1>Multi-language App</h1>
-      <LanguageSelector setLanguage={setLanguage} />
-      <TranslatedText language={language} />
+    <div className="flex items-center w-2/4">
+      <div className="flex justify-end w-full">
+        <div className="relative right-3 flex hover:focus">
+          <div className="relative right-2.5 flex hover:cursor-pointer" onClick={countryModalOpen}>
+            <Image
+              src={`${
+                langugeSelect === 'language'
+                  ? '/images/language.jpeg'
+                  : `${'/images/' + `${langugeSelect}` + '.png'}`
+              }`}
+              alt={'world'}
+              width={30}
+              height={20}
+            />
+          </div>
+
+          {countryModalState && <CountryModal />}
+        </div>
+      </div>
     </div>
   );
 };
 
-export default App;
+export default Country;
