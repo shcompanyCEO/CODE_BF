@@ -3,10 +3,10 @@ import { Button } from '../ui/button';
 import { PanelTopCloseIcon, SettingsIcon } from '../ui/icon';
 import { Switch } from '../ui/switch';
 import ModalLayout from '../common/ModalLayout';
-import { modalStateStore } from 'store/stores/modalStateStore';
+import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
 
 const CountryModal: React.FC = ({}) => {
-  const { countryModalState, countryModalClose } = modalStateStore();
+  const { countryModalState, countryModalClose } = salonModeChangeeStore();
   return (
     <ModalLayout modalClose={countryModalClose}>
       <div className="mt-6 text-center">

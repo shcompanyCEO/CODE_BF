@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import CountryModal from '@/components/modal/CountryModal';
-import { modalStateStore } from 'store/stores/modalStateStore';
+import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
 
 const Country = () => {
   const [langugeSelect, setLangugeSelect] = useState<string>('language');
   const { t, i18n } = useTranslation();
 
-  const { countryModalOpen, countryModalState } = modalStateStore();
+  const { countryModalOpen, countryModalState } = salonModeChangeeStore();
 
   useEffect(() => {
     //위치에 따라 국가가 설정된다.

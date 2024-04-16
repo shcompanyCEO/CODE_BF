@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../ui/button';
 import { AppleIcon, FacebookIcon, MailIcon } from '../ui/icon';
-import { GoogleLoginButton } from '../ui/button/GoogleLoginButton';
+import { GoogleLogin } from '../auth/GoogleLogin';
 
 const LoginModal: React.FC<{ isLoginModalOpen: boolean; onClose: () => void }> = ({
   isLoginModalOpen,
@@ -44,7 +44,7 @@ const LoginModal: React.FC<{ isLoginModalOpen: boolean; onClose: () => void }> =
             <div className="border-t border-gray-300" />
             <div className="flex flex-col space-y-4 mt-4">
               {/* Google login*/}
-              <GoogleLoginButton onClose={onClose} />
+              <GoogleLogin onClose={onClose} />
               {/* Facebook login*/}
               <Button className="flex items-center justify-around space-x-2" variant="secondary">
                 <FacebookIcon className="w-6 h-6 text-blue-600" />

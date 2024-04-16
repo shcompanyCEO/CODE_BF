@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '@/api/firebase/firebase';
 
 //서비스에 가입한 모든 유저 정보 가져오기
@@ -20,5 +20,17 @@ export const setUserAdd = async (userEmail: string, userData: object) => {
     await setDoc(doc(db, 'users', `${userEmail}`), { userData });
   } catch (error) {
     console.log('setUserAdd', error);
+  }
+};
+
+export const getSalons = async () => {
+  const docRef = doc(db, 'salons', 'hair');
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    return data;
+  } else {
+    // docSnap.data() will be undefined in this case
+    console.log('No such document!');
   }
 };

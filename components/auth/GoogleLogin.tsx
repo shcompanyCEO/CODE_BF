@@ -16,7 +16,7 @@ export interface GooggleLoginButtonProps {
   onClose: () => void;
 }
 
-export const GoogleLoginButton = ({ onClose }: GooggleLoginButtonProps) => {
+export const GoogleLogin = ({ onClose }: GooggleLoginButtonProps) => {
   const signIn = async () => {
     const auth = getAuth(firebaseApp);
     const provider = new GoogleAuthProvider();
@@ -34,6 +34,9 @@ export const GoogleLoginButton = ({ onClose }: GooggleLoginButtonProps) => {
           email: user.email,
           phoneNumber: user.phoneNumber ? user.phoneNumber : '',
           userToken: token,
+          owner: false,
+          ManagerStatus: false,
+          StaffStatus: false,
         };
         onClose();
         await setDoc(doc(db, 'users', `${user.email}`), { userData });

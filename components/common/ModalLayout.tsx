@@ -1,5 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 import { Button } from '../ui/button';
+import { unloadGoogleMapsScript } from 'utility/apis/googleMap';
 
 interface IModalProps {
   children: ReactNode;
@@ -19,6 +20,9 @@ const ModalLayout: React.FC<IModalProps> = ({ children, modalClose }) => {
     };
   }, [modalClose]);
 
+  useEffect(() => {
+    unloadGoogleMapsScript();
+  }, []);
   return (
     <div className={`fixed inset-0 z-50 flex items-center justify-center`}>
       <div className="fixed inset-0 bg-black opacity-50" onClick={modalClose}></div>

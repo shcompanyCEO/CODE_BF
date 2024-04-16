@@ -4,16 +4,43 @@ import wrapper from '../redux/store';
 import { Provider } from 'react-redux';
 import '../i18n';
 import '../styles/globals.css';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { userInfoStore } from 'store/stores/userData';
+import { useMapStore } from 'store/stores/useMapStore';
+import { db } from './api/firebase/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+import { getSalons } from 'store/queries/firebaseDataFetch';
 
 function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
   const { store, props } = wrapper.useWrappedStore(pageProps);
 
+  const { setMapCenter } = useMapStore();
+
   const auth = getAuth();
+  //user리프레쉬되어도 유지하는 코드
   const userData = userInfoStore((state) => state.updateUser);
+
+  const getCurrentLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const currentLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          setMapCenter(currentLocation);
+        },
+        (error) => {
+          console.error('Error getting current location:', error);
+        }
+      );
+    } else {
+      console.error('Geolocation is not supported by this browser.');
+    }
+  };
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -30,6 +57,10 @@ function App({ Component, pageProps }: AppProps) {
       }
     });
   }, []);
+
+  useEffect(() => {
+    getCurrentLocation();
+  });
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>

@@ -3,13 +3,13 @@ import Logo from './Logo';
 import Profile from './Profile';
 import { userInfoStore } from 'store/stores/userData';
 import { Button } from '@/components/ui/button';
-import { modalStateStore } from 'store/stores/modalStateStore';
-import SalnonModeModal from '@/components/modal/SalonModeModal';
+import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
+import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';
 import Country from '../country';
 
 const Nav = () => {
   const userName = userInfoStore((state) => state.displayName);
-  const { salonModeModalOpen, salonModeChangeIsOpen } = modalStateStore();
+  const { salonModeModalOpen, salonModeChangeIsOpen } = salonModeChangeeStore();
 
   return (
     <div className="w-full h-auto left-0 top-0 bg-white z-1000">
@@ -22,7 +22,7 @@ const Nav = () => {
           </div>
         )}
         <Profile />
-        {salonModeChangeIsOpen && <SalnonModeModal />}
+        {salonModeChangeIsOpen && <SalnonModeChangeModal />}
       </div>
     </div>
   );

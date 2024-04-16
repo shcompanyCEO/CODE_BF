@@ -6,6 +6,8 @@ import MenuBar from '@/components/common/menubar';
 import { useRouter } from 'next/router';
 import SalonCard from '@/components/salonComponent/SalonCard';
 import { HOME_ROUTE } from 'constants/routes';
+import { useQuery } from '@tanstack/react-query';
+import { getSalons } from 'store/queries/firebaseDataFetch';
 
 const CommonLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -32,6 +34,11 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
       productId: 'haumBangkok',
     },
   ];
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['salons'],
+    queryFn: () => getSalons(),
+  });
+  console.log('sean data', data);
 
   console.log('2 commonLayout');
   return (
