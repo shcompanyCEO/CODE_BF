@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Autocomplete } from '@react-google-maps/api';
 import { Input } from '../ui/input';
-import { salonModChangeeStore } from 'store/stores/salonModeChangeStore';
+import { salonModChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
 interface LocationSearchProps {
   onSelect: (place: google.maps.places.PlaceResult | null) => void;

@@ -4,7 +4,7 @@ import Step1 from '../salonModeChangeComponent/Step1';
 import Step2 from '../salonModeChangeComponent/Step2';
 import Step3 from '../salonModeChangeComponent/Step3';
 
-import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
+import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
 const SalonModeChangeModal: React.FC = () => {
   const { salonModeModalClose, salonSelector, selectSalonHandler, currentStep } =

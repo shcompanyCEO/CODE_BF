@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import CountryModal from '@/components/modal/CountryModal';
-import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
+import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
 const Country = () => {
   const [langugeSelect, setLangugeSelect] = useState<string>('language');

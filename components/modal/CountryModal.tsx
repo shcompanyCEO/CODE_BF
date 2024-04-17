@@ -3,7 +3,7 @@ import { Button } from '../ui/button';
 import { PanelTopCloseIcon, SettingsIcon } from '../ui/icon';
 import { Switch } from '../ui/switch';
 import ModalLayout from '../common/ModalLayout';
-import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
+import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
 const CountryModal: React.FC = ({}) => {
   const { countryModalState, countryModalClose } = salonModeChangeeStore();

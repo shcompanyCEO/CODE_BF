@@ -4,18 +4,21 @@ import { MenuIcon, UserIcon } from '@/components/ui/icon';
 import { getAuth } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { userInfoStore } from 'store/stores/userData';
+import { userInfoStore } from 'store/stores/useUserData';
+import useAuthStore from 'store/stores/useAuthStore';
 
 const Profile = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   const router = useRouter();
   const auth = getAuth();
+  const user = useAuthStore((state) => state.user);
+  const isLogin = useAuthStore((state) => state.isLogin);
+  const logOut = useAuthStore((state) => state.signOutUser);
   const userInfo = auth.currentUser;
   //user Name
   const userDisplayName = userInfoStore((state) => state.displayName);
   //user Data Reset
-  const userData = userInfoStore((state) => state.updateUser);
 
   const modalOpen = (): void => {
     setIsLoginModalOpen(true);
@@ -34,23 +37,8 @@ const Profile = () => {
   };
 
   const signOut = async () => {
-    try {
-      await auth.signOut(); // Sign out the user
-      console.log('User logged out successfully');
-      alert('User logged out successfully');
-      userData({
-        userUid: '',
-        email: '',
-        phoneNumber: '',
-        userToken: '',
-        displayName: '',
-      });
-      // .
-
-      router.push('/');
-    } catch (error: any) {
-      console.error('Error signing out:', error.message);
-    }
+    logOut();
+    router.push('/');
   };
   const handleInfo = () => {
     return userDisplayName;
@@ -69,6 +57,11 @@ const Profile = () => {
     };
   }, [isDropdown]);
 
+  useEffect(() => {
+    if (isLogin === false) {
+      router.push('/');
+    }
+  });
   return (
     <div className="relative ">
       <div
@@ -79,7 +72,7 @@ const Profile = () => {
           <MenuIcon />
         </div>
         <div className="flex items-center justify-center w-10 h-10 bg-gray-200 text-gray-600 rounded-full focus:outline-none focus:ring focus:ring-gray-300">
-          {userDisplayName === '' ? <UserIcon /> : <div>{userDisplayName}</div>}
+          {user === null ? <UserIcon /> : <div>{user?.displayName}</div>}
         </div>
       </div>
       {isDropdown && (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
+import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import { MailIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 

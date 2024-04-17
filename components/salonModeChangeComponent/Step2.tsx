@@ -1,7 +1,7 @@
 import React from 'react';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
-import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
+import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import { Textarea } from '../ui/textarea';
 import PhoneInputComponent from '../ui/phoneInputComponent';
 

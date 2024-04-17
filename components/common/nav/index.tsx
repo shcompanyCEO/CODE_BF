@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Logo from './Logo';
 import Profile from './Profile';
-import { userInfoStore } from 'store/stores/userData';
+import { userInfoStore } from 'store/stores/useUserData';
 import { Button } from '@/components/ui/button';
-import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
+import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';
 import Country from '../country';
 

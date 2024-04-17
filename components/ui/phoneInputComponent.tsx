@@ -1,7 +1,7 @@
 import React from 'react';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-import { salonModeChangeeStore } from 'store/stores/salonModeChangeStore';
+import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
 const PhoneInputComponent: React.FC = () => {
   const { salonPhoneNumber, handleSalonNumber } = salonModeChangeeStore();
