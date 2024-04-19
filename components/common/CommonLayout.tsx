@@ -14,28 +14,10 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const { pathname } = router;
   const { addSalon } = useSalonStore();
-
+  const { hairSalons } = useSalonStore();
   //data 단방향 ->
-  const cardData = [
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-    {
-      imageUrl: 'https://via.placeholder.com/300',
-      title: 'haum Bangkok',
-      description: 'haum bangkok',
-      productId: 'haumBangkok',
-    },
-  ];
+
+  console.log('saen >>>>>>>>>', hairSalons);
   return (
     // <div className="max-w-screen-sm min-h-screen m-auto border-solid border-2 border-gray pr-2 pl-2 bg-white top-0">
     <div className="max-w-screen-sm min-h-screen m-auto ">
@@ -44,7 +26,7 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
         <MenuBar />
       </div>
       {pathname === HOME_ROUTE && <Banner />}
-      {pathname === HOME_ROUTE && <SalonCard data={cardData} />}
+      {pathname === HOME_ROUTE && <SalonCard data={hairSalons} />}
       <div className="w-full h-full">{children}</div>
       <Footer />
     </div>

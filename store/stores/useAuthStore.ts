@@ -9,7 +9,6 @@ import {
   User,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
-import { useRouter } from 'next/router';
 import { create } from 'zustand';
 
 // Initialize Firebase with your Firebase project configuration
@@ -20,23 +19,38 @@ const auth = getAuth(firebaseApp);
 
 interface AuthStore {
   user: User | null;
+  userUid: string;
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  userToken: string;
+  owner: boolean;
+  managerStatus: boolean;
+  staffStatus: boolean;
   isLoading: boolean;
   isLogin: boolean;
-  signInWithGoogle: () => Promise<void>;
-  signOutUser: () => Promise<void>;
+  signInWithGoogle: () => Promise<boolean>;
+  signOutUser: () => Promise<boolean>;
 }
 
 const useAuthStore = create<AuthStore>((set) => ({
   user: null,
-  isLoading: true, // Initially set to true until authentication state is determined
-  isLogin: false,
+  userUid: '',
+  fullName: '',
+  email: '',
+  phoneNumber: '',
+  userToken: '',
+  owner: false,
+  managerStatus: false,
+  staffStatus: false,
+  isLoading: false,
+  isLogin: true,
 
   signInWithGoogle: async () => {
     try {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const { user } = result;
-      set({ user: user, isLoading: false, isLogin: true });
       await setDoc(doc(db, 'users', `${user.email}`), {
         userUid: user.uid,
         fullName: user.displayName!,
@@ -44,11 +58,15 @@ const useAuthStore = create<AuthStore>((set) => ({
         phoneNumber: user.phoneNumber ? user.phoneNumber : '',
         userToken: await result.user.getIdToken(),
         owner: false,
-        ManagerStatus: false,
-        StaffStatus: false,
+        managerStatus: false,
+        staffStatus: false,
       });
+      alert('google login success full');
+      console.log('login succfull');
+      return true;
     } catch (error) {
       console.error('Error signing in with Google:', error);
+      return false;
     }
   },
 
@@ -56,15 +74,19 @@ const useAuthStore = create<AuthStore>((set) => ({
     try {
       await signOut(auth);
       set({ user: null, isLoading: false, isLogin: false });
+      console.log('logout succfull');
+      alert('log out succfull');
+      return true;
     } catch (error) {
       console.error('Error signing out:', error);
+      return true;
     }
   },
 }));
 
 // Subscribe to auth state changes and update Zustand store accordingly
 onAuthStateChanged(auth, (user) => {
-  useAuthStore.setState({ user, isLoading: false });
+  useAuthStore.setState({ user, isLogin: true });
 });
 
 export default useAuthStore;

@@ -9,6 +9,19 @@ const LoginModal: React.FC<{ isLoginModalOpen: boolean; onClose: () => void }> =
 }) => {
   const [isClosing, setIsClosing] = useState(false);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {

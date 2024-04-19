@@ -3,10 +3,16 @@ import Card from './Card';
 
 interface SliderProps {
   data: {
-    imageUrl: string;
-    title: string;
-    description: string;
-    productId: string;
+    id: string; // Generate a unique ID or use Firebase auto-generated ID
+    name: string;
+    address: string;
+    salonPhoneNumber: string;
+    salonIntroduction: string;
+
+    location: {
+      latitude: number;
+      longitude: number;
+    };
   }[];
 }
 

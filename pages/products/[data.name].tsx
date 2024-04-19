@@ -39,8 +39,9 @@ import ReservationModal from '@/components/modal/ResereModal';
 
 const ProductDetailPage = () => {
   const router = useRouter();
-  const { productId } = router.query;
+  const { id } = router.query;
 
+  console.log('sean 1111111111111111', id);
   return (
     <CommonLayout>
       <div className="max-w-6xl mx-auto p-2 lg:px-4 sm:py-8 md:py-10">

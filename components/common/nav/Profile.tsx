@@ -6,27 +6,19 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { userInfoStore } from 'store/stores/useUserData';
 import useAuthStore from 'store/stores/useAuthStore';
+import useModalStore from 'store/stores/useModal';
 
 const Profile = () => {
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   const router = useRouter();
   const auth = getAuth();
   const user = useAuthStore((state) => state.user);
-  const isLogin = useAuthStore((state) => state.isLogin);
   const logOut = useAuthStore((state) => state.signOutUser);
   const userInfo = auth.currentUser;
   //user Name
   const userDisplayName = userInfoStore((state) => state.displayName);
-  //user Data Reset
-
-  const modalOpen = (): void => {
-    setIsLoginModalOpen(true);
-  };
-
-  const onClose = (): void => {
-    setIsLoginModalOpen(false);
-  };
+  //modal Open
+  const { isModalOpen, toggleModal } = useModalStore();
 
   const toggleDropdown = (): void => {
     setIsDropdown(!isDropdown);
@@ -37,8 +29,13 @@ const Profile = () => {
   };
 
   const signOut = async () => {
-    logOut();
-    router.push('/');
+    const logout = logOut().then((res: boolean) => {
+      if (res) {
+        router.push('/');
+      } else {
+        router.push('/');
+      }
+    });
   };
   const handleInfo = () => {
     return userDisplayName;
@@ -57,11 +54,6 @@ const Profile = () => {
     };
   }, [isDropdown]);
 
-  useEffect(() => {
-    if (isLogin === false) {
-      router.push('/');
-    }
-  });
   return (
     <div className="relative ">
       <div
@@ -83,7 +75,7 @@ const Profile = () => {
           {userInfo === null ? (
             <div className="py-1">
               <button
-                onClick={modalOpen}
+                onClick={toggleModal}
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
               >
                 로그인
@@ -116,8 +108,8 @@ const Profile = () => {
           )}
         </div>
       )}
-      {isLoginModalOpen && (
-        <LoginModal isLoginModalOpen={isLoginModalOpen} onClose={onClose}></LoginModal>
+      {isModalOpen && (
+        <LoginModal isLoginModalOpen={isModalOpen} onClose={toggleModal}></LoginModal>
       )}
     </div>
   );

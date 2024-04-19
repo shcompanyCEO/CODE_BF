@@ -2,20 +2,26 @@ import Link from 'next/link';
 import React from 'react';
 
 interface CardProps {
-  imageUrl: string;
-  title: string;
-  description: string;
-  productId: string;
+  id: string; // Generate a unique ID or use Firebase auto-generated ID
+  name: string;
+  address: string;
+  salonPhoneNumber: string;
+  salonIntroduction: string;
+
+  location: {
+    latitude: number;
+    longitude: number;
+  };
 }
 
-const Card: React.FC<CardProps> = ({ imageUrl, title, description, productId }) => {
+const Card: React.FC<CardProps> = (data) => {
   return (
     <div className="border rounded-lg shadow-md overflow-hidden">
-      <Link href={`/products/${[productId]}`}>
-        <img src={imageUrl} alt={title} className="w-full h-48 object-cover" />
+      <Link href={`/products/${[data.name]}`}>
+        <img src={''} alt={''} className="w-full h-48 object-cover" />
         <div className="p-4">
-          <h2 className="text-xl font-semibold mb-2">{title}</h2>
-          <p>{description}</p>
+          <h2 className="text-xl font-semibold mb-2">{data.name}</h2>
+          <p>{data.salonIntroduction}</p>
         </div>
       </Link>
     </div>

@@ -1,20 +1,18 @@
 import type { AppProps } from 'next/app';
 import React, { useEffect } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useMapStore } from 'store/stores/useMapStore';
+import useSalonStore from 'store/stores/useSalonStore';
 import '../i18n';
 import '../styles/globals.css';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useMapStore } from 'store/stores/useMapStore';
-import { userInfoStore } from 'store/stores/useUserData';
-import useSalonStore from 'store/stores/useSalonStore';
-import useAuthStore from 'store/stores/useAuthStore';
 
 function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
   // const user = useAuthStore((state) => state.user);
-  const { setMapCenter } = useMapStore();
-  const { fetchSalonsFromFirestore } = useSalonStore();
+  const { setMapCenter, mapCenter } = useMapStore();
+  const { fetchSalonsFromFirestore, hairSalons } = useSalonStore();
 
+  console.log('hairSalons_DATA', hairSalons);
   //현재 유저 location
   const getCurrentLocation = () => {
     if (navigator.geolocation) {

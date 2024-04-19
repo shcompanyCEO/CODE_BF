@@ -8,7 +8,7 @@ import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';
 import Country from '../country';
 
 const Nav = () => {
-  const userName = userInfoStore((state) => state.displayName);
+  const owner = userInfoStore((state) => state.owner);
   const { salonModeModalOpen, salonModeChangeIsOpen } = salonModeChangeeStore();
 
   return (
@@ -16,7 +16,7 @@ const Nav = () => {
       <div className="flex justify-between items-center h-32">
         <Logo />
         <Country />
-        {userName && (
+        {!owner && (
           <div>
             <Button onClick={salonModeModalOpen}>살롱모드로 전환</Button>
           </div>

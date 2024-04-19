@@ -1,15 +1,19 @@
 import { create } from 'zustand';
 
-export interface IUserProps {
+interface IUserProps {
   userUid: string;
   displayName: string;
   email: string | null;
   phoneNumber: string;
   userToken: string | undefined;
+  managerStatus: boolean;
+  staffStatus: boolean;
+  owner: boolean;
 }
 
 export interface AuthStore {
-  updateUser: (state: IUserProps) => void;
+  userSetUp: (state: IUserProps) => void;
+  userUpdateData: (newData: Partial<IUserProps>) => void;
 }
 
 export const userInfoStore = create<IUserProps & AuthStore>((set) => ({
@@ -18,12 +22,23 @@ export const userInfoStore = create<IUserProps & AuthStore>((set) => ({
   phoneNumber: '',
   userToken: '',
   displayName: '',
-  updateUser: (state) =>
+  managerStatus: false,
+  staffStatus: false,
+  owner: false,
+  userSetUp: (state: IUserProps) =>
     set(() => ({
       userUid: state.userUid,
       email: state.email,
       phoneNumber: state.phoneNumber,
       userToken: state.userToken,
       displayName: state.displayName,
+      managerStatus: state.managerStatus,
+      staffStatus: state.staffStatus,
+      owner: state.owner,
+    })),
+  userUpdateData: (newData) =>
+    set((state) => ({
+      ...state,
+      ...newData,
     })),
 }));

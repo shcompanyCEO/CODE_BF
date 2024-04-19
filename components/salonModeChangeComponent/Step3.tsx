@@ -1,13 +1,11 @@
-import Reac, { useEffect, useState } from 'react';
+import React from 'react';
 import { Button } from '../ui/button';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import GoogleMapComponent from 'utility/apis/googleMapAPI';
 import { useMapStore } from 'store/stores/useMapStore';
-import { userInfoStore } from 'store/stores/useUserData';
-import useSalonStore from 'store/stores/useSalonStore';
-import { doc, setDoc, getDoc, getDocs, collection } from 'firebase/firestore';
-import { db } from '@/api/firebase/firebase';
 import { useRouter } from 'next/router';
+import useAuthStore from 'store/stores/useAuthStore';
+import { addSalonWithId, salonOwnerFeildChange } from 'utility/salonUpdateAPI';
 
 const Step3 = () => {
   const {
@@ -21,28 +19,31 @@ const Step3 = () => {
     salonSelector,
   } = salonModeChangeeStore();
   const { selectedPlace } = useMapStore();
-  const { userUid } = userInfoStore();
-  const { addSalon } = useSalonStore();
-  const [salons, setSalons] = useState<any>([]);
-
+  const { user } = useAuthStore();
   const router = useRouter();
 
   const salonSettingData = async () => {
     if (selectedPlace) {
       const salon = {
-        id: `${salonName}/${userUid}`, // Generate a unique ID or use Firebase auto-generated ID
+        id: `${salonName}/${user?.uid}`, // Generate a unique ID or use Firebase auto-generated ID
         name: salonName,
         address: selectedPlace?.formatted_address,
         salonPhoneNumber: salonPhoneNumber,
         salonIntroduction: salonIntroduction,
+
         location: {
           latitude: selectedPlace && selectedPlace.geometry?.location?.lat(),
           longitude: selectedPlace && selectedPlace?.geometry?.location?.lng(),
         },
       };
-      // @ts-ignore
-      addSalon(salon);
-      await setDoc(doc(db, 'salons', `${salonSelector}`), { salon });
+      //살롱 DB에 생성₩
+      addSalonWithId(`${salonSelector}Salons`, `${salon.id}`, salon);
+      //살롱을 등록한 유저 owner field change
+      const fieldsToUpdate = {
+        owner: true,
+      };
+      await salonOwnerFeildChange('users', `${user?.email}`, fieldsToUpdate);
+      console.log('User fields updated successfully!');
       salonModeModalClose();
       alert('User changeData');
       router.push('/');
@@ -50,58 +51,8 @@ const Step3 = () => {
     // Other salon information
   };
 
-  const addSalonWithId = async (category: any, salonId: any, salonData: any) => {
-    console.log('sean11');
-    try {
-      // Add salon data to the respective category collection with the custom ID
-      // await db.collection(category).doc(salonId).set(salonData);
-      await setDoc(doc(db, `${category}`, `${salonId}`), { salonData });
-      console.log('Salon added successfully!');
-    } catch (error) {
-      console.error('Error adding salon:', error);
-    }
-  };
-
-  // Example salon data with IDs based on salon names
-  const hairSalonData = {
-    name: 'Hair Style Studio',
-    address: '123 Main St, City',
-    contact: '123-456-7890',
-    // Other salon data...
-  };
-
-  const makeupSalonData = {
-    name: 'Glamour Beauty Lounge',
-    address: '456 Oak Ave, Town',
-    contact: '987-654-3210',
-    // Other salon data...
-  };
-
-  const nailSalonData = {
-    name: 'Polished Nails Spa',
-    address: '789 Elm St, Village',
-    contact: '456-789-1230',
-    // Other salon data...
-  };
-
-  // Add salons to respective categories with custom IDs based on salon names
-  const hairAdd = addSalonWithId(
-    'hairSalons',
-    hairSalonData.name.toLowerCase().replace(/\s+/g, '-'),
-    hairSalonData
-  );
-  const b = addSalonWithId(
-    'makeupSalons',
-    makeupSalonData.name.toLowerCase().replace(/\s+/g, '-'),
-    makeupSalonData
-  );
-  const c = addSalonWithId(
-    'nailSalons',
-    nailSalonData.name.toLowerCase().replace(/\s+/g, '-'),
-    nailSalonData
-  );
-  const callbackControl = async () => {
-    return await hairAdd;
+  const callbackControl = () => {
+    return salonSettingData();
   };
 
   return (
