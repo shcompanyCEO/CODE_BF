@@ -27,7 +27,6 @@ const Step2 = () => {
     }
   };
 
-  console.log('sean salonphone', salonPhoneNumber);
   return (
     <>
       <div className="mt-6 text-center">

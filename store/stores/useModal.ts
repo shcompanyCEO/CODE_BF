@@ -12,7 +12,6 @@ const useModalStore = create<State>((set) => ({
   toggleModal: () =>
     set((state: State) => {
       return {
-        console: console.log('sean state,', state),
         isModalOpen: !state.isModalOpen,
       };
     }),

@@ -6,6 +6,7 @@ import { useMapStore } from 'store/stores/useMapStore';
 import { useRouter } from 'next/router';
 import useAuthStore from 'store/stores/useAuthStore';
 import { addSalonWithId, salonOwnerFeildChange } from 'utility/salonUpdateAPI';
+import { auth } from '@/api/firebase/firebase';
 
 const Step3 = () => {
   const {
@@ -19,13 +20,14 @@ const Step3 = () => {
     salonSelector,
   } = salonModeChangeeStore();
   const { selectedPlace } = useMapStore();
-  const { user } = useAuthStore();
   const router = useRouter();
+
+  const user = auth.currentUser;
 
   const salonSettingData = async () => {
     if (selectedPlace) {
       const salon = {
-        id: `${salonName}/${user?.uid}`, // Generate a unique ID or use Firebase auto-generated ID
+        id: `${salonName}_${user?.uid}`, // Generate a unique ID or use Firebase auto-generated ID
         name: salonName,
         address: selectedPlace?.formatted_address,
         salonPhoneNumber: salonPhoneNumber,
@@ -41,14 +43,15 @@ const Step3 = () => {
       //살롱을 등록한 유저 owner field change
       const fieldsToUpdate = {
         owner: true,
+        salon: salon.id,
       };
       await salonOwnerFeildChange('users', `${user?.email}`, fieldsToUpdate);
       console.log('User fields updated successfully!');
       salonModeModalClose();
       alert('User changeData');
-      router.push('/');
     }
     // Other salon information
+    window.location.reload();
   };
 
   const callbackControl = () => {

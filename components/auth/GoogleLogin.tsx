@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ChromeIcon } from '@/components/ui/icon';
+import { useRouter } from 'next/router';
 import useAuthStore from 'store/stores/useAuthStore';
 
 export interface GooggleLoginButtonProps {
@@ -7,15 +8,16 @@ export interface GooggleLoginButtonProps {
 }
 
 export const GoogleLogin = ({ onClose }: GooggleLoginButtonProps) => {
-  const signInWithGoogle = useAuthStore((state) => state.signInWithGoogle);
+  const router = useRouter();
+  const signInWithGoogle = useAuthStore().signInWithGoogle;
 
-  const signIn = () => {
-    const signUpFinish = signInWithGoogle().then((res: boolean) => {
-      if (res === true) {
-        onClose();
-      } else {
-      }
-    });
+  const signIn = async () => {
+    const signUpFinish = await signInWithGoogle();
+    if (signUpFinish) {
+      onClose();
+      // window.location.reload();
+    } else {
+    }
   };
 
   return (

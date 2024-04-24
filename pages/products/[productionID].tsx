@@ -39,14 +39,16 @@ import ReservationModal from '@/components/modal/ResereModal';
 
 const ProductDetailPage = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { productionID } = router.query;
+  const firstValue: string = productionID && productionID?.split('_');
 
-  console.log('sean 1111111111111111', id);
   return (
     <CommonLayout>
       <div className="max-w-6xl mx-auto p-2 lg:px-4 sm:py-8 md:py-10">
         <section className="hidden sm:flex flex-col gap-4 sm:flex-row sm:items-center pb-4 sm:pb-8">
-          <h1 className="text-xl lg:text-3xl font-semibold tracking-tight">haumBangkok</h1>
+          <h1 className="text-xl lg:text-3xl font-semibold tracking-tight">
+            {productionID?.split('_')[0]}
+          </h1>
           <nav className="flex items-center justify-center gap-1 sm:ml-auto">
             <Button
               asChild

@@ -6,6 +6,7 @@ interface Salon {
   id: string;
   name: string;
   address: string;
+  salonIntroduction: string;
   salonPhoneNumber: string;
   location: {
     latitude: number;

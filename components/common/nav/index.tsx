@@ -1,22 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { use, useEffect } from 'react';
 import Logo from './Logo';
 import Profile from './Profile';
-import { userInfoStore } from 'store/stores/useUserData';
+import { useUserDataStore } from 'store/stores/useUserData';
 import { Button } from '@/components/ui/button';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';
-import Country from '../country';
 
 const Nav = () => {
-  const owner = userInfoStore((state) => state.owner);
-  const { salonModeModalOpen, salonModeChangeIsOpen } = salonModeChangeeStore();
+  const userInfo = useUserDataStore.getState();
+  console.log('sean userInfo', userInfo);
 
+  const { salonModeModalOpen, salonModeChangeIsOpen } = salonModeChangeeStore();
   return (
     <div className="w-full h-auto left-0 top-0 bg-white z-1000">
       <div className="flex justify-between items-center h-32">
         <Logo />
-        <Country />
-        {!owner && (
+        {userInfo.email && userInfo.owner === true && (
+          <div>{`${userInfo.salon!.split('_')[0]}`} owner</div>
+        )}
+        {userInfo.email && userInfo.owner === false && (
           <div>
             <Button onClick={salonModeModalOpen}>살롱모드로 전환</Button>
           </div>

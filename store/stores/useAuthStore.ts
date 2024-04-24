@@ -1,4 +1,4 @@
-import { db, firebaseConfig } from '@/api/firebase/firebase';
+import { auth, db, firebaseConfig } from '@/api/firebase/firebase';
 import { initializeApp } from 'firebase/app';
 import {
   getAuth,
@@ -9,16 +9,16 @@ import {
   User,
 } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
+import { getUser } from 'store/queries/userDataQuery';
 import { create } from 'zustand';
+import { useUserDataStore } from './useUserData';
 
 // Initialize Firebase with your Firebase project configuration
-
+const { userUpdateData } = useUserDataStore.getState();
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
 
 interface AuthStore {
-  user: User | null;
   userUid: string;
   fullName: string;
   email: string;
@@ -29,12 +29,11 @@ interface AuthStore {
   staffStatus: boolean;
   isLoading: boolean;
   isLogin: boolean;
-  signInWithGoogle: () => Promise<boolean>;
   signOutUser: () => Promise<boolean>;
+  signInWithGoogle: () => Promise<boolean>;
 }
 
 const useAuthStore = create<AuthStore>((set) => ({
-  user: null,
   userUid: '',
   fullName: '',
   email: '',
@@ -51,18 +50,22 @@ const useAuthStore = create<AuthStore>((set) => ({
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       const { user } = result;
-      await setDoc(doc(db, 'users', `${user.email}`), {
-        userUid: user.uid,
-        fullName: user.displayName!,
-        email: user.email,
-        phoneNumber: user.phoneNumber ? user.phoneNumber : '',
-        userToken: await result.user.getIdToken(),
-        owner: false,
-        managerStatus: false,
-        staffStatus: false,
-      });
-      alert('google login success full');
-      console.log('login succfull');
+      const userData = await getUser(`${user?.email}`);
+      if (userData) {
+        userUpdateData(userData);
+      } else {
+        await setDoc(doc(db, 'users', `${user.email}`), {
+          userUid: user.uid,
+          fullName: user.displayName!,
+          email: user.email,
+          phoneNumber: user.phoneNumber ? user.phoneNumber : '',
+          userToken: await result.user.getIdToken(),
+          owner: false,
+          managerStatus: false,
+          staffStatus: false,
+        });
+        alert('google login success full');
+      }
       return true;
     } catch (error) {
       console.error('Error signing in with Google:', error);
@@ -73,7 +76,7 @@ const useAuthStore = create<AuthStore>((set) => ({
   signOutUser: async () => {
     try {
       await signOut(auth);
-      set({ user: null, isLoading: false, isLogin: false });
+      set({ isLoading: false, isLogin: false });
       console.log('logout succfull');
       alert('log out succfull');
       return true;
@@ -84,9 +87,14 @@ const useAuthStore = create<AuthStore>((set) => ({
   },
 }));
 
-// Subscribe to auth state changes and update Zustand store accordingly
-onAuthStateChanged(auth, (user) => {
-  useAuthStore.setState({ user, isLogin: true });
-});
+// onAuthStateChanged(auth, (user) => {
+//   const userDataUpdate = async () => {
+//     const userData = await getUser(`${user?.email}`);
+//     userUpdateData(userData);
+//     console.log('sean userdata', userData);
+//   };
+//   userDataUpdate();
+//   // useAuthStore.setState({ user, isLogin: true });
+// });
 
 export default useAuthStore;

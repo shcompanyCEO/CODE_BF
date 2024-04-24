@@ -1,27 +1,30 @@
 import Link from 'next/link';
 import React from 'react';
 
-interface CardProps {
-  id: string; // Generate a unique ID or use Firebase auto-generated ID
+interface Location {
+  latitude: number;
+  longitude: number;
+}
+
+interface Salon {
+  id: string;
   name: string;
   address: string;
   salonPhoneNumber: string;
-  salonIntroduction: string;
-
-  location: {
-    latitude: number;
-    longitude: number;
-  };
+  location: Location;
+  salonIntroduction: string; // Required property
+  key: number;
 }
 
-const Card: React.FC<CardProps> = (data) => {
+const Card = (data: Salon) => {
+  const { id, name, salonIntroduction, salonPhoneNumber } = data;
   return (
     <div className="border rounded-lg shadow-md overflow-hidden">
-      <Link href={`/products/${[data.name]}`}>
+      <Link href={`/products/${id}`}>
         <img src={''} alt={''} className="w-full h-48 object-cover" />
         <div className="p-4">
-          <h2 className="text-xl font-semibold mb-2">{data.name}</h2>
-          <p>{data.salonIntroduction}</p>
+          <h2 className="text-xl font-semibold mb-2">{name}</h2>
+          <p>{salonIntroduction}</p>
         </div>
       </Link>
     </div>

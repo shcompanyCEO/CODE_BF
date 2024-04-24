@@ -1,53 +1,45 @@
 /*profile*/
 import LoginModal from '@/components/modal/LoginModal';
 import { MenuIcon, UserIcon } from '@/components/ui/icon';
-import { getAuth } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { userInfoStore } from 'store/stores/useUserData';
+import { useUserDataStore } from 'store/stores/useUserData';
 import useAuthStore from 'store/stores/useAuthStore';
 import useModalStore from 'store/stores/useModal';
+import { auth } from '@/api/firebase/firebase';
 
 const Profile = () => {
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
-  const router = useRouter();
-  const auth = getAuth();
-  const user = useAuthStore((state) => state.user);
-  const logOut = useAuthStore((state) => state.signOutUser);
   const userInfo = auth.currentUser;
+  const logOut = useAuthStore().signOutUser;
   //user Name
-  const userDisplayName = userInfoStore((state) => state.displayName);
+  const userDisplayName = useUserDataStore((state) => state.displayName);
   //modal Open
   const { isModalOpen, toggleModal } = useModalStore();
 
   const toggleDropdown = (): void => {
     setIsDropdown(!isDropdown);
   };
-
   const toggleDropdownClose = (): void => {
     setIsDropdown(false);
   };
-
   const signOut = async () => {
-    const logout = logOut().then((res: boolean) => {
-      if (res) {
-        router.push('/');
-      } else {
-        router.push('/');
-      }
-    });
+    const userLogOut = await logOut();
+    if (userLogOut) {
+      window.location.reload();
+    } else {
+      window.location.reload();
+    }
   };
   const handleInfo = () => {
     return userDisplayName;
   };
-
+  //esc
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsDropdown(false);
       }
     };
-
     window.addEventListener('keydown', handleKeyDown);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
@@ -64,7 +56,7 @@ const Profile = () => {
           <MenuIcon />
         </div>
         <div className="flex items-center justify-center w-10 h-10 bg-gray-200 text-gray-600 rounded-full focus:outline-none focus:ring focus:ring-gray-300">
-          {user === null ? <UserIcon /> : <div>{user?.displayName}</div>}
+          {userInfo === null ? <UserIcon /> : <div>{userInfo?.displayName}</div>}
         </div>
       </div>
       {isDropdown && (

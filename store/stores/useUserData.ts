@@ -9,14 +9,15 @@ interface IUserProps {
   managerStatus: boolean;
   staffStatus: boolean;
   owner: boolean;
+  salon?: string;
 }
 
 export interface AuthStore {
   userSetUp: (state: IUserProps) => void;
-  userUpdateData: (newData: Partial<IUserProps>) => void;
+  userUpdateData: (newData: Partial<IUserProps | undefined>) => void;
 }
 
-export const userInfoStore = create<IUserProps & AuthStore>((set) => ({
+export const useUserDataStore = create<IUserProps & AuthStore>((set) => ({
   userUid: '',
   email: '',
   phoneNumber: '',
@@ -25,6 +26,7 @@ export const userInfoStore = create<IUserProps & AuthStore>((set) => ({
   managerStatus: false,
   staffStatus: false,
   owner: false,
+  salon: '',
   userSetUp: (state: IUserProps) =>
     set(() => ({
       userUid: state.userUid,

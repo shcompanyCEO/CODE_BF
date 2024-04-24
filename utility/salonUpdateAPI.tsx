@@ -4,7 +4,7 @@ import { doc, setDoc, updateDoc } from 'firebase/firestore';
 //살롱모드로 전환
 export const addSalonWithId = async (category: any, salonId: any, salonData: any) => {
   try {
-    await setDoc(doc(db, `${category}`, `${salonId}`), { salonData });
+    await setDoc(doc(db, `${category}`, `${salonId}`), { ...salonData });
     console.log('Salon added successfully!');
   } catch (error) {
     console.error('Error adding salon:', error);
@@ -12,7 +12,7 @@ export const addSalonWithId = async (category: any, salonId: any, salonData: any
 };
 //살롱등록후 owner Change
 export const salonOwnerFeildChange = async (
-  category: any,
+  category: string,
   email: string,
   fieldsToUpdate: object
 ) => {

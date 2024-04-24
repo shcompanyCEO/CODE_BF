@@ -10,7 +10,6 @@ const SalonModeChangeModal: React.FC = () => {
   const { salonModeModalClose, salonSelector, selectSalonHandler, currentStep } =
     salonModeChangeeStore();
 
-  console.log('sean currentStep', currentStep);
   return (
     <ModalLayout modalClose={salonModeModalClose}>
       {currentStep === 1 && <Step1 />}
