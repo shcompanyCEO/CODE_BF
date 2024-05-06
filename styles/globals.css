@@ -3,9 +3,7 @@
 @import 'tailwindcss/utilities';
 
 
-/* @layer base {
-	* {
-		;
-		font-size: 10px
-	}
-} */
+
+#__next{
+	box-sizing: border-box;
+}

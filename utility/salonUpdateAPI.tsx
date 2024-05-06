@@ -19,7 +19,7 @@ export const salonOwnerFeildChange = async (
   try {
     const userDocRef = doc(db, `${category}`, `${email}`);
     await updateDoc(userDocRef, fieldsToUpdate);
-    console.log('Salon added successfully!');
+    alert('Salon added successfully!');
   } catch (error) {
     console.error('Error adding salon:', error);
   }

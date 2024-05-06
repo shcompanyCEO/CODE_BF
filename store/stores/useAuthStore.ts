@@ -87,14 +87,4 @@ const useAuthStore = create<AuthStore>((set) => ({
   },
 }));
 
-// onAuthStateChanged(auth, (user) => {
-//   const userDataUpdate = async () => {
-//     const userData = await getUser(`${user?.email}`);
-//     userUpdateData(userData);
-//     console.log('sean userdata', userData);
-//   };
-//   userDataUpdate();
-//   // useAuthStore.setState({ user, isLogin: true });
-// });
-
 export default useAuthStore;

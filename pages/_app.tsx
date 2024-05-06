@@ -1,16 +1,18 @@
-import type { AppContext, AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import React, { useEffect } from 'react';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { useMapStore } from 'store/stores/useMapStore';
 import useSalonStore from 'store/stores/useSalonStore';
-import '../i18n';
-import '../styles/globals.css';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getUser } from 'store/queries/userDataQuery';
 import { useUserDataStore } from 'store/stores/useUserData';
+import { appWithTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import OwnerMenuComponent from '@/components/menuHandler/OwnerMenuComponent';
+import '../styles/globals.css';
 
 const queryClient = new QueryClient();
-function App({ Component, pageProps, serverData }: AppProps & { serverData: any }) {
+function App({ Component, pageProps }: AppProps) {
   // const user = useAuthStore((state) => state.user);
   const { setMapCenter, mapCenter } = useMapStore();
   const { fetchSalonsFromFirestore } = useSalonStore();
@@ -48,7 +50,6 @@ function App({ Component, pageProps, serverData }: AppProps & { serverData: any 
       const userDataUpdate = async () => {
         const userData = await getUser(`${user?.email}`);
         userUpdateData(userData);
-        console.log('sean userdata', userData);
       };
       userDataUpdate();
       // useAuthStore.setState({ user, isLogin: true });
@@ -56,12 +57,23 @@ function App({ Component, pageProps, serverData }: AppProps & { serverData: any 
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />
-    </QueryClientProvider>
+    <div className="max-w-layout-maxWidth  min-h-screen mx-auto relative p-2">
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+        <OwnerMenuComponent />
+      </QueryClientProvider>
+    </div>
   );
 }
 
 // Pass the fetched data as props
 
-export default App;
+export default appWithTranslation(App);
+export async function getStaticProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common', 'footer'])),
+      // Will be passed to the page component as props
+    },
+  };
+}

@@ -41,6 +41,7 @@ const ProductDetailPage = () => {
   const router = useRouter();
   const { productionID } = router.query;
   const firstValue: string = productionID && productionID?.split('_');
+  // const firstValue: string = productionID && productionID;
 
   return (
     <CommonLayout>
@@ -145,12 +146,10 @@ const ProductDetailPage = () => {
         {/* <section className="py-8 grid md:grid-cols-2 lg:grid-cols-[1fr_400px] gap-8 sm:gap-12 md:gap-16 items-start"> */}
         <section className="py-8 grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-start">
           <div className="grid gap-8 row-start-2 md:row-start-auto">
-            <div className="hidden md:flex flex-col gap-1">
-              <h2 className="text-2xl font-semibold">Disigner Profile</h2>
+            <div className="flex-col gap-1">
+              {/* <div className="hidden md:flex flex-col gap-1"> */}
+              <div className="text-2xl font-semibold">Disigner Profile</div>
               <ReservationModal />
-              {/* <p className="text-gray-500 dark:text-gray-400">
-                2 guests · 1 bedroom · 1 bed · 1 bath · Wifi · Kitchen
-              </p> */}
             </div>
             <Card>
               <CardContent className="p-4 sm:p-6 flex items-center gap-6 relative">

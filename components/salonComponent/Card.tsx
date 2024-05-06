@@ -19,7 +19,7 @@ interface Salon {
 const Card = (data: Salon) => {
   const { id, name, salonIntroduction, salonPhoneNumber } = data;
   return (
-    <div className="border rounded-lg shadow-md overflow-hidden">
+    <div className="border rounded-lg shadow-md overflow-hidden ">
       <Link href={`/products/${id}`}>
         <img src={''} alt={''} className="w-full h-48 object-cover" />
         <div className="p-4">

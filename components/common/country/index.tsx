@@ -6,7 +6,7 @@ import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
 const Country = () => {
   const [langugeSelect, setLangugeSelect] = useState<string>('language');
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const { countryModalOpen, countryModalState } = salonModeChangeeStore();
 

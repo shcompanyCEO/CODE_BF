@@ -37,7 +37,7 @@ const ReservationModal: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle reservation submission (e.g., send data to backend)
-    console.log(reservation);
+    console.log('reservation', reservation);
     // Close modal after submission
     setIsOpen(false);
     setReservation({ time: '', style: '' });
@@ -45,6 +45,10 @@ const ReservationModal: React.FC = () => {
   const open = (): void => {
     setIsOpen(true);
     document.body.classList.add('overflow-hidden');
+  };
+  const close = (): void => {
+    setIsOpen(false);
+    document.body.classList.remove('overflow-hidden');
   };
   const styleMenu = ['cut', 'perm', 'color', 'clinic', 'dry'];
   const modalRef = useRef<HTMLDivElement>(null);
@@ -55,6 +59,7 @@ const ReservationModal: React.FC = () => {
       if (event.key === 'Escape') {
         setIsOpen(false);
         setReservation({ time: '', style: '' });
+        document.body.classList.remove('overflow-hidden');
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -135,17 +140,6 @@ const ReservationModal: React.FC = () => {
                     <div className="text-gray-500 dark:text-gray-400">reservation fee</div>
                     <div>30 bat</div>
                   </div>
-                  {/* <div className="flex justify-between items-center">
-                    <div className="text-gray-500 dark:text-gray-400">
-                      Cleaning fee
-                      <span className="text-xs">(one-time)</span>
-                    </div>
-                    <div>0</div>
-                  </div> */}
-                  {/* <div className="flex justify-between items-center">
-                    <div className="text-gray-500 dark:text-gray-400">Service fee</div>
-                    <div>0</div>
-                  </div> */}
                 </div>
                 <Separator />
                 <div className="flex justify-between items-center">
@@ -162,7 +156,7 @@ const ReservationModal: React.FC = () => {
                 </button>
                 <button
                   className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => close()}
                 >
                   Cancel
                 </button>

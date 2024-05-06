@@ -8,11 +8,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      zIndex: {
-        1000: '1000',
-      },
       maxWidth: {
-        'layout-maxWidth': '600px',
+        'layout-maxWidth': '640px',
+      },
+      leftTranstion: {
+        'menu-left': '60%',
       },
     },
   },
