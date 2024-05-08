@@ -1,4 +1,4 @@
-import React, { use, useEffect } from 'react';
+import React from 'react';
 import Logo from './Logo';
 import Profile from './Profile';
 import { useUserDataStore } from 'store/stores/useUserData';

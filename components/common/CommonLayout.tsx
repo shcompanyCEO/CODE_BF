@@ -21,6 +21,7 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
       {/* {pathname === HOME_ROUTE && <Banner />} */}
       {pathname === HOME_ROUTE && <SalonCard />}
       <div className="w-full h-full">{children}</div>
+      <Footer />
     </>
   );
 };
