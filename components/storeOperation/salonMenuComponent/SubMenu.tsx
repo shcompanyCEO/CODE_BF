@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 interface SubmenuProps {
   items: string[];
-  selected: string;
+  selected: string | null;
   onSelect: (item: string) => void;
 }
 
@@ -15,8 +15,9 @@ const Submenu: React.FC<SubmenuProps> = ({ items, selected, onSelect }) => {
           className={`p-4 text-gray-400 hover:text-white cursor-pointer ${
             item === selected ? 'bg-blue-500' : 'bg-gray-900'
           }`}
+          onClick={() => onSelect(item)}
         >
-          <button onClick={() => onSelect(item)}>{item}</button>
+          {item}
         </div>
       ))}
     </div>

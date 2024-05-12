@@ -1,18 +1,27 @@
 import { create } from 'zustand';
 
 interface State {
-  isModalOpen: boolean;
+  isLoginModalOpen: boolean;
+  isReservationTimeOpen: boolean;
 
-  toggleModal: () => void;
+  LoginModalHandler: () => void;
+  reservationTimeModalHandler: () => void;
 }
 
 const useModalStore = create<State>((set) => ({
-  isModalOpen: false,
+  isLoginModalOpen: false,
+  isReservationTimeOpen: false,
 
-  toggleModal: () =>
+  LoginModalHandler: () =>
     set((state: State) => {
       return {
-        isModalOpen: !state.isModalOpen,
+        isLoginModalOpen: !state.isLoginModalOpen,
+      };
+    }),
+  reservationTimeModalHandler: () =>
+    set((state: State) => {
+      return {
+        isReservationTimeOpen: !state.isReservationTimeOpen,
       };
     }),
 }));

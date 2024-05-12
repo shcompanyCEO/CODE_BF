@@ -4,7 +4,7 @@ import Submenu from './SubMenu';
 interface DropdownProps {
   label: string;
   isOpen: boolean;
-  selected: string;
+  selected: string | null;
   submenuItems: string[];
   toggleDropdown: () => void;
   onSelectItem: (item: string) => void;

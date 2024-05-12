@@ -14,7 +14,7 @@ const Profile = () => {
   //user Name
   const userDisplayName = useUserDataStore((state) => state.displayName);
   //modal Open
-  const { isModalOpen, toggleModal } = useModalStore();
+  const { isLoginModalOpen, LoginModalHandler } = useModalStore();
 
   const toggleDropdown = (): void => {
     setIsDropdown(!isDropdown);
@@ -67,7 +67,7 @@ const Profile = () => {
           {userInfo === null ? (
             <div className="py-1">
               <button
-                onClick={toggleModal}
+                onClick={LoginModalHandler}
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
               >
                 로그인
@@ -100,8 +100,8 @@ const Profile = () => {
           )}
         </div>
       )}
-      {isModalOpen && (
-        <LoginModal isLoginModalOpen={isModalOpen} onClose={toggleModal}></LoginModal>
+      {isLoginModalOpen && (
+        <LoginModal isLoginModalOpen={isLoginModalOpen} onClose={LoginModalHandler}></LoginModal>
       )}
     </div>
   );

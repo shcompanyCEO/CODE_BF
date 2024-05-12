@@ -1,12 +1,11 @@
 import React from 'react';
 import CommonLayout from '@/components/common/CommonLayout';
-import SalonPage from '@/components/salonStore/menuDropdown/SalonPage';
+import StoreManagement from '@/components/storeOperation/StoreOperation';
 
 const index = () => {
   return (
     <CommonLayout>
-      mypage
-      <SalonPage />
+      <StoreManagement />
     </CommonLayout>
   );
 };
