@@ -17,7 +17,6 @@ const StoreOperation = () => {
     setSelectedItem(item);
   };
 
-  console.log('selectedItem', selectedItem);
   return (
     <div className="flex">
       <div className="w-48 bg-gray-800 text-white min-h-screen">
