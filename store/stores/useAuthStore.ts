@@ -1,13 +1,6 @@
 import { auth, db, firebaseConfig } from '@/api/firebase/firebase';
 import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-  User,
-} from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { getUser } from 'store/queries/userDataQuery';
 import { create } from 'zustand';

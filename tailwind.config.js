@@ -8,6 +8,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      transitionProperty: {
+        height: 'height',
+        spacing: 'margin, padding',
+        toggle: 'background-color, border-color, transform',
+      },
       maxWidth: {
         'layout-maxWidth': '640px',
       },

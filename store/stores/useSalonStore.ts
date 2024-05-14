@@ -2,17 +2,29 @@ import { db } from '@/api/firebase/firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { create } from 'zustand';
 
+//salon desginers
+interface Designers {
+  id: string;
+  openTime: string;
+  weeklyOffDays: Array<String>;
+  holidays: Array<Date>;
+}
+
+// Other salon information
 interface Salon {
   id: string;
-  name: string;
+  salonName: string;
   address: string;
   salonIntroduction: string;
   salonPhoneNumber: string;
+  openTime: string;
+  closeTime: string;
+  ownerName: string;
   location: {
     latitude: number;
     longitude: number;
   };
-  // Other salon information
+  designers: Designers[];
 }
 
 interface SalonStore {

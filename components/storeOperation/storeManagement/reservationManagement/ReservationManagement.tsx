@@ -1,7 +1,7 @@
 import React from 'react';
 import ReservationCalendar from './ReservationCalendar';
-import SettingReservationTime from './SettingReservationTime';
 import { useReservationCalendar } from 'store/stores/storeOperation/useReservationCalendar';
+import SettingReservationTime from './SettingReservationTime';
 
 const ReservationManagement: React.FC = () => {
   const addEvent = useReservationCalendar((state) => state.addEvent);
@@ -25,7 +25,7 @@ const ReservationManagement: React.FC = () => {
       >
         Add Event
       </button>
-      <ReservationCalendar />
+      {/* <ReservationCalendar /> */}
     </div>
   );
 };

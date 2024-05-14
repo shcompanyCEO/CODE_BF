@@ -7,3 +7,13 @@
 #__next{
 	box-sizing: border-box;
 }
+
+.toggle-checkbox:checked {
+	right: 0;
+	border-color:	rgb(34, 126, 255);
+	background-color:white; 
+	
+}
+.toggle-checkbox:checked + .toggle-label {
+	background-color:rgb(34, 126, 255); 
+}

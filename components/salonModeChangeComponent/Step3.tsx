@@ -3,8 +3,6 @@ import { Button } from '../ui/button';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import GoogleMapComponent from 'utility/apis/googleMapAPI';
 import { useMapStore } from 'store/stores/useMapStore';
-import { useRouter } from 'next/router';
-import useAuthStore from 'store/stores/useAuthStore';
 import { addSalonWithId, salonOwnerFeildChange } from 'utility/salonUpdateAPI';
 import { auth } from '@/api/firebase/firebase';
 
@@ -20,30 +18,31 @@ const Step3 = () => {
     salonSelector,
   } = salonModeChangeeStore();
   const { selectedPlace } = useMapStore();
-  const router = useRouter();
-
   const user = auth.currentUser;
 
   const salonSettingData = async () => {
     if (selectedPlace) {
       const salon = {
-        id: `${salonName}_${user?.uid}`, // Generate a unique ID or use Firebase auto-generated ID
-        name: salonName,
+        salonId: `${salonName}_${user?.email}`, // Generate a unique ID or use Firebase auto-generated ID
+        salonName: salonName,
         address: selectedPlace?.formatted_address,
         salonPhoneNumber: salonPhoneNumber,
         salonIntroduction: salonIntroduction,
-
+        openTime: '',
+        closeTime: '',
         location: {
           latitude: selectedPlace && selectedPlace.geometry?.location?.lat(),
           longitude: selectedPlace && selectedPlace?.geometry?.location?.lng(),
         },
+        desiners: [],
       };
       //살롱 DB에 생성₩
-      addSalonWithId(`${salonSelector}Salons`, `${salon.id}`, salon);
+      addSalonWithId(`${salonSelector}Salons`, `${salon.salonId}`, salon);
       //살롱을 등록한 유저 owner field change
       const fieldsToUpdate = {
         owner: true,
-        salon: salon.id,
+        salonId: salon.salonId,
+        salonName: salon.salonName,
       };
       await salonOwnerFeildChange('users', `${user?.email}`, fieldsToUpdate);
       console.log('User fields updated successfully!');

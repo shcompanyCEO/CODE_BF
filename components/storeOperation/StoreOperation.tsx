@@ -1,9 +1,10 @@
 import React from 'react';
 import Dropdown from './salonMenuComponent/Dropdown';
-import SalonStore from './storeManagement/reservation_management/ReservationManagement';
+import SalonStore from './storeManagement/reservationManagement/ReservationManagement';
 import SalonCustomer from './storeManagement/customer_care/SalonCustomer';
-import ReservationManagement from './storeManagement/reservation_management/ReservationManagement';
+import ReservationManagement from './storeManagement/reservationManagement/ReservationManagement';
 import useMenuStore from 'store/stores/storeOperation/useDropdownStore';
+import EmployeeManagement from './storeManagement/employeeManagement/EmployeeManagement';
 
 const StoreOperation = () => {
   const { openDropdown, setOpenDropdown, selectedItem, setSelectedItem } = useMenuStore();
@@ -16,6 +17,7 @@ const StoreOperation = () => {
     setSelectedItem(item);
   };
 
+  console.log('selectedItem', selectedItem);
   return (
     <div className="flex">
       <div className="w-48 bg-gray-800 text-white min-h-screen">
@@ -37,8 +39,8 @@ const StoreOperation = () => {
         />
         <Dropdown
           label="우리샵관리"
-          isOpen={openDropdown === 'myStore'}
-          toggleDropdown={() => handleToggle('myStore')}
+          isOpen={openDropdown === 'employeeManagement'}
+          toggleDropdown={() => handleToggle('employeeManagement')}
           submenuItems={['시술메뉴', '직원관리']}
           onSelectItem={handleSelectItem}
           selected={selectedItem}
@@ -47,7 +49,7 @@ const StoreOperation = () => {
 
       {selectedItem === 'calendar' && <ReservationManagement />}
       {selectedItem === 'customer' && <SalonCustomer />}
-      {/* {selectedItem === 'myStore' && <SalonMyStore />} */}
+      {selectedItem === '직원관리' && <EmployeeManagement />}
     </div>
   );
 };

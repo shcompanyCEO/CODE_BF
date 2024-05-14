@@ -8,7 +8,7 @@ interface Location {
 
 interface Salon {
   id: string;
-  name: string;
+  salonName: string;
   address: string;
   salonPhoneNumber: string;
   location: Location;
@@ -17,13 +17,13 @@ interface Salon {
 }
 
 const Card = (data: Salon) => {
-  const { id, name, salonIntroduction, salonPhoneNumber } = data;
+  const { id, salonName, salonIntroduction } = data;
   return (
     <div className="border rounded-lg shadow-md overflow-hidden ">
       <Link href={`/products/${id}`}>
         <img src={''} alt={''} className="w-full h-48 object-cover" />
         <div className="p-4">
-          <h2 className="text-xl font-semibold mb-2">{name}</h2>
+          <h2 className="text-xl font-semibold mb-2">{salonName}</h2>
           <p>{salonIntroduction}</p>
         </div>
       </Link>
