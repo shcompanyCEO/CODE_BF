@@ -29,7 +29,7 @@ const ModalLayout: React.FC<IModalProps> = ({ children, modalClose }) => {
       <div className="bg-white p-8 rounded-lg shadow-lg z-50">
         <div className=" max-w-md mx-auto">
           <div className="flex justify-end text-right">
-            <Button className="ftext-sm" variant="ghost" onClick={modalClose}>
+            <Button className="text-sm" variant="ghost" onClick={modalClose} size="sm">
               X
             </Button>
           </div>

@@ -4,7 +4,7 @@ import { create } from 'zustand';
 
 //salon desginers
 interface Designers {
-  id: string;
+  email: string;
   openTime: string;
   weeklyOffDays: Array<String>;
   holidays: Array<Date>;
@@ -12,7 +12,7 @@ interface Designers {
 
 // Other salon information
 interface Salon {
-  id: string;
+  salonId: string;
   salonName: string;
   address: string;
   salonIntroduction: string;
@@ -44,11 +44,11 @@ const useSalonStore = create<SalonStore>((set) => ({
   addSalon: (salon) => set((state) => ({ salons: [...state.salons, salon] })),
   updateSalon: (id, updatedSalon) =>
     set((state) => ({
-      salons: state.salons.map((salon) => (salon.id === id ? updatedSalon : salon)),
+      salons: state.salons.map((salon) => (salon.salonId === id ? updatedSalon : salon)),
     })),
   deleteSalon: (id) =>
     set((state) => ({
-      salons: state.salons.filter((salon) => salon.id !== id),
+      salons: state.salons.filter((salon) => salon.salonId !== id),
     })),
 
   saveHairSalons: (salons) => {

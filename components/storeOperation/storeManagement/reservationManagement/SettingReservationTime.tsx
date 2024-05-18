@@ -1,10 +1,11 @@
 import ModalLayout from '@/components/common/ModalLayout';
+import { Button } from '@/components/ui/button';
 import React from 'react';
 import {
   TimeOption,
   useTimeStore,
 } from 'store/stores/storeOperation/useSettingReservationTimeStore';
-import useModalStore from 'store/stores/useModal';
+import useModalStore from 'store/stores/useModalStore';
 
 function generateTimeOptions() {
   const options = [];
@@ -64,9 +65,9 @@ const SettingReservationTime = () => {
           <div className="">
             <div className="flex justify-between items-center mb-5 mt-2">
               <div className="font-bold text-lg">샵 영업 시간 설정</div>
-              <button className='border border-blue-500"' onClick={saveTimes}>
+              <Button className="text-sm" variant="ghost" onClick={saveTimes}>
                 저장하기
-              </button>
+              </Button>
             </div>
             <div className="space-y-4">
               {daysOfWeek.map((day, index) => (

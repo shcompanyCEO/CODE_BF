@@ -23,7 +23,6 @@ import {
   CarIcon,
   ChefHatIcon,
   ChevronRightIcon,
-  FlagIcon,
   GripIcon,
   HeartIcon,
   MapPinIcon,
@@ -36,20 +35,27 @@ import {
 } from '@/components/ui/icon';
 import { AccessibilityIcon, WifiIcon } from 'lucide-react';
 import ReservationModal from '@/components/modal/ResereModal';
+import useModalStore from 'store/stores/useModalStore';
+import ModalLayout from '@/components/common/ModalLayout';
+import InviteDesigner from '@/components/storeOperation/storeManagement/employeeManagement/InviteDesigner';
+import { useUserDataStore } from 'store/stores/useUserData';
 
 const ProductDetailPage = () => {
   const router = useRouter();
-  const { productionID } = router.query;
-  const firstValue: string = productionID && productionID?.split('_');
-  // const firstValue: string = productionID && productionID;
+  const { productionID, salonId, salonName, category } = router.query;
+  console.log('sean !!!!!!!!!!!', router.query);
+  const { employeeRegistrationHandler, isEmployeeRegistration } = useModalStore();
+  const salonData = {
+    salonId,
+    salonName,
+    category,
+  };
 
   return (
     <CommonLayout>
       <div className="max-w-6xl mx-auto p-2 lg:px-4 sm:py-8 md:py-10">
         <section className="hidden sm:flex flex-col gap-4 sm:flex-row sm:items-center pb-4 sm:pb-8">
-          <h1 className="text-xl lg:text-3xl font-semibold tracking-tight">
-            {productionID?.split('_')[0]}
-          </h1>
+          <h1 className="text-xl lg:text-3xl font-semibold tracking-tight">{productionID}</h1>
           <nav className="flex items-center justify-center gap-1 sm:ml-auto">
             <Button
               asChild
@@ -72,6 +78,14 @@ const ProductDetailPage = () => {
                 <HeartIcon className="w-4 h-4" />
                 Save
               </Link>
+            </Button>
+            <Button
+              asChild
+              className="rounded-md gap-1 underline underline-offset-2"
+              size="sm"
+              variant="ghost"
+            >
+              <Button onClick={employeeRegistrationHandler}>직원 등록 하기</Button>
             </Button>
           </nav>
         </section>
@@ -493,6 +507,11 @@ const ProductDetailPage = () => {
             Show all reviews
           </Button>
         </section>
+        {isEmployeeRegistration && (
+          <ModalLayout modalClose={employeeRegistrationHandler}>
+            <InviteDesigner {...salonData} />
+          </ModalLayout>
+        )}
       </div>
     </CommonLayout>
   );

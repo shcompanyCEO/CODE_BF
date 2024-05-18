@@ -4,7 +4,7 @@ import { MenuIcon, UserIcon } from '@/components/ui/icon';
 import React, { useEffect, useState } from 'react';
 import { useUserDataStore } from 'store/stores/useUserData';
 import useAuthStore from 'store/stores/useAuthStore';
-import useModalStore from 'store/stores/useModal';
+import useModalStore from 'store/stores/useModalStore';
 import { auth } from '@/api/firebase/firebase';
 
 const Profile = () => {

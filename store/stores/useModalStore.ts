@@ -3,14 +3,18 @@ import { create } from 'zustand';
 interface State {
   isLoginModalOpen: boolean;
   isReservationTimeOpen: boolean;
+  //직원등록
+  isEmployeeRegistration: boolean;
 
   LoginModalHandler: () => void;
   reservationTimeModalHandler: () => void;
+  employeeRegistrationHandler: () => void;
 }
 
 const useModalStore = create<State>((set) => ({
   isLoginModalOpen: false,
   isReservationTimeOpen: false,
+  isEmployeeRegistration: false,
 
   LoginModalHandler: () =>
     set((state: State) => {
@@ -22,6 +26,13 @@ const useModalStore = create<State>((set) => ({
     set((state: State) => {
       return {
         isReservationTimeOpen: !state.isReservationTimeOpen,
+      };
+    }),
+  //직원등록 모달
+  employeeRegistrationHandler: () =>
+    set((state: State) => {
+      return {
+        isEmployeeRegistration: !state.isEmployeeRegistration,
       };
     }),
 }));
