@@ -38,18 +38,23 @@ import ReservationModal from '@/components/modal/ResereModal';
 import useModalStore from 'store/stores/useModalStore';
 import ModalLayout from '@/components/common/ModalLayout';
 import InviteDesigner from '@/components/storeOperation/storeManagement/employeeManagement/InviteDesigner';
-import { useUserDataStore } from 'store/stores/useUserData';
+import Image from 'next/image';
+import { useEffect } from 'react';
+import { InvitationsStore } from 'store/stores/employeeManagement/InvitationsStore';
 
 const ProductDetailPage = () => {
+  const { setSalonId } = InvitationsStore();
   const router = useRouter();
   const { productionID, salonId, salonName, category } = router.query;
-  console.log('sean !!!!!!!!!!!', router.query);
   const { employeeRegistrationHandler, isEmployeeRegistration } = useModalStore();
   const salonData = {
     salonId,
     salonName,
     category,
   };
+  useEffect(() => {
+    setSalonId(`${salonId}`);
+  }, [setSalonId]);
 
   return (
     <CommonLayout>
@@ -95,7 +100,7 @@ const ProductDetailPage = () => {
               className="col-span-2 row-span-2 relative after:opacity-0 after:absolute after:inset-0 after:bg-black hover:after:opacity-20 focus:after:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 transition-all rounded-xl sm:rounded-l-xl overflow-hidden dark:focus-visible:ring-gray-300"
               href="#"
             >
-              <img
+              <Image
                 alt="Living room"
                 className="aspect-square object-cover"
                 height={600}
@@ -107,7 +112,7 @@ const ProductDetailPage = () => {
               className="relative after:opacity-0 after:absolute after:inset-0 after:bg-black hover:after:opacity-20 focus:after:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 transition-all rounded-tl-xl overflow-hidden dark:focus-visible:ring-gray-300"
               href="#"
             >
-              <img
+              <Image
                 alt="Living room"
                 className="aspect-square object-cover"
                 height={600}
@@ -119,7 +124,7 @@ const ProductDetailPage = () => {
               className="relative after:opacity-0 after:absolute after:inset-0 after:bg-black hover:after:opacity-20 focus:after:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 transition-all overflow-hidden rounded-tr-xl dark:focus-visible:ring-gray-300"
               href="#"
             >
-              <img
+              <Image
                 alt="Fireplace"
                 className="aspect-square object-cover"
                 height={600}
@@ -131,7 +136,7 @@ const ProductDetailPage = () => {
               className="relative after:opacity-0 after:absolute after:inset-0 after:bg-black hover:after:opacity-20 focus:after:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 transition-all rounded-bl-xl overflow-hidden dark:focus-visible:ring-gray-300"
               href="#"
             >
-              <img
+              <Image
                 alt="Bathroom"
                 className="aspect-square object-cover"
                 height={600}
@@ -143,7 +148,7 @@ const ProductDetailPage = () => {
               className="relative after:opacity-0 after:absolute after:inset-0 after:bg-black hover:after:opacity-20 focus:after:opacity-20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 transition-all overflow-hidden rounded-br-xl dark:focus-visible:ring-gray-300"
               href="#"
             >
-              <img
+              <Image
                 alt="Bedroom"
                 className="aspect-square object-cover"
                 height={600}

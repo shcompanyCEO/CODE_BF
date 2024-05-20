@@ -8,7 +8,6 @@ const EmployeeManagement = () => {
     <div>
       <SearchBar />
       <Invitations />
-      <InviteDesigner />
     </div>
   );
 };
