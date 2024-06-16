@@ -15,7 +15,9 @@ import { db } from '@/api/firebase/firebase';
 interface SalonState {
   salonId: string | null;
   designerEmail: string;
+  category: string;
   setSalonId: (salonId: string) => void;
+  setCategory: (category: string) => void;
   setDesignerEmail: (email: string) => void;
   inviteDesigner: () => Promise<void>;
 }
@@ -23,17 +25,19 @@ interface SalonState {
 export const InviteDesignerStore = create<SalonState>((set, get) => ({
   salonId: null,
   designerEmail: '',
+  category: '',
   setSalonId: (salonId) => set({ salonId }),
+  setCategory: (category) => set({ category }),
   setDesignerEmail: (email) => set({ designerEmail: email }),
   inviteDesigner: async () => {
-    const { salonId, designerEmail } = get();
+    const { salonId, designerEmail, category } = get();
     console.log('sean @@@@@@@', salonId, designerEmail);
 
     if (salonId && designerEmail) {
       try {
         // Prepare the document ID by replacing characters that are not allowed in Firestore document IDs
         const docId = designerEmail.replace(/[@.]/g, '_');
-        const userRef = doc(db, 'invitations', salonId, 'invites', docId);
+        const userRef = doc(db, 'invitations', `${category}`, salonId, docId);
 
         // Check if the user document already exists
         const userDoc = await getDoc(userRef);

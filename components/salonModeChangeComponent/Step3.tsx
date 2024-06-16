@@ -34,7 +34,7 @@ const Step3 = () => {
           latitude: selectedPlace && selectedPlace.geometry?.location?.lat(),
           longitude: selectedPlace && selectedPlace?.geometry?.location?.lng(),
         },
-        desiners: [],
+        designers: [],
       };
       //살롱 DB에 생성₩
       addSalonWithId(`${salonSelector}Salons`, `${salon.salonId}`, salon);

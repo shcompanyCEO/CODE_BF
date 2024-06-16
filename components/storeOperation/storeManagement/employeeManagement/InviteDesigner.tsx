@@ -13,11 +13,13 @@ interface InviteDesignerProps {
 const InviteDesigner = (salonData: InviteDesignerProps) => {
   const { email } = useUserDataStore();
   const [userEmail, setUserEmail] = useState<string>(`${email ? email : ''}`);
-  const { designerEmail, setSalonId, setDesignerEmail, inviteDesigner } = InviteDesignerStore();
+  const { designerEmail, setSalonId, setCategory, setDesignerEmail, inviteDesigner } =
+    InviteDesignerStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSalonId(`${salonData.salonId}`);
+    setCategory(`${salonData.category}`);
     await inviteDesigner();
   };
   return (

@@ -5,8 +5,8 @@ import InviteDesigner from './InviteDesigner';
 
 const EmployeeManagement = () => {
   return (
-    <div>
-      <SearchBar />
+    <div className="w-full">
+      {/* <SearchBar /> */}
       <Invitations />
     </div>
   );

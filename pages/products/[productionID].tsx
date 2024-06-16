@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { CardContent, Card, CardTitle, CardHeader } from '@/components/ui/card';
 import { AvatarImage, AvatarFallback, Avatar } from '@/components/ui/avatar';
@@ -41,6 +40,7 @@ import InviteDesigner from '@/components/storeOperation/storeManagement/employee
 import Image from 'next/image';
 import { useEffect } from 'react';
 import { InvitationsStore } from 'store/stores/employeeManagement/InvitationsStore';
+import { Button } from '@/components/ui/button';
 
 const ProductDetailPage = () => {
   const { setSalonId } = InvitationsStore();

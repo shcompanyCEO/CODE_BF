@@ -57,7 +57,7 @@ function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <div className="max-w-layout-maxWidth  min-h-screen mx-auto relative p-2">
+    <div className="max-w-layout-maxWidth  min-h-screen mx-auto relative">
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
         <OwnerMenuComponent />

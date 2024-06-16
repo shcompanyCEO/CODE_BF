@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { InvitationsStore } from 'store/stores/employeeManagement/InvitationsStore';
 
 const Invitations: React.FC = () => {
-  const { designers, fetchDesigners, rejectDesigner } = InvitationsStore();
+  const { designers, fetchDesigners, rejectDesigner, inviteDesigner } = InvitationsStore();
 
   useEffect(() => {
     fetchDesigners();
@@ -16,6 +16,12 @@ const Invitations: React.FC = () => {
           <li key={designer.id} className="mb-4 p-4 border rounded shadow-sm">
             <p>Email: {designer.email}</p>
             <p>Status: {designer.status}</p>
+            <button
+              onClick={() => inviteDesigner(designer.id)}
+              className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 mt-2"
+            >
+              invite
+            </button>
             <button
               onClick={() => rejectDesigner(designer.id)}
               className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 mt-2"

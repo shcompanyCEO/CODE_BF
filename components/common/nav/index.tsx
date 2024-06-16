@@ -5,6 +5,7 @@ import { useUserDataStore } from 'store/stores/useUserData';
 import { Button } from '@/components/ui/button';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';
+// import Country from '../country';
 
 const Nav = () => {
   const userInfo = useUserDataStore.getState();
@@ -25,6 +26,7 @@ const Nav = () => {
         <Profile />
         {salonModeChangeIsOpen && <SalnonModeChangeModal />}
       </div>
+      {/* <Country /> */}
     </div>
   );
 };

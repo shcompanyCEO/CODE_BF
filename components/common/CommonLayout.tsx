@@ -1,12 +1,10 @@
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren } from 'react';
 import Nav from '@/components/common/nav';
-import Banner from '@/components/event/Banner';
 import Footer from '@/components/common/footer/Footer';
 import MenuBar from '@/components/common/menubar';
 import { useRouter } from 'next/router';
 import SalonCard from '@/components/salonComponent/SalonCard';
 import { HOME_ROUTE } from 'constants/routes';
-import OwnerMenuComponent from '../menuHandler/OwnerMenuComponent';
 
 const CommonLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter();
