@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import React, { useEffect } from 'react';
-import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMapStore } from 'store/stores/useMapStore';
 import useSalonStore from 'store/stores/useSalonStore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';

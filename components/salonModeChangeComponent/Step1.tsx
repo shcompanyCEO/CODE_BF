@@ -4,7 +4,7 @@ import { MailIcon } from 'lucide-react';
 import { Button } from '../ui/button';
 
 const Steap1 = () => {
-  const { salonSelector, selectSalonHandler, handleNextStep, totalStep, currentStep } =
+  const { salonCategory, selectSalonHandler, handleNextStep, totalStep, currentStep } =
     salonModeChangeeStore();
 
   return (
@@ -24,7 +24,7 @@ const Steap1 = () => {
           <Button
             onClick={() => selectSalonHandler('hair')}
             className={`flex items-center justify-around space-x-2`}
-            variant={`${salonSelector === 'hair' ? 'secondary' : 'customer'}`}
+            variant={`${salonCategory === 'hair' ? 'secondary' : 'customer'}`}
           >
             <MailIcon className="w-6 h-6 text-yellow-600" />
             <span>Hair</span>
@@ -32,7 +32,7 @@ const Steap1 = () => {
           <Button
             onClick={() => selectSalonHandler('nail')}
             className="flex items-center justify-around space-x-2"
-            variant={`${salonSelector === 'nail' ? 'secondary' : 'customer'}`}
+            variant={`${salonCategory === 'nail' ? 'secondary' : 'customer'}`}
           >
             <MailIcon className="w-6 h-6 text-yellow-600" />
             <span>nail</span>
@@ -40,7 +40,7 @@ const Steap1 = () => {
           <Button
             onClick={() => selectSalonHandler('makeup')}
             className="flex items-center justify-around space-x-2"
-            variant={`${salonSelector === 'makeup' ? 'secondary' : 'customer'}`}
+            variant={`${salonCategory === 'makeup' ? 'secondary' : 'customer'}`}
           >
             <MailIcon className="w-6 h-6 text-green-600" />
             <span>make up</span>
@@ -48,7 +48,7 @@ const Steap1 = () => {
           <Button
             onClick={() => selectSalonHandler('mans')}
             className="flex items-center justify-around space-x-2"
-            variant={`${salonSelector === 'mans' ? 'secondary' : 'customer'}`}
+            variant={`${salonCategory === 'mans' ? 'secondary' : 'customer'}`}
           >
             <MailIcon className="w-6 h-6 text-blue-600" />
             <span>{`man's`}</span>

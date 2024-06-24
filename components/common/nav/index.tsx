@@ -9,15 +9,12 @@ import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';
 
 const Nav = () => {
   const userInfo = useUserDataStore.getState();
-
   const { salonModeModalOpen, salonModeChangeIsOpen } = salonModeChangeeStore();
   return (
     <div className="w-full h-auto left-0 top-0 bg-white z-1000">
       <div className="flex justify-between items-center h-26">
         <Logo />
-        {userInfo.email && userInfo.owner === true && (
-          <div>{`${userInfo.salon!.split('_')[0]}`} owner</div>
-        )}
+        {userInfo.email && userInfo.owner === true && <div>{`${userInfo.salonName!}`} owner</div>}
         {userInfo.email && userInfo.owner === false && (
           <div>
             <Button onClick={salonModeModalOpen}>살롱모드로 전환</Button>

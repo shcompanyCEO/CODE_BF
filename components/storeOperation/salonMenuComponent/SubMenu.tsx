@@ -7,7 +7,6 @@ interface SubmenuProps {
 }
 
 const Submenu: React.FC<SubmenuProps> = ({ items, selected, onSelect }) => {
-  console.log('sena dd', selected);
   return (
     <div className="bg-gray-900 ">
       {items.map((item, index) => (

@@ -5,7 +5,7 @@ const OwnerMenuComponent = () => {
   const { isOpen, toggleMenu } = useMenuHandlerStore();
 
   return (
-    <div className="w-full fixed right-0 bottom-24 z-50">
+    <div className="fixed right-0 bottom-24 z-50">
       <div className="relative max-w-layout-maxWidth left-1/2 transform -translate-x-1/2">
         <div className="absolute bottom-[calc(env(safe-area-inset-bottom) + 72px)] right-14 text-right">
           <button

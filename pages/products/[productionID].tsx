@@ -39,8 +39,8 @@ import ModalLayout from '@/components/common/ModalLayout';
 import InviteDesigner from '@/components/storeOperation/storeManagement/employeeManagement/InviteDesigner';
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { InvitationsStore } from 'store/stores/employeeManagement/InvitationsStore';
 import { Button } from '@/components/ui/button';
+import { InvitationsStore } from 'store/stores/employeeManagement/useInvitationsStore';
 
 const ProductDetailPage = () => {
   const { setSalonId } = InvitationsStore();

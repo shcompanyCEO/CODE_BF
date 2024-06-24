@@ -11,8 +11,8 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
   const { pathname } = router;
 
   return (
-    <>
-      <div className="sticky m-auto p-0 bg-white top-0 z-10">
+    <div className="sticky m-auto px-5 bg-white top-0 z-10 ">
+      <div>
         <Nav />
         <MenuBar />
       </div>
@@ -20,7 +20,7 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
       {pathname === HOME_ROUTE && <SalonCard />}
       <div className="w-full h-full">{children}</div>
       <Footer />
-    </>
+    </div>
   );
 };
 

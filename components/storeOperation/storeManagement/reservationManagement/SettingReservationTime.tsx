@@ -100,16 +100,11 @@ const SettingReservationTime = () => {
                       value={weekTimes[index].open}
                       onChange={(e) => handleTimeChange(index, 'open', e.target.value)}
                     >
-                      {timeOptions.map(
-                        (time) => (
-                          console.log('sean ', day, time),
-                          (
-                            <option key={`${day}-open-${time}`} value={time.value}>
-                              Open: {time.value}
-                            </option>
-                          )
-                        )
-                      )}
+                      {timeOptions.map((time) => (
+                        <option key={`${day}-open-${time}`} value={time.value}>
+                          Open: {time.value}
+                        </option>
+                      ))}
                     </select>
                     <select
                       disabled={weekTimes[index].holiday}

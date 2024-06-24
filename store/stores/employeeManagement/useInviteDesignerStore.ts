@@ -31,7 +31,6 @@ export const InviteDesignerStore = create<SalonState>((set, get) => ({
   setDesignerEmail: (email) => set({ designerEmail: email }),
   inviteDesigner: async () => {
     const { salonId, designerEmail, category } = get();
-    console.log('sean @@@@@@@', salonId, designerEmail);
 
     if (salonId && designerEmail) {
       try {

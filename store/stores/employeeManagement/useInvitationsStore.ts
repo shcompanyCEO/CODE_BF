@@ -44,7 +44,6 @@ export const InvitationsStore = create<SalonState>((set, get) => ({
   fetchDesigners: async () => {
     const { salonId, category } = get();
     if (salonId) {
-      console.log('sean salonId', salonId);
       try {
         const invitesRef = collection(db, 'invitations', `hair`, salonId);
         const q = query(invitesRef);

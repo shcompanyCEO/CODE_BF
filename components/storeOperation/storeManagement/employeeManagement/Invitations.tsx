@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { InvitationsStore } from 'store/stores/employeeManagement/InvitationsStore';
+import { InvitationsStore } from 'store/stores/employeeManagement/useInvitationsStore';
 
 const Invitations: React.FC = () => {
   const { designers, fetchDesigners, rejectDesigner, inviteDesigner } = InvitationsStore();

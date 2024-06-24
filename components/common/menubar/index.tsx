@@ -8,7 +8,7 @@ const MenuBar = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full">
+    <div className="w-full px-4">
       <ul className="flex justify-between w-full h-full mt-2 py-2">
         <Link href={HAIR_ROUTE}>
           <ul className="flex flex-col items-center cursor-pointer">
@@ -19,7 +19,7 @@ const MenuBar = () => {
               height={15}
               className="bg-gray-300 rounded-full"
             />
-            <span className="text-base mt-1">
+            <span className="text-xxs mt-1">
               헤어
               {/* <h1>{t('common:welcome')}</h1>
               <p>{t('greeting')}</p>
@@ -37,7 +37,7 @@ const MenuBar = () => {
               className="bg-gray-300 rounded-full"
             />
 
-            <span className="text-base mt-1">네일</span>
+            <span className="text-xxs mt-1">네일</span>
           </ul>
         </Link>
         <Link href={MAKEUP_ROUTE}>
@@ -49,7 +49,7 @@ const MenuBar = () => {
               height={15}
               className="bg-gray-300 rounded-full"
             />
-            <span className="text-base mt-1">메이크업</span>
+            <span className="text-xxs mt-1">메이크업</span>
           </ul>
         </Link>
         <Link href={MANS_ROUTE}>
@@ -61,7 +61,7 @@ const MenuBar = () => {
               height={15}
               className="bg-gray-300 rounded-full"
             />
-            <span className="text-base mt-1">Mans</span>
+            <span className="text-xxs mt-1">Mans</span>
           </ul>
         </Link>
         <Link href={STYLE_ROUTE}>
@@ -73,7 +73,7 @@ const MenuBar = () => {
               height={15}
               className="bg-gray-300 rounded-full"
             />
-            <span className="text-base mt-1">스타일후기</span>
+            <span className="text-xxs mt-1">스타일후기</span>
           </ul>
         </Link>
       </ul>

@@ -3,7 +3,7 @@ import { collection, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore'
 import { db } from '@/api/firebase/firebase';
 import { Button } from '@/components/ui/button';
 import { useUserDataStore } from 'store/stores/useUserData';
-import { InviteDesignerStore } from 'store/stores/employeeManagement/InviteDesignerStore';
+import { InviteDesignerStore } from 'store/stores/employeeManagement/useInviteDesignerStore';
 
 interface InviteDesignerProps {
   salonId: string | string[] | undefined;

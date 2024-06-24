@@ -70,7 +70,6 @@ const useAuthStore = create<AuthStore>((set) => ({
     try {
       await signOut(auth);
       set({ isLoading: false, isLogin: false });
-      console.log('logout succfull');
       alert('log out succfull');
       return true;
     } catch (error) {

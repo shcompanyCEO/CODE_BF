@@ -37,7 +37,6 @@ const ReservationModal: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle reservation submission (e.g., send data to backend)
-    console.log('reservation', reservation);
     // Close modal after submission
     setIsOpen(false);
     setReservation({ time: '', style: '' });

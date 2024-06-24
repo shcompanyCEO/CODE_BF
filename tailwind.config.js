@@ -19,6 +19,10 @@ module.exports = {
       leftTranstion: {
         'menu-left': '60%',
       },
+      fontSize: {
+        xxs: '13px',
+        full: '100%',
+      },
     },
   },
   variants: {

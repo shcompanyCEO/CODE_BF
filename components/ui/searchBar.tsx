@@ -6,7 +6,6 @@ const SearchBar: React.FC = () => {
   const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Implement the search logic or redirect to a search page with the query
-    console.log('Searching for:', searchTerm);
     // Optionally, you could navigate to a search results page using Next.js Router with the searchTerm
   };
 

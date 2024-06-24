@@ -10,6 +10,7 @@ interface IUserProps {
   staffStatus: boolean;
   owner: boolean;
   salon?: string;
+  salonName: string;
 }
 
 export interface AuthStore {
@@ -23,6 +24,7 @@ export const useUserDataStore = create<IUserProps & AuthStore>((set) => ({
   phoneNumber: '',
   userToken: '',
   displayName: '',
+  salonName: '',
   managerStatus: false,
   staffStatus: false,
   owner: false,

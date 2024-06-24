@@ -7,7 +7,7 @@ export const getAllusers = async () => {
   const users = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
   return users;
 };
-//서비스에 가입한  유저 정보 가져오기
+//유저 정보 가져오기
 export const getUser = async (userEmail: string) => {
   const docRef = doc(db, 'users', `${userEmail}`);
   const docSnap = await getDoc(docRef);

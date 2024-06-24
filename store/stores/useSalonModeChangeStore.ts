@@ -3,7 +3,7 @@ import { create } from 'zustand';
 interface State {
   salonModeChangeIsOpen: boolean;
   countryModalState: boolean;
-  salonSelector: string;
+  salonCategory: string;
   currentStep: number;
   totalStep: number;
   salonPhoneNumber: string;
@@ -33,7 +33,7 @@ export const salonModeChangeeStore = create<State & Action>((set) => ({
   salonModeChangeIsOpen: false,
   countryModalState: false,
   salonIntroduction: '',
-  salonSelector: 'hair',
+  salonCategory: 'hair',
   currentStep: 1,
   totalStep: 3,
   salonPhoneNumber: '',
@@ -56,7 +56,7 @@ export const salonModeChangeeStore = create<State & Action>((set) => ({
   handleNextStep: (page) => set(() => ({ currentStep: page })),
   handlePrevStep: (page) => set((state) => ({ currentStep: state.currentStep - page })),
   //salon selector
-  selectSalonHandler: (text) => set({ salonSelector: text }),
+  selectSalonHandler: (text) => set({ salonCategory: text }),
   //salon number checking
   handleSalonNumber: (salonPhoneNumber) => set({ salonPhoneNumber }),
   //salon name

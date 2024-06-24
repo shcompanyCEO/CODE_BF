@@ -15,7 +15,7 @@ const Step3 = () => {
     currentStep,
     salonName,
     salonPhoneNumber,
-    salonSelector,
+    salonCategory,
   } = salonModeChangeeStore();
   const { selectedPlace } = useMapStore();
   const user = auth.currentUser;
@@ -24,10 +24,12 @@ const Step3 = () => {
     if (selectedPlace) {
       const salon = {
         salonId: `${salonName}_${user?.email}`, // Generate a unique ID or use Firebase auto-generated ID
+        ownerUserEamil: user?.email,
         salonName: salonName,
         address: selectedPlace?.formatted_address,
         salonPhoneNumber: salonPhoneNumber,
         salonIntroduction: salonIntroduction,
+        salonCategory: salonCategory,
         openTime: '',
         closeTime: '',
         location: {
@@ -37,7 +39,7 @@ const Step3 = () => {
         designers: [],
       };
       //살롱 DB에 생성₩
-      addSalonWithId(`${salonSelector}Salons`, `${salon.salonId}`, salon);
+      addSalonWithId(`${salonCategory}Salons`, `${salon.salonId}`, salon);
       //살롱을 등록한 유저 owner field change
       const fieldsToUpdate = {
         owner: true,
@@ -45,7 +47,6 @@ const Step3 = () => {
         salonName: salon.salonName,
       };
       await salonOwnerFeildChange('users', `${user?.email}`, fieldsToUpdate);
-      console.log('User fields updated successfully!');
       salonModeModalClose();
       alert('User changeData');
     }
