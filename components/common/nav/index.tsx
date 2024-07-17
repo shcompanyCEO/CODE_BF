@@ -5,9 +5,12 @@ import { useUserDataStore } from 'store/stores/useUserData';
 import { Button } from '@/components/ui/button';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';
+import { NextPage } from 'next';
+import { useTranslation } from 'react-i18next';
+import Country from '../country';
 // import Country from '../country';
 
-const Nav = () => {
+const Nav: NextPage = () => {
   const userInfo = useUserDataStore.getState();
   const { salonModeModalOpen, salonModeChangeIsOpen } = salonModeChangeeStore();
   return (
@@ -20,10 +23,10 @@ const Nav = () => {
             <Button onClick={salonModeModalOpen}>살롱모드로 전환</Button>
           </div>
         )}
+        <Country />
         <Profile />
-        {salonModeChangeIsOpen && <SalnonModeChangeModal />}
+        <div>{salonModeChangeIsOpen && <SalnonModeChangeModal />}</div>
       </div>
-      {/* <Country /> */}
     </div>
   );
 };

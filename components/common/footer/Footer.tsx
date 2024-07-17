@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import {
   HOME_ROUTE,
@@ -8,42 +8,48 @@ import {
   MYPAGE_ROUTE,
 } from 'constants/routes';
 import Link from 'next/link';
+import { FaHome, FaPalette, FaStore, FaHeart, FaUser } from 'react-icons/fa';
+import useMenuStore from 'store/useMenuStore';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { active, setActive } = useMenuStore();
+  const { t } = useTranslation('common');
+  const navItems = [
+    { id: 'home', label: `${t('home')}`, href: `${HOME_ROUTE}`, icon: FaHome },
+    { id: 'palette', label: `${t('palette')}`, href: `${STYLE_ROUTE}`, icon: FaPalette },
+    { id: 'market', label: `${t('store')}`, href: `${MARKET_ROUTE}`, icon: FaStore },
+    { id: 'pick', label: `${t('mypick')}`, href: `${MYPICK_ROUTE}`, icon: FaHeart },
+    { id: 'mypage', label: `${t('mypage')}`, href: `${MYPAGE_ROUTE}`, icon: FaUser },
+  ];
   return (
     // <div className="fixed bottom-0 w-full max-w-screen- transform-translate-x-1/2 bg-white pa">
     <div className="fixed bottom-0 bg-white left-1/2 transform -translate-x-1/2 w-full max-w-[640px]">
-      <div className="flex justify-between">
-        <Link href={HOME_ROUTE}>
-          <ul className="flex flex-col items-center cursor-pointer">
-            <Image src={'/images/home.svg'} alt={'home'} width={15} height={15} />
-            <span className="text-xxs mt-1">홈</span>
-          </ul>
-        </Link>
-        <Link href={STYLE_ROUTE}>
-          <ul className="flex flex-col items-center cursor-pointer">
-            <Image src={'/images/book.svg'} alt={'styleBook'} width={15} height={15} />
-            <span className="text-xxs mt-1">Style book</span>
-          </ul>
-        </Link>
-        <Link href={MARKET_ROUTE}>
-          <ul className="flex flex-col items-center cursor-pointer">
-            <Image src={'/images/market.svg'} alt={'market'} width={15} height={15} />
-            <span className="text-xxs mt-1">마켓</span>
-          </ul>
-        </Link>
-        <Link href={MYPICK_ROUTE}>
-          <ul className="flex flex-col items-center cursor-pointer">
-            <Image src={'/images/saveImg.png'} alt={'myPick'} width={15} height={15} />
-            <span className="text-xxs mt-1">My Pick</span>
-          </ul>
-        </Link>
-        <Link href={MYPAGE_ROUTE}>
-          <ul className="flex flex-col items-center cursor-pointer">
-            <Image src={'/images/user.svg'} alt={'book'} width={15} height={15} />
-            <span className="text-xxs mt-1">My Page</span>
-          </ul>
-        </Link>
+      <div className="flex justify-between items-center">
+        {navItems.map((item) => (
+          <Link key={item.id} href={item.href} passHref>
+            <div
+              className="flex flex-col items-center cursor-pointer relative"
+              onClick={() => setActive(item.id)}
+            >
+              <div className="w-full h-0.5 mt-[5px]">
+                {active === item.id && (
+                  <div className="absolute top-0 w-full h-0.5 bg-pink-500"></div>
+                )}
+              </div>
+              <item.icon
+                className={`text-2xl ${active === item.id ? 'text-pink-500' : 'text-gray-400'}`}
+              />
+              <span
+                className={`text-xxss mt-1 ${
+                  active === item.id ? 'text-pink-500' : 'text-gray-400'
+                }`}
+              >
+                {item.label}
+              </span>
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

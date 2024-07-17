@@ -1,4 +1,15 @@
 {
-  "welcome": "Welcome to my website!",
-  "hair": ""
+  "hair": "การเลิกกัน",
+  "nail": "เล็บครุฑ",
+  "makeup": "แต่งหน้า",
+  "mans": "หัวชาย",
+
+  "home": "ร่อง",
+  "palette": "จานผสมสี",
+  "store": "ร้านขายของ",
+  "mypick": "รายการที่ฉันเลือก",
+  "mypage": "ข้อมูลของฉัน",
+
+  "countryIntroduction": "โปรดเลือกประเทศของคุณ",
+  "countryLanguagesAndRegions": "ภาษาและภูมิภาค."
 }

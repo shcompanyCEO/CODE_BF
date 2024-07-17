@@ -15,25 +15,25 @@ export default class PauseOnHover extends Component {
     };
     return (
       <EventLayout>
-        <div>Promotion</div>
+        {/* <div>Promotion</div> */}
         <Slider {...settings}>
           <ImgBanner>
-            <h3>1</h3>
+            <h3>promotion slide 1</h3>
           </ImgBanner>
           <ImgBanner>
-            <h3>2</h3>
+            <h3>promotion slide 2</h3>
           </ImgBanner>
           <ImgBanner>
-            <h3>3</h3>
+            <h3>promotion slide 3</h3>
           </ImgBanner>
           <ImgBanner>
-            <h3>4</h3>
+            <h3>promotion slide 4</h3>
           </ImgBanner>
           <ImgBanner>
-            <h3>5</h3>
+            <h3>promotion slide 5</h3>
           </ImgBanner>
           <ImgBanner>
-            <h3>6</h3>
+            <h3>promotion slide 6</h3>
           </ImgBanner>
         </Slider>
       </EventLayout>

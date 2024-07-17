@@ -1,5 +1,15 @@
 {
-  "welcome": "내 웹사이트에 오신 것을 환영합니다!",
-  "greeting": "안녕하세요, {name}님!",
-  "hair": "hair -ko"
+  "hair": "hair",
+  "makeup": "makeup",
+  "mans": "mans",
+  "styleReview": "styleReview",
+
+  "home": "home",
+  "palette": "palette",
+  "store": "store",
+  "mypick": "mypick",
+  "mypage": "myPage",
+
+  "countryIntroduction": "Please set the country",
+  "countryLanguagesAndRegions": "Languages and Regions"
 }

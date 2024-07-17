@@ -5,6 +5,8 @@ import MenuBar from '@/components/common/menubar';
 import { useRouter } from 'next/router';
 import SalonCard from '@/components/salonComponent/SalonCard';
 import { HOME_ROUTE } from 'constants/routes';
+import Country from './country';
+import Banner from '../event/Banner';
 
 const CommonLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter();
@@ -12,11 +14,9 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
 
   return (
     <div className="sticky m-auto px-5 bg-white top-0 z-10 ">
-      <div>
-        <Nav />
-        <MenuBar />
-      </div>
-      {/* {pathname === HOME_ROUTE && <Banner />} */}
+      <Nav />
+      {pathname === HOME_ROUTE && <Banner />}
+      <MenuBar />
       {pathname === HOME_ROUTE && <SalonCard />}
       <div className="w-full h-full">{children}</div>
       <Footer />

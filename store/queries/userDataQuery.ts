@@ -1,4 +1,5 @@
 import { db } from '@/api/firebase/firebase';
+import { useQuery } from '@tanstack/react-query';
 import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 //서비스에 가입한 모든 유저 정보 가져오기
 

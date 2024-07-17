@@ -1,14 +1,12 @@
 import type { AppProps } from 'next/app';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMapStore } from 'store/stores/useMapStore';
 import useSalonStore from 'store/stores/useSalonStore';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getUser } from 'store/queries/userDataQuery';
 import { useUserDataStore } from 'store/stores/useUserData';
-import { appWithTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import OwnerMenuComponent from '@/components/menuHandler/OwnerMenuComponent';
+import { AuthProvider } from 'context/AuthContext';
+import appWithTranslation from '../i18n';
 import '../styles/globals.css';
 
 const queryClient = new QueryClient();
@@ -17,9 +15,7 @@ function App({ Component, pageProps }: AppProps) {
   const { setMapCenter, mapCenter } = useMapStore();
   const { fetchSalonsFromFirestore } = useSalonStore();
   const { userUpdateData } = useUserDataStore();
-  const auth = getAuth();
-  const user = auth.currentUser;
-  const states = useUserDataStore.getState();
+  const [mounted, setMounted] = useState(false);
 
   //현재 유저 location
   const getCurrentLocation = () => {
@@ -43,37 +39,23 @@ function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     getCurrentLocation();
-    //hairShop all 바로 주스탠드에 저장하기
+    //hairShop all 바로 스탠드에 저장하기
     fetchSalonsFromFirestore('hairSalons');
-    //로그인 되어있는지.
-    onAuthStateChanged(auth, (user) => {
-      const userDataUpdate = async () => {
-        const userData = await getUser(`${user?.email}`);
-        userUpdateData(userData);
-      };
-      userDataUpdate();
-      // useAuthStore.setState({ user, isLogin: true });
-    });
+    setMounted(true);
   }, []);
+
+  //i18n설정 error 방어코드
+  if (!mounted) return null;
 
   return (
     <div className="max-w-layout-maxWidth  min-h-screen mx-auto relative">
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-        <OwnerMenuComponent />
+        <AuthProvider>
+          <Component {...pageProps} />
+          <OwnerMenuComponent />
+        </AuthProvider>
       </QueryClientProvider>
     </div>
   );
 }
-
-// Pass the fetched data as props
-
 export default appWithTranslation(App);
-export async function getStaticProps({ locale }: any) {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale, ['common', 'footer'])),
-      // Will be passed to the page component as props
-    },
-  };
-}
