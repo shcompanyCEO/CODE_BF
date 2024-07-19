@@ -26,7 +26,8 @@
       "@/constant/*": ["./constant/*"],
       "@/utils/*": ["utils/*"],
       "@/ui/*": ["components/ui/*"],
-      "@/api/*": ["pages/api/*"]
+      "@/api/*": ["pages/api/*"],
+      "@/hooks/*": ["hooks/*"]
     }
   },
 

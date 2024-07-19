@@ -1,6 +1,7 @@
 // components/LanguageSwitcher.tsx
 import { PanelTopCloseIcon, SettingsIcon } from 'lucide-react';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
@@ -15,6 +16,7 @@ const LanguageSwitcher: React.FC = () => {
     if (newLocale !== locale) {
       router.push(router.pathname, router.asPath, { locale: newLocale });
       i18n.changeLanguage(newLocale);
+      localStorage.setItem('user-language', newLocale);
       countryModalClose();
     }
   };
@@ -28,6 +30,14 @@ const LanguageSwitcher: React.FC = () => {
       return 'thailend';
     }
   };
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedLocale = localStorage.getItem('user-language');
+      if (savedLocale && savedLocale !== locale) {
+        changeLanguage(savedLocale);
+      }
+    }
+  }, []);
 
   return (
     <div>

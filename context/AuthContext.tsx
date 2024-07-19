@@ -1,10 +1,24 @@
-// context/AuthContext.tsximport React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { auth, googleProvider } from '@/api/firebase/firebase';
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { auth, googleProvider, db } from '@/api/firebase/firebase';
 import { onAuthStateChanged, signInWithPopup, signOut, User } from 'firebase/auth';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+interface UserData {
+  userUid: string;
+  displayName: string;
+  email: string;
+  phoneNumber: string;
+  userToken: string;
+  owner: boolean;
+  managerStatus: boolean;
+  staffStatus: boolean;
+  salonName: null | string;
+  salonId: null | string;
+}
 
 interface AuthContextProps {
-  user: User | null;
+  user: UserData | null;
   loading: boolean;
   loginWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
@@ -20,33 +34,93 @@ const AuthContext = createContext<AuthContextProps>({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<UserData | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const queryClient = useQueryClient();
+
+  const loginWithGoogleMutation = useMutation<UserData, Error>({
+    mutationFn: async (): Promise<UserData> => {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      const userDocRef = doc(db, 'users', user.email!);
+      const docSnap = await getDoc(userDocRef);
+
+      if (!docSnap.exists()) {
+        const userData: UserData = {
+          userUid: user.uid,
+          displayName: user.displayName ? user.displayName : '',
+          email: user.email!,
+          phoneNumber: user.phoneNumber ? user.phoneNumber : '',
+          userToken: await user.getIdToken(),
+          owner: false,
+          managerStatus: false,
+          staffStatus: false,
+          salonId: null,
+          salonName: null,
+        };
+        await setDoc(userDocRef, userData, { merge: true });
+        return userData;
+      } else {
+        return docSnap.data() as UserData;
+      }
+    },
+    onSuccess: (data) => {
+      setUser(data);
+      queryClient.setQueryData(['userData'], data);
+      setLoading(false);
+      alert('Login Success');
+    },
+    onError: (error) => {
+      console.error('Google login error', error);
+      setLoading(false);
+      alert('Login Error');
+    },
+  });
+
+  const logoutMutation = useMutation<void, Error>({
+    mutationFn: async (): Promise<void> => {
+      await signOut(auth);
+    },
+    onSuccess: () => {
+      setUser(null);
+      queryClient.removeQueries({ queryKey: ['userData'] });
+      setLoading(false);
+      alert('Logout Success');
+    },
+    onError: (error) => {
+      console.error('Logout error', error);
+      setLoading(false);
+      alert('Logout Error');
+    },
+  });
 
   const loginWithGoogle = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-    } catch (error) {
-      console.error('Google login error', error);
-    }
+    setLoading(true);
+    await loginWithGoogleMutation.mutateAsync();
   };
 
   const logout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error('Logout error', error);
-    }
+    setLoading(true);
+    await logoutMutation.mutateAsync();
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        const userDocRef = doc(db, 'users', firebaseUser.email!);
+        const userData = (await getDoc(userDocRef)).data();
+        if (userData) {
+          setUser(userData as UserData);
+          queryClient.setQueryData(['userData'], userData);
+        }
+      } else {
+        setUser(null);
+      }
       setLoading(false);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [queryClient]);
 
   return (
     <AuthContext.Provider value={{ user, loading, loginWithGoogle, logout }}>

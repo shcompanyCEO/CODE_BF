@@ -3,14 +3,14 @@ import LoginModal from '@/components/modal/LoginModal';
 import { MenuIcon, UserIcon } from '@/components/ui/icon';
 import React, { useEffect, useState } from 'react';
 import { useUserDataStore } from 'store/stores/useUserData';
-import useAuthStore from 'store/stores/useAuthStore';
 import useModalStore from 'store/stores/useModalStore';
-import { auth } from '@/api/firebase/firebase';
+import { useAuth } from 'context/AuthContext';
 
 const Profile = () => {
+  const { user, loading, loginWithGoogle, logout } = useAuth();
+  console.log('sean user', user, '', loading);
+
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
-  const userInfo = auth.currentUser;
-  const logOut = useAuthStore().signOutUser;
   //user Name
   const userDisplayName = useUserDataStore((state) => state.displayName);
   //modal Open
@@ -23,12 +23,13 @@ const Profile = () => {
     setIsDropdown(false);
   };
   const signOut = async () => {
-    const userLogOut = await logOut();
-    if (userLogOut) {
-      window.location.reload();
-    } else {
-      window.location.reload();
-    }
+    const userLogOut = await logout();
+    console.log('sean userLogout', userLogOut);
+    // if (!userLogOut) {
+    //   window.location.reload();
+    // } else {
+    //   window.location.reload();
+    // }
   };
   const handleInfo = () => {
     return userDisplayName;
@@ -56,7 +57,7 @@ const Profile = () => {
           <MenuIcon />
         </div>
         <div className="flex items-center justify-center w-10 h-10 bg-gray-200 text-gray-600 rounded-full focus:outline-none focus:ring focus:ring-gray-300">
-          {userInfo === null ? <UserIcon /> : <div>{userInfo?.displayName}</div>}
+          {user === null ? <UserIcon /> : <div>{user?.displayName}</div>}
         </div>
       </div>
       {isDropdown && (
@@ -64,7 +65,7 @@ const Profile = () => {
           className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-10"
           onClick={toggleDropdownClose}
         >
-          {userInfo === null ? (
+          {user === null ? (
             <div className="py-1">
               <button
                 onClick={LoginModalHandler}

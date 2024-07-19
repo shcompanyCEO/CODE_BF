@@ -3,38 +3,39 @@ import React, { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMapStore } from 'store/stores/useMapStore';
 import useSalonStore from 'store/stores/useSalonStore';
-import { useUserDataStore } from 'store/stores/useUserData';
 import OwnerMenuComponent from '@/components/menuHandler/OwnerMenuComponent';
 import { AuthProvider } from 'context/AuthContext';
 import appWithTranslation from '../i18n';
 import '../styles/globals.css';
+import useGeolocation from '@/hooks/useGeolocation';
 
 const queryClient = new QueryClient();
 function App({ Component, pageProps }: AppProps) {
   // const user = useAuthStore((state) => state.user);
   const { setMapCenter, mapCenter } = useMapStore();
   const { fetchSalonsFromFirestore } = useSalonStore();
-  const { userUpdateData } = useUserDataStore();
+  const { position, error } = useGeolocation();
   const [mounted, setMounted] = useState(false);
 
+  console.log('postion', position);
   //현재 유저 location
   const getCurrentLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const currentLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          setMapCenter(currentLocation);
-        },
-        (error) => {
-          console.error('Error getting current location:', error);
-        }
-      );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
-    }
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(
+    //     (position) => {
+    //       const currentLocation = {
+    //         lat: position.coords.latitude,
+    //         lng: position.coords.longitude,
+    //       };
+    //       setMapCenter(currentLocation);
+    //     },
+    //     (error) => {
+    //       console.error('Error getting current location:', error);
+    //     }
+    //   );
+    // } else {
+    //   console.error('Geolocation is not supported by this browser.');
+    // }
   };
 
   useEffect(() => {

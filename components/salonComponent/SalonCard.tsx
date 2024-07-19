@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './Card';
-import { useSalons } from '@/api/tanstackQueries/useSalons';
+import { useSalons } from 'store/queries/useSalons';
 
 const SalonCard: React.FC = () => {
   const { data: hairSalons, error, isLoading } = useSalons('hairSalons');
