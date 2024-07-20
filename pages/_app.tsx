@@ -14,10 +14,10 @@ function App({ Component, pageProps }: AppProps) {
   // const user = useAuthStore((state) => state.user);
   const { setMapCenter, mapCenter } = useMapStore();
   const { fetchSalonsFromFirestore } = useSalonStore();
+  //현재 위치 알아 오기
   const { position, error } = useGeolocation();
   const [mounted, setMounted] = useState(false);
 
-  console.log('postion', position);
   //현재 유저 location
   const getCurrentLocation = () => {
     // if (navigator.geolocation) {

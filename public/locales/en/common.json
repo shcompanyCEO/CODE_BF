@@ -10,6 +10,7 @@
   "store": "store",
   "mypick": "mypick",
   "mypage": "myPage",
+  "salonModeChange": "salon Mode",
 
   "countryIntroduction": "Please set the country",
   "countryLanguagesAndRegions": "Languages and Regions"

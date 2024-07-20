@@ -4,7 +4,7 @@ import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import GoogleMapComponent from 'utility/apis/googleMapAPI';
 import { useMapStore } from 'store/stores/useMapStore';
 import { addSalonWithId, salonOwnerFeildChange } from 'utility/salonUpdateAPI';
-import { auth } from '@/api/firebase/firebase';
+import { useAuth } from 'context/AuthContext';
 
 const Step3 = () => {
   const {
@@ -18,23 +18,25 @@ const Step3 = () => {
     salonCategory,
   } = salonModeChangeeStore();
   const { selectedPlace } = useMapStore();
-  const user = auth.currentUser;
+  const { user } = useAuth();
 
   const salonSettingData = async () => {
+    console.log('111>>>>>>');
     if (selectedPlace) {
+      console.log('22222>>>>>>');
       const salon = {
         salonId: `${salonName}_${user?.email}`, // Generate a unique ID or use Firebase auto-generated ID
         ownerUserEamil: user?.email,
         salonName: salonName,
-        address: selectedPlace?.formatted_address,
-        salonPhoneNumber: salonPhoneNumber,
-        salonIntroduction: salonIntroduction,
+        address: selectedPlace?.formatted_address ?? '',
+        salonPhoneNumber: salonPhoneNumber ?? '',
+        salonIntroduction: salonIntroduction ?? '',
         salonCategory: salonCategory,
         openTime: '',
         closeTime: '',
         location: {
-          latitude: selectedPlace && selectedPlace.geometry?.location?.lat(),
-          longitude: selectedPlace && selectedPlace?.geometry?.location?.lng(),
+          latitude: selectedPlace.geometry?.location?.lat() ?? '',
+          longitude: selectedPlace?.geometry?.location?.lng() ?? '',
         },
         designers: [],
       };

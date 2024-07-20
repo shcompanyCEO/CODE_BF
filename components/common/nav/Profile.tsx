@@ -24,12 +24,6 @@ const Profile = () => {
   };
   const signOut = async () => {
     const userLogOut = await logout();
-    console.log('sean userLogout', userLogOut);
-    // if (!userLogOut) {
-    //   window.location.reload();
-    // } else {
-    //   window.location.reload();
-    // }
   };
   const handleInfo = () => {
     return userDisplayName;
