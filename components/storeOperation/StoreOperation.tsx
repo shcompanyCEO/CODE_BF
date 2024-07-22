@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Dropdown from './salonMenuComponent/Dropdown';
 import SalonCustomer from './storeManagement/customer_care/SalonCustomer';
 import ReservationManagement from './storeManagement/reservationManagement/ReservationManagement';
 import useMenuStore from 'store/stores/storeOperation/useDropdownStore';
 import EmployeeManagement from './storeManagement/employeeManagement/EmployeeManagement';
 import useModalStore from 'store/stores/useModalStore';
-import ModalLayout from '../common/ModalLayout';
 import { Button } from '../ui/button';
 
 const StoreOperation = () => {
@@ -19,6 +18,18 @@ const StoreOperation = () => {
   const handleSelectItem = (item: string) => {
     setSelectedItem(item);
   };
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        isReservationPageHandler();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isReservationPageHandler]);
 
   return (
     <>

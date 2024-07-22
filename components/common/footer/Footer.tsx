@@ -10,13 +10,10 @@ import {
   MYPAGE_ROUTE,
 } from 'constants/routes';
 import OwnerMenuComponent from '@/components/menuHandler/OwnerMenuComponent';
-import useModalStore from 'store/stores/useModalStore';
-import SalonMenuBar from '@/components/menuHandler/SalonMenuBar';
 
 const Footer = () => {
   const { active, setActive } = useMenuStore();
   const { t } = useTranslation('common');
-  const { isReservationPageHandler, isReservationPageOpen } = useModalStore();
   const navItems = [
     { id: 'home', label: `${t('home')}`, href: `${HOME_ROUTE}`, icon: FaHome },
     { id: 'palette', label: `${t('palette')}`, href: `${STYLE_ROUTE}`, icon: FaPalette },
