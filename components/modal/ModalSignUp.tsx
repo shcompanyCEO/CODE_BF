@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 
-const SignUpModal = () => {
+const ModalSignUp = () => {
   return (
     <div className="max-w-md mx-auto">
       <div className="border rounded-lg p-6">
@@ -86,4 +86,4 @@ const SignUpModal = () => {
     </div>
   );
 };
-export default SignUpModal;
+export default ModalSignUp;

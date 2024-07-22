@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import { FaHome, FaPalette, FaStore, FaHeart, FaUser } from 'react-icons/fa';
 import useMenuStore from 'store/useMenuStore';
@@ -10,10 +9,14 @@ import {
   MYPICK_ROUTE,
   MYPAGE_ROUTE,
 } from 'constants/routes';
+import OwnerMenuComponent from '@/components/menuHandler/OwnerMenuComponent';
+import useModalStore from 'store/stores/useModalStore';
+import SalonMenuBar from '@/components/menuHandler/SalonMenuBar';
 
 const Footer = () => {
   const { active, setActive } = useMenuStore();
   const { t } = useTranslation('common');
+  const { isReservationPageHandler, isReservationPageOpen } = useModalStore();
   const navItems = [
     { id: 'home', label: `${t('home')}`, href: `${HOME_ROUTE}`, icon: FaHome },
     { id: 'palette', label: `${t('palette')}`, href: `${STYLE_ROUTE}`, icon: FaPalette },
@@ -23,7 +26,8 @@ const Footer = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-[640px] bg-white border-t border-gray-200 ">
+    <div className="fixed bottom-0 px-4 left-1/2 transform -translate-x-1/2 w-full max-w-[640px] bg-white border-t border-gray-200 ">
+      <OwnerMenuComponent />
       <div className="flex justify-between items-center py-2">
         {navItems.map((item) => (
           <Link key={item.id} href={item.href} passHref>

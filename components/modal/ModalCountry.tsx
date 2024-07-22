@@ -5,7 +5,7 @@ import ModalLayout from '../common/ModalLayout';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import LanguageSwitcher from '../LanguageSwitcher';
 
-const CountryModal: React.FC = ({}) => {
+const ModalCountry: React.FC = ({}) => {
   const { countryModalState, countryModalClose } = salonModeChangeeStore();
 
   return (
@@ -14,4 +14,4 @@ const CountryModal: React.FC = ({}) => {
     </ModalLayout>
   );
 };
-export default CountryModal;
+export default ModalCountry;

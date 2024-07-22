@@ -6,7 +6,7 @@ import Step3 from '../salonModeChangeComponent/Step3';
 
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
-const SalonModeChangeModal: React.FC = () => {
+const ModalSalonModeChange: React.FC = () => {
   const { salonModeModalClose, currentStep } = salonModeChangeeStore();
 
   return (
@@ -17,4 +17,4 @@ const SalonModeChangeModal: React.FC = () => {
     </ModalLayout>
   );
 };
-export default SalonModeChangeModal;
+export default ModalSalonModeChange;

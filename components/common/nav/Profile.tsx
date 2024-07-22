@@ -1,5 +1,5 @@
 /*profile*/
-import LoginModal from '@/components/modal/LoginModal';
+import ModalLogin from '@/components/modal/ModalLogin';
 import { MenuIcon, UserIcon } from '@/components/ui/icon';
 import React, { useEffect, useState } from 'react';
 import { useUserDataStore } from 'store/stores/useUserData';
@@ -9,7 +9,6 @@ import ModalLayout from '../ModalLayout';
 
 const Profile = () => {
   const { user, loading, loginWithGoogle, logout } = useAuth();
-  console.log('sean user', user, '', loading);
 
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   //user Name
@@ -45,7 +44,7 @@ const Profile = () => {
   return (
     <div className="relative ">
       <div
-        className="flex  items-center justify-between bg-white p-2 rounded-full shadow-md  hover:cursor-pointer "
+        className="flex items-center justify-between bg-white p-2 rounded-full shadow-md  hover:cursor-pointer "
         onClick={toggleDropdown}
       >
         <div className="flex items-center mr-2 justify-center w-10 h-10 bg-gray-200 text-gray-600 rounded-full focus:outline-none focus:ring focus:ring-gray-300">
@@ -98,7 +97,7 @@ const Profile = () => {
       )}
       {isLoginModalOpen && (
         <ModalLayout modalClose={LoginModalHandler}>
-          <LoginModal />
+          <ModalLogin />
         </ModalLayout>
       )}
     </div>

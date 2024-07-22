@@ -3,7 +3,7 @@ import Logo from './Logo';
 import Profile from './Profile';
 import { Button } from '@/components/ui/button';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
-import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';
+import ModalSalonModeChange from '@/components/modal/ModalSalonModeChange';
 import { NextPage } from 'next';
 import Country from '../country';
 import { useAuth } from 'context/AuthContext';
@@ -15,10 +15,10 @@ const Nav: NextPage = () => {
 
   const { salonModeModalOpen, salonModeChangeIsOpen } = salonModeChangeeStore();
   return (
-    <div className="w-full h-auto left-0 top-0 bg-white z-1000">
+    <div className="w-full h-auto left-0 top-0 bg-white">
       <div className="flex justify-between items-center h-26">
         <Logo />
-        <div className="flex w-2/3">
+        <div className="flex">
           {user?.email && user.owner === true && (
             <div className="flex items-center">{`${user?.salonName}`}</div>
           )}
@@ -30,7 +30,7 @@ const Nav: NextPage = () => {
           <Country />
           <Profile />
         </div>
-        <div>{salonModeChangeIsOpen && <SalnonModeChangeModal />}</div>
+        <div>{salonModeChangeIsOpen && <ModalSalonModeChange />}</div>
       </div>
     </div>
   );

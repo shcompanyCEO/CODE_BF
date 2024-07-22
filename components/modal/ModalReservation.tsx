@@ -11,7 +11,7 @@ interface Reservation {
   style: string;
 }
 
-const ReservationModal: React.FC = () => {
+const ModalReservation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [reservation, setReservation] = useState<Reservation>({
     time: '',
@@ -168,4 +168,4 @@ const ReservationModal: React.FC = () => {
   );
 };
 
-export default ReservationModal;
+export default ModalReservation;

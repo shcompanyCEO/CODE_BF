@@ -6,9 +6,9 @@ interface SubmenuProps {
   onSelect: (item: string) => void;
 }
 
-const Submenu: React.FC<SubmenuProps> = ({ items, selected, onSelect }) => {
+const SubmMenu: React.FC<SubmenuProps> = ({ items, selected, onSelect }) => {
   return (
-    <div className="bg-gray-900 ">
+    <div className=" bg-gray-900 ">
       {items.map((item, index) => (
         <div
           key={index}
@@ -24,4 +24,4 @@ const Submenu: React.FC<SubmenuProps> = ({ items, selected, onSelect }) => {
   );
 };
 
-export default Submenu;
+export default SubmMenu;

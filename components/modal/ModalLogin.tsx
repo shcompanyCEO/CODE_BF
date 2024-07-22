@@ -4,7 +4,7 @@ import { AppleIcon, FacebookIcon, MailIcon } from '../ui/icon';
 import { GoogleLogin } from '../auth/GoogleLogin';
 import useModalStore from 'store/stores/useModalStore';
 
-const LoginModal: React.FC = () => {
+const ModalLogin: React.FC = () => {
   const { LoginModalHandler } = useModalStore();
 
   return (
@@ -44,4 +44,4 @@ const LoginModal: React.FC = () => {
     </div>
   );
 };
-export default LoginModal;
+export default ModalLogin;

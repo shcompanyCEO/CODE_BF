@@ -3,12 +3,16 @@ import React, { useEffect, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useMapStore } from 'store/stores/useMapStore';
 import useSalonStore from 'store/stores/useSalonStore';
-import OwnerMenuComponent from '@/components/menuHandler/OwnerMenuComponent';
 import { AuthProvider } from 'context/AuthContext';
 import appWithTranslation from '../i18n';
 import '../styles/globals.css';
 import useGeolocation from '@/hooks/useGeolocation';
-
+import useModalStore from 'store/stores/useModalStore';
+import SalonMenuBar from '@/components/menuHandler/SalonMenuBar';
+import ModalSalonReservationPage from '@/components/modal/ModalSalonReservationPage';
+import { Transition } from 'react-transition-group';
+import StoreOperation from '@/components/storeOperation/StoreOperation';
+import OwnerMenuComponent from '@/components/menuHandler/OwnerMenuComponent';
 const queryClient = new QueryClient();
 function App({ Component, pageProps }: AppProps) {
   // const user = useAuthStore((state) => state.user);
@@ -17,6 +21,7 @@ function App({ Component, pageProps }: AppProps) {
   //현재 위치 알아 오기
   const { position, error } = useGeolocation();
   const [mounted, setMounted] = useState(false);
+  const { isSalonController, isReservationPageOpen } = useModalStore();
 
   //현재 유저 location
   const getCurrentLocation = () => {
@@ -52,8 +57,9 @@ function App({ Component, pageProps }: AppProps) {
     <div className="max-w-layout-maxWidth  min-h-screen mx-auto relative px-4">
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
+          <SalonMenuBar />
+          <ModalSalonReservationPage />
           <Component {...pageProps} />
-          <OwnerMenuComponent />
         </AuthProvider>
       </QueryClientProvider>
     </div>

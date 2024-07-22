@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
-import CountryModal from '@/components/modal/CountryModal';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
+import ModalCountry from '@/components/modal/ModalCountry';
 
 const Country = () => {
   const [langugeSelect, setLangugeSelect] = useState<string>('language');
@@ -30,7 +30,7 @@ const Country = () => {
             />
           </div>
 
-          {countryModalState && <CountryModal />}
+          {countryModalState && <ModalCountry />}
         </div>
       </div>
     </div>

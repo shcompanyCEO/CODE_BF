@@ -1,13 +1,9 @@
 import React from 'react';
 import CommonLayout from '@/components/common/CommonLayout';
-import StoreManagement from '@/components/storeOperation/StoreOperation';
+import StoreOperation from '@/components/storeOperation/StoreOperation';
 
 const index = () => {
-  return (
-    <CommonLayout>
-      <StoreManagement />
-    </CommonLayout>
-  );
+  return <CommonLayout>{/* <StoreOperation /> */}</CommonLayout>;
 };
 
 export default index;
