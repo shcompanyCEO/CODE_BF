@@ -49,7 +49,7 @@ function App({ Component, pageProps }: AppProps) {
   if (!mounted) return null;
 
   return (
-    <div className="max-w-layout-maxWidth  min-h-screen mx-auto relative">
+    <div className="max-w-layout-maxWidth  min-h-screen mx-auto relative px-4">
       <QueryClientProvider client={queryClient}>
         <AuthProvider>
           <Component {...pageProps} />

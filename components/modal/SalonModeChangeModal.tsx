@@ -7,8 +7,7 @@ import Step3 from '../salonModeChangeComponent/Step3';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 
 const SalonModeChangeModal: React.FC = () => {
-  const { salonModeModalClose, salonSelector, selectSalonHandler, currentStep } =
-    salonModeChangeeStore();
+  const { salonModeModalClose, currentStep } = salonModeChangeeStore();
 
   return (
     <ModalLayout modalClose={salonModeModalClose}>

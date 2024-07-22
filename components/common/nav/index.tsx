@@ -1,7 +1,6 @@
 import React from 'react';
 import Logo from './Logo';
 import Profile from './Profile';
-import { useUserDataStore } from 'store/stores/useUserData';
 import { Button } from '@/components/ui/button';
 import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import SalnonModeChangeModal from '@/components/modal/SalonModeChangeModal';

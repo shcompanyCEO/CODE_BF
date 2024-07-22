@@ -7,13 +7,7 @@ import { IconType } from 'react-icons';
 import useMenuStore from 'store/useMenuStore';
 import { FaCut, FaPaintBrush, FaHandsHelping, FaUser, FaRegCommentDots } from 'react-icons/fa';
 
-interface MenuItemProps {
-  label: string;
-  icon: IconType;
-  href: string;
-}
-
-const MenuBar: NextPage<MenuItemProps> = () => {
+const MenuBar: NextPage = () => {
   const { t } = useTranslation('common');
   const menuItems = [
     { id: 'hair', label: `${t('hair')}`, href: `${HAIR_ROUTE}`, icon: FaCut },
@@ -26,7 +20,7 @@ const MenuBar: NextPage<MenuItemProps> = () => {
   const { active, setActive } = useMenuStore();
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full">
       <div className="flex  justify-between items-center">
         {menuItems.map((item, index) => (
           <Link key={item.id} href={item.href}>

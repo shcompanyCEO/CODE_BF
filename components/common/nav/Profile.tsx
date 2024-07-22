@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useUserDataStore } from 'store/stores/useUserData';
 import useModalStore from 'store/stores/useModalStore';
 import { useAuth } from 'context/AuthContext';
+import ModalLayout from '../ModalLayout';
 
 const Profile = () => {
   const { user, loading, loginWithGoogle, logout } = useAuth();
@@ -96,7 +97,9 @@ const Profile = () => {
         </div>
       )}
       {isLoginModalOpen && (
-        <LoginModal isLoginModalOpen={isLoginModalOpen} onClose={LoginModalHandler}></LoginModal>
+        <ModalLayout modalClose={LoginModalHandler}>
+          <LoginModal />
+        </ModalLayout>
       )}
     </div>
   );

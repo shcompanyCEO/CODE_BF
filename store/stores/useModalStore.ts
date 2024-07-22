@@ -5,6 +5,7 @@ interface State {
   isReservationTimeOpen: boolean;
   //직원등록
   isEmployeeRegistration: boolean;
+  //owner관리 모달 Handler
 
   LoginModalHandler: () => void;
   reservationTimeModalHandler: () => void;

@@ -5,8 +5,9 @@ import { unloadGoogleMapsScript } from 'utility/apis/googleMap';
 interface IModalProps {
   children: ReactNode;
   modalClose: () => void;
+  modalOpen?: boolean;
 }
-const ModalLayout: React.FC<IModalProps> = ({ children, modalClose }) => {
+const ModalLayout: React.FC<IModalProps> = ({ modalOpen, children, modalClose }) => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {

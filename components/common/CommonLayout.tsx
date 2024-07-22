@@ -1,12 +1,11 @@
 import { PropsWithChildren } from 'react';
 import Nav from '@/components/common/nav';
 import Footer from '@/components/common/footer/Footer';
-import MenuBar from '@/components/common/menubar';
 import { useRouter } from 'next/router';
 import SalonCard from '@/components/salonComponent/SalonCard';
 import { HOME_ROUTE } from 'constants/routes';
-import Country from './country';
 import Banner from '../event/Banner';
+import MenuBar from './menubar';
 
 const CommonLayout = ({ children }: PropsWithChildren) => {
   const router = useRouter();

@@ -21,9 +21,7 @@ const Step3 = () => {
   const { user } = useAuth();
 
   const salonSettingData = async () => {
-    console.log('111>>>>>>');
     if (selectedPlace) {
-      console.log('22222>>>>>>');
       const salon = {
         salonId: `${salonName}_${user?.email}`, // Generate a unique ID or use Firebase auto-generated ID
         ownerUserEamil: user?.email,
