@@ -19,10 +19,10 @@ const Nav: NextPage = () => {
       <div className="flex justify-between items-center h-26">
         <Logo />
         <div className="flex">
-          {user?.email && user.owner === true && (
-            <div className="flex items-center">{`${user?.salonName}`}</div>
+          {user?.email && user.salon !== null && (
+            <div className="flex items-center">{`${user?.salon?.salonName}`}</div>
           )}
-          {user?.email && user.owner === false && (
+          {user?.email && user.salon === null && (
             <div className="flex items-center">
               <Button onClick={salonModeModalOpen}>{t('salonModeChange')}</Button>
             </div>

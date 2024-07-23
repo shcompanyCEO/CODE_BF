@@ -22,7 +22,7 @@ export const addSalonWithId = async (category: any, salonId: any, salonData: any
     // Add salon data to the respective category collection with the custom ID
     // await db.collection(category).doc(salonId).set(salonData);
     await setDoc(doc(db, `${category}`, `${salonId}`), { salonData });
-    console.log('Salon added successfully!');
+    alert('Salon added successfully!');
   } catch (error) {
     console.error('Error adding salon:', error);
   }

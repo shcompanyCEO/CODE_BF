@@ -33,7 +33,6 @@ import {
   WindIcon,
 } from '@/components/ui/icon';
 import { AccessibilityIcon, WifiIcon } from 'lucide-react';
-import ReservationModal from '@/components/modal/ResereModal';
 import useModalStore from 'store/stores/useModalStore';
 import ModalLayout from '@/components/common/ModalLayout';
 import InviteDesigner from '@/components/storeOperation/storeManagement/employeeManagement/InviteDesigner';
@@ -41,6 +40,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { InvitationsStore } from 'store/stores/employeeManagement/useInvitationsStore';
+import ModalReservation from '@/components/modal/ModalReservation';
 
 const ProductDetailPage = () => {
   const { setSalonId } = InvitationsStore();
@@ -168,7 +168,7 @@ const ProductDetailPage = () => {
             <div className="flex-col gap-1">
               {/* <div className="hidden md:flex flex-col gap-1"> */}
               <div className="text-2xl font-semibold">Disigner Profile</div>
-              <ReservationModal />
+              <ModalReservation />
             </div>
             <Card>
               <CardContent className="p-4 sm:p-6 flex items-center gap-6 relative">

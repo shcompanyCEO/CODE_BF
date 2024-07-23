@@ -10,11 +10,22 @@ interface UserData {
   email: string;
   phoneNumber: string;
   userToken: string;
-  owner: boolean;
-  managerStatus: boolean;
-  staffStatus: boolean;
-  salonName: null | string;
-  salonId: null | string;
+  salon: {
+    salonId: string;
+    ownerUserEamil: string;
+    salonName: string;
+    address: string;
+    salonPhoneNumber: string;
+    salonIntroduction: string;
+    salonCategory: string;
+    openTime: string;
+    closeTime: string;
+    location: {
+      latitude: string;
+      longitude: string;
+    };
+    designers: [];
+  } | null;
 }
 
 interface AuthContextProps {
@@ -52,11 +63,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           email: user.email!,
           phoneNumber: user.phoneNumber ? user.phoneNumber : '',
           userToken: await user.getIdToken(),
-          owner: false,
-          managerStatus: false,
-          staffStatus: false,
-          salonId: null,
-          salonName: null,
+          salon: null,
         };
         await setDoc(userDocRef, userData, { merge: true });
         return userData;

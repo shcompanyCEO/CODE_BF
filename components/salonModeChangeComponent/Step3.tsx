@@ -24,7 +24,7 @@ const Step3 = () => {
     if (selectedPlace) {
       const salon = {
         salonId: `${salonName}_${user?.email}`, // Generate a unique ID or use Firebase auto-generated ID
-        ownerUserEamil: user?.email,
+        ownerEamil: user?.email,
         salonName: salonName,
         address: selectedPlace?.formatted_address ?? '',
         salonPhoneNumber: salonPhoneNumber ?? '',
@@ -36,17 +36,14 @@ const Step3 = () => {
           latitude: selectedPlace.geometry?.location?.lat() ?? '',
           longitude: selectedPlace?.geometry?.location?.lng() ?? '',
         },
+        position: 'owner',
         designers: [],
       };
       //살롱 DB에 생성₩
-      addSalonWithId(`${salonCategory}Salons`, `${salon.salonId}`, salon);
+      addSalonWithId(`${salonCategory}Salons`, `${salon.salonId}`, { ...user, salon });
+
       //살롱을 등록한 유저 owner field change
-      const fieldsToUpdate = {
-        owner: true,
-        salonId: salon.salonId,
-        salonName: salon.salonName,
-      };
-      await salonOwnerFeildChange('users', `${user?.email}`, fieldsToUpdate);
+      await salonOwnerFeildChange('users', `${user?.email}`, { ...user, salon });
       salonModeModalClose();
       alert('User changeData');
     }

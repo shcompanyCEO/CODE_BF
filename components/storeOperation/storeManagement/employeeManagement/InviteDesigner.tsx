@@ -1,50 +1,76 @@
-import { useState } from 'react';
-import { collection, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
-import { db } from '@/api/firebase/firebase';
+import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useUserDataStore } from 'store/stores/useUserData';
 import { InviteDesignerStore } from 'store/stores/employeeManagement/useInviteDesignerStore';
+import { useUserDataStore } from 'store/stores/useUserData';
+import { useAllUsers } from 'store/queries/useUserQuery';
+import { useAuth } from 'context/AuthContext';
 
-interface InviteDesignerProps {
-  salonId: string | string[] | undefined;
-  salonName: string | string[] | undefined;
-  category: string | string[] | undefined;
-}
-const InviteDesigner = (salonData: InviteDesignerProps) => {
+const InviteDesigner = () => {
+  const { user } = useAuth();
+
   const { email } = useUserDataStore();
-  const [userEmail, setUserEmail] = useState<string>(`${email ? email : ''}`);
-  const { designerEmail, setSalonId, setCategory, setDesignerEmail, inviteDesigner } =
-    InviteDesignerStore();
+  const [userEmail, setUserEmail] = useState<string>(email || '');
+  const {
+    searchResults,
+    setSalonId,
+    setCategory,
+    searchDesignerByEmail,
+    inviteDesigner,
+    fetchInvitedDesigners,
+  } = InviteDesignerStore();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSalonId(`${salonData.salonId}`);
-    setCategory(`${salonData.category}`);
-    await inviteDesigner();
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setUserEmail(value);
+    searchDesignerByEmail(value);
   };
+
+  const handleInvite = async (designerId: string) => {
+    setSalonId(`${user?.salon?.salonId}`);
+    setCategory(`${user?.salon?.salonCategory}`);
+    await inviteDesigner(designerId);
+  };
+
+  useEffect(() => {
+    fetchInvitedDesigners();
+  }, [fetchInvitedDesigners]);
+
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-4">Invite Designer</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700">Designer Email:</label>
-          <input
-            type="email"
-            value={designerEmail}
-            onChange={(e) => setDesignerEmail(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            required
-          />
-        </div>
-        <Button
-          type="submit"
-          variant="ghost"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Invite
-        </Button>
-      </form>
-    </div>
+    <>
+      <div className="p-4">
+        <h2 className="text-xl font-bold mb-4">Invite Designer</h2>
+        <form onSubmit={(e) => e.preventDefault()}>
+          <div className="mb-4">
+            <label className="block text-gray-700">Search Designer by Email:</label>
+            <input
+              type="text"
+              value={userEmail}
+              onChange={handleSearch}
+              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Enter email or part of it"
+            />
+          </div>
+        </form>
+        {searchResults.length > 0 && (
+          <div className="mt-4">
+            <ul>
+              {searchResults.map((designer) => (
+                <li key={designer.id} className="flex items-center justify-between mb-2">
+                  <span>{designer.email}</span>
+                  <Button
+                    onClick={() => handleInvite(designer.id)}
+                    variant="ghost"
+                    className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                  >
+                    Invite
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

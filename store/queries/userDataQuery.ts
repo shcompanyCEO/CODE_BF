@@ -18,7 +18,5 @@ export const getUser = async (userEmail: string) => {
 export const setUserAdd = async (userEmail: string, userData: object) => {
   try {
     await setDoc(doc(db, 'users', `${userEmail}`), { userData });
-  } catch (error) {
-    console.log('setUserAdd', error);
-  }
+  } catch (error) {}
 };
