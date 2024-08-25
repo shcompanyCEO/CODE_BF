@@ -4,7 +4,7 @@ import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import GoogleMapComponent from 'utility/apis/googleMapAPI';
 import { useMapStore } from 'store/stores/useMapStore';
 import { addSalonWithId, salonOwnerFeildChange } from 'utility/salonUpdateAPI';
-import { useAuth } from 'context/AuthContext';
+import { useAuth } from 'context/AuthProvider';
 
 const Step3 = () => {
   const {
@@ -36,14 +36,18 @@ const Step3 = () => {
           latitude: selectedPlace.geometry?.location?.lat() ?? '',
           longitude: selectedPlace?.geometry?.location?.lng() ?? '',
         },
-        position: 'owner',
+        position: 'ceo',
         designers: [],
       };
       //살롱 DB에 생성₩
-      addSalonWithId(`${salonCategory}Salons`, `${salon.salonId}`, { ...user, salon });
+      addSalonWithId(`${salonCategory}Salons`, `${salon.salonId}`, {
+        ...user,
+        role: 'host',
+        salon,
+      });
 
       //살롱을 등록한 유저 owner field change
-      await salonOwnerFeildChange('users', `${user?.email}`, { ...user, salon });
+      await salonOwnerFeildChange('users', `${user?.email}`, { ...user, role: 'host', salon });
       salonModeModalClose();
       alert('User changeData');
     }

@@ -9,7 +9,6 @@ import {
   MYPICK_ROUTE,
   MYPAGE_ROUTE,
 } from 'constants/routes';
-import OwnerMenuComponent from '@/components/menuHandler/OwnerMenuComponent';
 
 const Footer = () => {
   const { active, setActive } = useMenuStore();
@@ -23,20 +22,19 @@ const Footer = () => {
   ];
 
   return (
-    <div className="fixed bottom-0 px-4 left-1/2 transform -translate-x-1/2 w-full max-w-[640px] bg-white border-t border-gray-200 ">
-      <OwnerMenuComponent />
-      <div className="flex justify-between items-center py-2">
+    <div className="fixed bottom-0 px-4 left-1/2 transform -translate-x-1/2 w-full max-w-[640px] bg-white">
+      <div className="w-full flex justify-between items-center py-2 ">
         {navItems.map((item) => (
           <Link key={item.id} href={item.href} passHref>
-            <div
-              className="flex flex-col items-center cursor-pointer relative w-full"
+            <ul
+              className="flex grow-1 flex-col items-center cursor-pointer relative"
               onClick={() => setActive(item.id)}
             >
-              <div className="w-full h-1 mt-1">
+              <li className="w-full h-1 mt-1">
                 {active === item.id && (
                   <div className="absolute top-0 left-0 w-full h-1 bg-pink-500"></div>
                 )}
-              </div>
+              </li>
               <item.icon
                 className={`text-2xl  ${active === item.id ? 'text-pink-500' : 'text-gray-400'}`}
               />
@@ -45,7 +43,7 @@ const Footer = () => {
               >
                 {item.label}
               </span>
-            </div>
+            </ul>
           </Link>
         ))}
       </div>

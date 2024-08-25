@@ -2,17 +2,15 @@
 import ModalLogin from '@/components/modal/ModalLogin';
 import { MenuIcon, UserIcon } from '@/components/ui/icon';
 import React, { useEffect, useState } from 'react';
-import { useUserDataStore } from 'store/stores/useUserData';
 import useModalStore from 'store/stores/useModalStore';
-import { useAuth } from 'context/AuthContext';
+import { useAuth } from 'context/AuthProvider';
 import ModalLayout from '../ModalLayout';
 
 const Profile = () => {
-  const { user, loading, loginWithGoogle, logout } = useAuth();
+  const { user, logout } = useAuth();
 
   const [isDropdown, setIsDropdown] = useState<boolean>(false);
   //user Name
-  const userDisplayName = useUserDataStore((state) => state.displayName);
   //modal Open
   const { isLoginModalOpen, LoginModalHandler } = useModalStore();
 
@@ -22,12 +20,7 @@ const Profile = () => {
   const toggleDropdownClose = (): void => {
     setIsDropdown(false);
   };
-  const signOut = async () => {
-    const userLogOut = await logout();
-  };
-  const handleInfo = () => {
-    return userDisplayName;
-  };
+
   //esc
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -77,15 +70,12 @@ const Profile = () => {
           ) : (
             <div className="py-1">
               <button
-                onClick={signOut}
+                onClick={logout}
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
               >
                 로그아웃
               </button>
-              <button
-                onClick={handleInfo}
-                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
-              >
+              <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
                 내정보
               </button>
               <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">

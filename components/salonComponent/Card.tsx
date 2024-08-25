@@ -23,7 +23,7 @@ const Card = (data: Salon) => {
   return (
     <div className="max-w-xs mx-auto bg-white rounded-lg shadow-md overflow-hidden transform transition-all hover:scale-105">
       <Link href={{ pathname: `/products/${salonName}`, query: { salonName, salonId, category } }}>
-        {/* <div className="relative">
+        <div className="relative">
           <img className="w-full h-48" src="" alt="Product Image" />
         </div>
         <div className="p-4">
@@ -33,7 +33,7 @@ const Card = (data: Salon) => {
             <span className="truncate text-gray-500">4.8</span>
             <span className="truncate text-gray-500 ml-1">(리뷰)</span>
           </div>
-        </div> */}
+        </div>
 
         <div className="max-w-xs mx-auto bg-white rounded-lg shadow-md overflow-hidden md:max-w-sm">
           <div className="relative pb-2/3">

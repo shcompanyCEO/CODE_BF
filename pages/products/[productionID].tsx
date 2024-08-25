@@ -37,13 +37,10 @@ import useModalStore from 'store/stores/useModalStore';
 import ModalLayout from '@/components/common/ModalLayout';
 import InviteDesigner from '@/components/storeOperation/storeManagement/employeeManagement/InviteDesigner';
 import Image from 'next/image';
-import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { InvitationsStore } from 'store/stores/employeeManagement/useInvitationsStore';
 import ModalReservation from '@/components/modal/ModalReservation';
 
 const ProductDetailPage = () => {
-  const { setSalonId } = InvitationsStore();
   const router = useRouter();
   const { productionID, salonId, salonName, category } = router.query;
   const { employeeRegistrationHandler, isEmployeeRegistration } = useModalStore();
@@ -52,9 +49,7 @@ const ProductDetailPage = () => {
     salonName,
     category,
   };
-  useEffect(() => {
-    setSalonId(`${salonId}`);
-  }, [setSalonId]);
+  console.log('data', salonData);
 
   return (
     <CommonLayout>
@@ -514,7 +509,7 @@ const ProductDetailPage = () => {
         </section>
         {isEmployeeRegistration && (
           <ModalLayout modalClose={employeeRegistrationHandler}>
-            <InviteDesigner {...salonData} />
+            <InviteDesigner />
           </ModalLayout>
         )}
       </div>

@@ -1,4 +1,4 @@
-import { useAuth } from 'context/AuthContext';
+import { useAuth } from 'context/AuthProvider';
 import React from 'react';
 import { useInvitedDesigners } from 'store/queries/useInvitationsQuery';
 

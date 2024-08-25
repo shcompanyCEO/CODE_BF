@@ -6,7 +6,7 @@ import { salonModeChangeeStore } from 'store/stores/useSalonModeChangeStore';
 import ModalSalonModeChange from '@/components/modal/ModalSalonModeChange';
 import { NextPage } from 'next';
 import Country from '../country';
-import { useAuth } from 'context/AuthContext';
+import { useAuth } from 'context/AuthProvider';
 import { useTranslation } from 'react-i18next';
 
 const Nav: NextPage = () => {

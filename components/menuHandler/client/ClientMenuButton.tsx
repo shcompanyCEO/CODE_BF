@@ -6,9 +6,11 @@ import { BiChat } from 'react-icons/bi';
 import { MdManageAccounts } from 'react-icons/md';
 import { IoPeople } from 'react-icons/io5';
 import { RiCustomerService2Line } from 'react-icons/ri';
+import { MdRateReview, MdCardMembership } from 'react-icons/md';
 import { IoIosStats } from 'react-icons/io';
 
-const SalonMenuBar = () => {
+const ClientMenuButton = () => {
+  //modal
   const { isSalonController, isReservationPageHandler, isSalonControllerHandler } = useModalStore();
 
   const menuHandler = (type: string) => {
@@ -63,7 +65,7 @@ const SalonMenuBar = () => {
                     <div className="bg-pink-500 rounded-full p-2">
                       <BiChat className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-xs mt-1">문의</span>
+                    <span className="text-xs mt-1">문의 하기</span>
                   </div>
                 </button>
                 <button className="absolute bottom-1/4 right-0 transform translate-y-1/2">
@@ -79,23 +81,23 @@ const SalonMenuBar = () => {
                     <div className="bg-pink-500 rounded-full p-2">
                       <IoPeople className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-xs mt-1">직원관리</span>
+                    <span className="text-xs mt-1">salon</span>
                   </div>
                 </button>
                 <button className="absolute bottom-1/4 left-0 transform translate-y-1/2">
                   <div className="flex flex-col items-center">
                     <div className="bg-pink-500 rounded-full p-2">
-                      <IoIosStats className="w-6 h-6 text-white" />
+                      <MdCardMembership className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-xs mt-1">매출</span>
+                    <span className="text-xs mt-1">멤버쉽</span>
                   </div>
                 </button>
                 <button className="absolute top-1/4 left-0 transform -translate-y-1/2">
                   <div className="flex flex-col items-center">
                     <div className="bg-pink-500 rounded-full p-2">
-                      <RiCustomerService2Line className="w-6 h-6 text-white" />
+                      <MdRateReview className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-xs mt-1">고객관리</span>
+                    <span className="text-xs mt-1">리뷰</span>
                   </div>
                 </button>
               </div>
@@ -113,4 +115,4 @@ const SalonMenuBar = () => {
   );
 };
 
-export default SalonMenuBar;
+export default ClientMenuButton;

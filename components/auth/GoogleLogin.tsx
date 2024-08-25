@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ChromeIcon } from '@/components/ui/icon';
-import { useAuth } from 'context/AuthContext';
+import { useAuth } from 'context/AuthProvider';
 
 export interface GooggleLoginButtonProps {
   onClose: () => void;

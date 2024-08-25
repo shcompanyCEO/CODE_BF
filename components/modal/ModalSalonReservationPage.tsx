@@ -2,19 +2,9 @@ import React, { useEffect, useState } from 'react';
 import useModalStore from 'store/stores/useModalStore';
 import StoreOperation from '../storeOperation/StoreOperation';
 import { Transition, TransitionChild } from '@headlessui/react';
-import { Button } from '../ui/button';
 
 const ModalSalonReservationPage = () => {
   const { isReservationPageOpen, isReservationPageHandler } = useModalStore();
-  const [animationClass, setAnimationClass] = useState('');
-
-  useEffect(() => {
-    if (isReservationPageOpen) {
-      setAnimationClass('slide-up');
-    } else {
-      setAnimationClass('slide-down');
-    }
-  }, [isReservationPageOpen]);
 
   return (
     <Transition show={isReservationPageOpen} as={React.Fragment}>

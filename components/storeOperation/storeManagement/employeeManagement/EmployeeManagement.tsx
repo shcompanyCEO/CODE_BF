@@ -1,8 +1,6 @@
-import SearchBar from '@/components/ui/searchBar';
 import React from 'react';
-import Invitations from './InvitedDesigners';
 import InviteDesigner from './InviteDesigner';
-import { useAuth } from 'context/AuthContext';
+import { useAuth } from 'context/AuthProvider';
 import InvitedDesigners from './InvitedDesigners';
 
 const EmployeeManagement = () => {

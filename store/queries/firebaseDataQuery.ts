@@ -1,6 +1,5 @@
 import { collection, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
 import { db } from '@/api/firebase/firebase';
-import useSalonStore from 'store/stores/useSalonStore';
 
 //모든 헤어 살롱
 //All hair=Salons
