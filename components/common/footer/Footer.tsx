@@ -9,10 +9,13 @@ import {
   MYPICK_ROUTE,
   MYPAGE_ROUTE,
 } from 'constants/routes';
+import { useAuth } from 'context/AuthProvider';
+import UserMenuComponent from '@/components/menuHandler/UserMenuComponent';
 
 const Footer = () => {
   const { active, setActive } = useMenuStore();
   const { t } = useTranslation('common');
+  const { user } = useAuth();
   const navItems = [
     { id: 'home', label: `${t('home')}`, href: `${HOME_ROUTE}`, icon: FaHome },
     { id: 'palette', label: `${t('palette')}`, href: `${STYLE_ROUTE}`, icon: FaPalette },
@@ -46,6 +49,17 @@ const Footer = () => {
             </ul>
           </Link>
         ))}
+      </div>
+      <div className="fixed bottom-20 right-20 h-10 max-[640px]">
+        {user?.role === 'host' ? (
+          <div>
+            <UserMenuComponent />
+          </div>
+        ) : (
+          <div>
+            <UserMenuComponent />
+          </div>
+        )}
       </div>
     </div>
   );

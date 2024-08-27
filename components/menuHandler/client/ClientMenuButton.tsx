@@ -5,9 +5,7 @@ import { AiFillCalendar, AiFillStop } from 'react-icons/ai';
 import { BiChat } from 'react-icons/bi';
 import { MdManageAccounts } from 'react-icons/md';
 import { IoPeople } from 'react-icons/io5';
-import { RiCustomerService2Line } from 'react-icons/ri';
 import { MdRateReview, MdCardMembership } from 'react-icons/md';
-import { IoIosStats } from 'react-icons/io';
 
 const ClientMenuButton = () => {
   //modal

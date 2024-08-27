@@ -10,10 +10,12 @@ export const getHairSalons = async () => {
 //All make-up Salons
 export const getMakeUpSalons = async () => {
   const salonsSnapshot = await getDocs(collection(db, 'makeUpSalons'));
+  return salonsSnapshot;
 };
 //All nail Salons
 export const getNailSalons = async () => {
   const salonsSnapshot = await getDocs(collection(db, 'nailSalons'));
+  return salonsSnapshot;
 };
 
 export const addSalonWithId = async (category: any, salonId: any, salonData: any) => {

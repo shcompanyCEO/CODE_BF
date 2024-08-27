@@ -1,4 +1,6 @@
 {
   "presets": ["next/babel"],
-  "plugins": ["styled-components"]
+  "plugins": ["styled-components"],
+  "ignore": ["node_modules/react-icons/bi/index.mjs"],
+  "compact": true
 }

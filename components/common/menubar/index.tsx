@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { HAIR_ROUTE, MAKEUP_ROUTE, MANS_ROUTE, NAIL_ROUTE, STYLE_ROUTE } from 'constants/routes';
 import { useTranslation } from 'react-i18next';
 import { NextPage } from 'next';
-import { IconType } from 'react-icons';
 import useMenuStore from 'store/useMenuStore';
 import { FaCut, FaPaintBrush, FaHandsHelping, FaUser, FaRegCommentDots } from 'react-icons/fa';
 

@@ -14,23 +14,26 @@ const Nav: NextPage = () => {
   const { t } = useTranslation();
 
   const { salonModeModalOpen, salonModeChangeIsOpen } = salonModeChangeeStore();
+
   return (
-    <div className="w-full h-auto left-0 top-0 bg-white">
-      <div className="flex justify-between items-center h-26">
+    <div className="w-full h-auto left-0 top-0">
+      <div className="flex justify-between items-center h-20 px-4">
         <Logo />
-        <div className="flex">
+        <div className="flex items-center space-x-4">
           {user?.email && user.salon !== null && (
-            <div className="flex items-center">{`${user?.salon?.salonName}`}</div>
+            <div className="text-sm font-semibold">{user?.salon?.salonName}</div>
           )}
           {user?.email && user.salon === null && (
-            <div className="flex items-center">
+            <div>
               <Button onClick={salonModeModalOpen}>{t('salonModeChange')}</Button>
             </div>
           )}
+        </div>
+        <div className="flex items-center space-x-4">
           <Country />
           <Profile />
         </div>
-        <div>{salonModeChangeIsOpen && <ModalSalonModeChange />}</div>
+        {salonModeChangeIsOpen && <ModalSalonModeChange />}
       </div>
     </div>
   );

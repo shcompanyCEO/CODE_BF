@@ -24,6 +24,10 @@ const InviteDesigner = () => {
     searchDesignerByEmail(value);
   };
 
+  const handleSelectResult = (email: string) => {
+    setUserEmail(email);
+  };
+
   const handleInvite = async (designerId: string) => {
     setSalonId(`${user?.salon?.salonId}`);
     setCategory(`${user?.salon?.salonCategory}`);
@@ -34,11 +38,12 @@ const InviteDesigner = () => {
     fetchInvitedDesigners();
   }, [fetchInvitedDesigners]);
 
+  console.log('sean user', user);
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Invite Designer</h2>
       <form onSubmit={(e) => e.preventDefault()}>
-        <div className="mb-4">
+        <div className="mb-4 relative">
           <label className="block text-gray-700">Search Designer by Email:</label>
           <input
             type="text"
@@ -47,9 +52,33 @@ const InviteDesigner = () => {
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             placeholder="Enter email or part of it"
           />
+          {userEmail && searchResults.length > 0 && (
+            <ul className="absolute z-10 bg-white shadow-lg mt-2 w-full rounded-md max-h-60 overflow-y-auto">
+              {searchResults.map((designer) => (
+                <>
+                  <div className="flex">
+                    <li
+                      key={designer.id}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => handleSelectResult(designer.email)}
+                    >
+                      {designer.email}
+                    </li>
+                    <Button
+                      onClick={() => handleInvite(designer.id)}
+                      variant="ghost"
+                      className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+                    >
+                      Invite
+                    </Button>
+                  </div>
+                </>
+              ))}
+            </ul>
+          )}
         </div>
       </form>
-      {searchResults.length > 0 && (
+      {/* {searchResults.length > 0 && (
         <div className="mt-4">
           <ul>
             {searchResults.map((designer) => (
@@ -66,7 +95,7 @@ const InviteDesigner = () => {
             ))}
           </ul>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

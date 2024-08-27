@@ -2,10 +2,6 @@ import { useAuth } from 'context/AuthProvider';
 import React from 'react';
 import { useInvitedDesigners } from 'store/queries/useInvitationsQuery';
 
-interface InvitedDesignersProps {
-  salonId: string;
-  category: string;
-}
 interface Designer {
   id: string;
   email: string;
@@ -19,10 +15,13 @@ interface Designer {
 
 const InvitedDesigners = () => {
   const { user } = useAuth();
-  const { data: invitedDesigners } = useInvitedDesigners(
-    user?.salon?.salonId,
-    user?.salon?.salonCategory
-  );
+  const salonId = user?.salon?.salonId;
+  const category = user?.salon?.salonCategory;
+
+  // Check if salonId and category are available before calling the hook
+  const { data: invitedDesigners } = useInvitedDesigners(salonId, category);
+
+  console.log('sean data', invitedDesigners);
 
   return (
     <div className="p-4">
@@ -44,12 +43,13 @@ const InvitedDesigners = () => {
             <tr key={designer.id} className="text-center">
               <td className="py-2">{index + 1}</td>
               <td className="py-2">{designer.email}</td>
-              <td className="py-2">{designer.phoneNumber ?? 'N/A'}</td>{' '}
-              {/* Add phone number here if available */}
-              <td className="py-2">{designer.role || '직원'}</td> {/* Adjust role if needed */}
-              <td className="py-2">{designer.invitedAt?.toDate().toLocaleDateString()}</td>
-              <td className="py-2">{designer.status}</td> {/* Add join/leave status if available */}
-              <td className="py-2">권한 설정</td> {/* Add permission setting logic if available */}
+              <td className="py-2">{designer.phoneNumber ?? 'N/A'}</td>
+              <td className="py-2">{designer.role || '직원'}</td>
+              <td className="py-2">
+                {designer.invitedAt ? designer.invitedAt.toDate().toLocaleDateString() : 'N/A'}
+              </td>
+              <td className="py-2">{designer.status ?? 'N/A'}</td>
+              <td className="py-2">권한 설정</td>
             </tr>
           ))}
         </tbody>

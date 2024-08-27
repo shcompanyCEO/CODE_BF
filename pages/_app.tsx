@@ -15,7 +15,6 @@ function App({ Component, pageProps }: AppProps) {
   //현재 위치 알아 오기
   const { position, error } = useGeolocation();
   const [mounted, setMounted] = useState(false);
-
   //현재 유저 location
   const getCurrentLocation = () => {};
 
