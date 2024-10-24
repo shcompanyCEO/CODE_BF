@@ -39,7 +39,7 @@ const InviteDesigner = () => {
   }, [fetchInvitedDesigners]);
 
   return (
-    <div className="p-4">
+    <div className="px-4">
       <h2 className="text-xl font-bold mb-4">Invite Designer</h2>
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="mb-4 relative">

@@ -26,7 +26,7 @@ const ReservationManagement = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="w-full px-2">
       <div className="flex items-center justify-between mb-4">
         <button className="text-xl">&lt;</button>
         <h2 className="text-xl">24. 5. 14 (화요일)</h2>

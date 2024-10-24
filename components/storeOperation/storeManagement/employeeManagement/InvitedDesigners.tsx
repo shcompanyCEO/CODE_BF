@@ -22,7 +22,7 @@ const InvitedDesigners = () => {
   const { data: invitedDesigners } = useInvitedDesigners(salonId, category);
 
   return (
-    <div className="p-4">
+    <div className="px-4">
       <h2 className="text-xl font-bold mb-4">Invited Designers</h2>
       <table className="min-w-full bg-white border">
         <thead>

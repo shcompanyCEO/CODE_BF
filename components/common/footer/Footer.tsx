@@ -4,12 +4,11 @@ import useMenuStore from 'store/useMenuStore';
 import { useTranslation } from 'react-i18next';
 import {
   HOME_ROUTE,
-  STYLE_ROUTE,
+  RESERVATION_ROUTE,
   MARKET_ROUTE,
   MYPICK_ROUTE,
   MYPAGE_ROUTE,
 } from 'constants/routes';
-import { useAuth } from 'context/AuthProvider';
 import UserMenuComponent from '@/components/menuHandler/UserMenuComponent';
 
 const Footer = () => {
@@ -17,7 +16,7 @@ const Footer = () => {
   const { t } = useTranslation('common');
   const footerItems = [
     { id: 'home', label: `${t('home')}`, href: `${HOME_ROUTE}`, icon: FaHome },
-    { id: 'palette', label: `${t('palette')}`, href: `${STYLE_ROUTE}`, icon: FaPalette },
+    { id: 'palette', label: `${t('reservation')}`, href: `${RESERVATION_ROUTE}`, icon: FaPalette },
     { id: 'market', label: `${t('store')}`, href: `${MARKET_ROUTE}`, icon: FaStore },
     { id: 'pick', label: `${t('mypick')}`, href: `${MYPICK_ROUTE}`, icon: FaHeart },
     { id: 'mypage', label: `${t('mypage')}`, href: `${MYPAGE_ROUTE}`, icon: FaUser },
