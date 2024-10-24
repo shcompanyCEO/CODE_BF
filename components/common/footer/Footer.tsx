@@ -15,8 +15,7 @@ import UserMenuComponent from '@/components/menuHandler/UserMenuComponent';
 const Footer = () => {
   const { active, setActive } = useMenuStore();
   const { t } = useTranslation('common');
-  const { user } = useAuth();
-  const navItems = [
+  const footerItems = [
     { id: 'home', label: `${t('home')}`, href: `${HOME_ROUTE}`, icon: FaHome },
     { id: 'palette', label: `${t('palette')}`, href: `${STYLE_ROUTE}`, icon: FaPalette },
     { id: 'market', label: `${t('store')}`, href: `${MARKET_ROUTE}`, icon: FaStore },
@@ -27,7 +26,7 @@ const Footer = () => {
   return (
     <div className="fixed bottom-0 px-4 left-1/2 transform -translate-x-1/2 w-full max-w-[640px] bg-white">
       <div className="w-full flex justify-between items-center py-2 ">
-        {navItems.map((item) => (
+        {footerItems.map((item) => (
           <Link key={item.id} href={item.href} passHref>
             <ul
               className="flex grow-1 flex-col items-center cursor-pointer relative"
@@ -51,15 +50,7 @@ const Footer = () => {
         ))}
       </div>
       <div className="fixed bottom-20 right-20 h-10 max-[640px]">
-        {user?.role === 'host' ? (
-          <div>
-            <UserMenuComponent />
-          </div>
-        ) : (
-          <div>
-            <UserMenuComponent />
-          </div>
-        )}
+        <UserMenuComponent />
       </div>
     </div>
   );

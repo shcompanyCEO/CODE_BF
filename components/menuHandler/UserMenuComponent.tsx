@@ -4,6 +4,7 @@ import { SiTheconversation } from 'react-icons/si';
 
 const UserMenuComponent = () => {
   const { isSalonControllerHandler } = useModalStore();
+
   return (
     <>
       <div className="z-50 max-[640px]">

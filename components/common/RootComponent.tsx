@@ -11,8 +11,9 @@ import HostMenuButton from '../menuHandler/host/HostMenuButton';
 import ModalSalonReservationPage from '../modal/ModalSalonReservationPage';
 import ClientMenuButton from '../menuHandler/client/ClientMenuButton';
 import LoadingBar from './loadingBar/LoadingBar';
+import SalonAddComponent from './SalonAddComponent';
 
-const CommonLayout = ({ children }: PropsWithChildren) => {
+const RootComponent = ({ children }: PropsWithChildren) => {
   const router = useRouter();
   const { pathname } = router;
   const { user, loading } = useAuth();
@@ -24,6 +25,7 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
       <div className="w-full h-full m-auto bg-white top-0">
         <Nav />
         {pathname === HOME_ROUTE && <Banner />}
+        <SalonAddComponent />
         <MenuBar />
         {pathname === HOME_ROUTE && <SalonCard />}
         <div className="w-full h-full">{children}</div>
@@ -45,4 +47,4 @@ const CommonLayout = ({ children }: PropsWithChildren) => {
   );
 };
 
-export default CommonLayout;
+export default RootComponent;

@@ -43,15 +43,15 @@ const Steap1 = () => {
             variant={`${salonCategory === 'makeup' ? 'secondary' : 'customer'}`}
           >
             <MailIcon className="w-6 h-6 text-green-600" />
-            <span>make up</span>
+            <span>Massage</span>
           </Button>
           <Button
-            onClick={() => selectSalonHandler('mans')}
+            onClick={() => selectSalonHandler('clinic')}
             className="flex items-center justify-around space-x-2"
             variant={`${salonCategory === 'mans' ? 'secondary' : 'customer'}`}
           >
             <MailIcon className="w-6 h-6 text-blue-600" />
-            <span>{`man's`}</span>
+            <span>clinic</span>
           </Button>
           <Button
             onClick={() => handleNextStep(2)}

@@ -1,8 +1,12 @@
 import React from 'react';
-import CommonLayout from '@/components/common/CommonLayout';
+import RootComponent from '@/components/common/RootComponent';
 
 const index = () => {
-  return <CommonLayout>MayPick</CommonLayout>;
+  return (
+    <RootComponent>
+      <div>MayPick </div>
+    </RootComponent>
+  );
 };
 
 export default index;

@@ -1,11 +1,11 @@
-import CommonLayout from '@/components/common/CommonLayout';
+import RootComponent from '@/components/common/RootComponent';
 import React from 'react';
 
 const index = () => {
   return (
-    <CommonLayout>
+    <RootComponent>
       <div>hair</div>
-    </CommonLayout>
+    </RootComponent>
   );
 };
 

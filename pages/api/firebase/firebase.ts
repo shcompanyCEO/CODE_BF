@@ -14,10 +14,6 @@ export const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBAS_MEASUREMENT_ID,
 };
-// // Check if Firebase is already initialized to prevent reinitialization
-// if (!firebase.apps.length) {
-//   firebase.initializeApp(firebaseConfig);
-// }
 
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);

@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
-import CommonLayout from '@/components/common/CommonLayout';
+import RootComponent from '@/components/common/RootComponent';
 
 const Home: NextPage = () => {
-  return <CommonLayout />;
+  return <RootComponent />;
 };
 
 export default Home;

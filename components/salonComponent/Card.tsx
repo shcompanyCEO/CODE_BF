@@ -14,20 +14,34 @@ interface Salon {
   salonPhoneNumber: string;
   location: Location;
   salonIntroduction: string; // Required property
-  key: number;
   category: string;
+  salon: {
+    address: string;
+    closeTiem: string;
+    designers: [];
+    openTime: string;
+    ownerEamil: string;
+    position: string;
+    salonCategory: string;
+    salonId: string;
+    salonIntroduction: string;
+    salonName: string;
+    salonPhoneNumber: string;
+  };
 }
 
 const Card = (data: Salon) => {
-  const { salonId, salonName, salonIntroduction, category } = data;
+  const { salonId, salonName, salonIntroduction, category, salon } = data;
   return (
     <div className="max-w-xs mx-auto bg-white rounded-lg shadow-md overflow-hidden transform transition-all hover:scale-105">
-      <Link href={{ pathname: `/products/${salonName}`, query: { salonName, salonId, category } }}>
+      <Link
+        href={{ pathname: `/products/${salon.salonName}`, query: { salonName, salonId, category } }}
+      >
         <div className="relative">
           <img className="w-full h-48" src="" alt="Product Image" />
         </div>
         <div className="p-4">
-          <h3 className="truncate font-medium text-gray-700">{salonName}</h3>
+          <h3 className="truncate font-medium text-gray-700">{salon.salonName}</h3>
           <p className="truncate text-gray-500 mb-2">{salonIntroduction}</p>
           <div className="flex items-center mt-2">
             <span className="truncate text-gray-500">4.8</span>

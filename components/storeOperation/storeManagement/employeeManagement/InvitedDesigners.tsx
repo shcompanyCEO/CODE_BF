@@ -21,8 +21,6 @@ const InvitedDesigners = () => {
   // Check if salonId and category are available before calling the hook
   const { data: invitedDesigners } = useInvitedDesigners(salonId, category);
 
-  console.log('sean data', invitedDesigners);
-
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Invited Designers</h2>

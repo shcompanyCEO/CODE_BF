@@ -88,7 +88,7 @@ const ModalReservation: React.FC = () => {
         className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
         onClick={() => open()}
       >
-        <div>sean</div>
+        <div>sean 예약하기</div>
       </button>
 
       {/* modal overlay */}

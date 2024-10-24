@@ -1,8 +1,8 @@
 import React from 'react';
-import CommonLayout from '@/components/common/CommonLayout';
+import RootComponent from '@/components/common/RootComponent';
 
 const NailPage = () => {
-  return <CommonLayout>Nail</CommonLayout>;
+  return <RootComponent>Nail</RootComponent>;
 };
 
 export default NailPage;

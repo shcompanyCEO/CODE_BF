@@ -101,7 +101,7 @@ const SettingReservationTime = () => {
                       onChange={(e) => handleTimeChange(index, 'open', e.target.value)}
                     >
                       {timeOptions.map((time) => (
-                        <option key={`${day}-open-${time}`} value={time.value}>
+                        <option key={`${day}-open-${time.value}`} value={time.value}>
                           Open: {time.value}
                         </option>
                       ))}
@@ -113,7 +113,7 @@ const SettingReservationTime = () => {
                       onChange={(e) => handleTimeChange(index, 'close', e.target.value)}
                     >
                       {timeOptions.map((time) => (
-                        <option key={`${day}-close-${time}`} value={time.value}>
+                        <option key={`${day}-close-${time.value}`} value={time.value}>
                           Close: {time.value}
                         </option>
                       ))}

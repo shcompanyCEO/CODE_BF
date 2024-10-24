@@ -55,7 +55,7 @@ const ClientMenuButton = () => {
                     >
                       <AiFillCalendar className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-xs mt-1">예약 현황</span>
+                    <span className="text-xs mt-1">나의 예약 현황</span>
                   </div>
                 </button>
                 <button className="absolute top-1/4 right-0 transform -translate-y-1/2">
@@ -63,23 +63,23 @@ const ClientMenuButton = () => {
                     <div className="bg-pink-500 rounded-full p-2">
                       <BiChat className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-xs mt-1">문의 하기</span>
+                    <span className="text-xs mt-1">나의 문의</span>
                   </div>
                 </button>
                 <button className="absolute bottom-1/4 right-0 transform translate-y-1/2">
-                  <div className="flex flex-col items-center">
+                  {/* <div className="flex flex-col items-center">
                     <div className="bg-pink-500 rounded-full p-2">
                       <MdManageAccounts className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-xs mt-1">매장관리</span>
-                  </div>
+                  </div> */}
                 </button>
                 <button className="absolute bottom-0 left-1/2 transform -translate-x-1/2">
                   <div className="flex flex-col items-center">
                     <div className="bg-pink-500 rounded-full p-2">
                       <IoPeople className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-xs mt-1">salon</span>
+                    <span className="text-xs mt-1">회원 정보 수정</span>
                   </div>
                 </button>
                 <button className="absolute bottom-1/4 left-0 transform translate-y-1/2">
@@ -95,7 +95,7 @@ const ClientMenuButton = () => {
                     <div className="bg-pink-500 rounded-full p-2">
                       <MdRateReview className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-xs mt-1">리뷰</span>
+                    <span className="text-xs mt-1">나의 리뷰</span>
                   </div>
                 </button>
               </div>

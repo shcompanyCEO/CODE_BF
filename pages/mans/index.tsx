@@ -1,8 +1,8 @@
 import React from 'react';
-import CommonLayout from '@/components/common/CommonLayout';
+import RootComponent from '@/components/common/RootComponent';
 
 const MansPage = () => {
-  return <CommonLayout>mans</CommonLayout>;
+  return <RootComponent>mans</RootComponent>;
 };
 
 export default MansPage;

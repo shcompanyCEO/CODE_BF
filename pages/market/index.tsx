@@ -1,8 +1,8 @@
 import React from 'react';
-import CommonLayout from '@/components/common/CommonLayout';
+import RootComponent from '@/components/common/RootComponent';
 
 const index = () => {
-  return <CommonLayout>market</CommonLayout>;
+  return <RootComponent>market</RootComponent>;
 };
 
 export default index;

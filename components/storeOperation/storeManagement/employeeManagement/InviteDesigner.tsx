@@ -38,7 +38,6 @@ const InviteDesigner = () => {
     fetchInvitedDesigners();
   }, [fetchInvitedDesigners]);
 
-  console.log('sean user', user);
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">Invite Designer</h2>
@@ -78,24 +77,6 @@ const InviteDesigner = () => {
           )}
         </div>
       </form>
-      {/* {searchResults.length > 0 && (
-        <div className="mt-4">
-          <ul>
-            {searchResults.map((designer) => (
-              <li key={designer.id} className="flex items-center justify-between mb-2">
-                <span>{designer.email}</span>
-                <Button
-                  onClick={() => handleInvite(designer.id)}
-                  variant="ghost"
-                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
-                >
-                  Invite
-                </Button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )} */}
     </div>
   );
 };

@@ -1,5 +1,3 @@
-import { db } from '@/api/firebase/firebase';
-import { doc, setDoc } from 'firebase/firestore';
 import { create } from 'zustand';
 
 export interface WeekTime {
